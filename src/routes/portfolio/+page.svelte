@@ -7,7 +7,7 @@
 		github?: string;
 		image: string;
 		link: string;
-	}[] = [
+	}[] = $state([
 		{
 			title: 'Project 1',
 			description: 'Description 1',
@@ -56,9 +56,15 @@
 			image: 'https://www.dummyimg.in/placeholder',
 			link: 'https://example.com/project3'
 		}
-	];
+	]);
 
-	const filteredPortfolio = $derived(portfolio.filter((item) => item.title.includes(searchText)));
+	const filteredPortfolio = $derived(
+		portfolio.filter(
+			(item) =>
+				item.title.toLowerCase().includes(searchText.toLowerCase()) ||
+				item.description.toLowerCase().includes(searchText.toLowerCase())
+		)
+	);
 
 	function handleInput(event: Event) {
 		searchText = (event.target as HTMLInputElement).value;
