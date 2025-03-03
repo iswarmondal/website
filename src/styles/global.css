@@ -1,15 +1,15 @@
 :root {
-	--accent: #8B4513;
-	--accent-dark: #654321;
-	--black: 41, 41, 41;
+	--accent: #efb983;
+	--accent-dark: #C68B59;
+	--black: 220, 220, 220;
 	--gray: 96, 115, 159;
 	--gray-light: 229, 233, 240;
 	--gray-dark: 34, 41, 57;
-	--sepia: 251, 238, 230;
-	--paper: 246, 242, 235;
-	--text-primary: #2C1810;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--sepia: 51, 38, 50;
+	--paper: 32, 29, 27;
+	--text-primary: #c8ddff;
+	--box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.2),
+		0 16px 32px rgba(0, 0, 0, 0.2);
 }
 
 .libre-baskerville-regular {
@@ -42,6 +42,7 @@ body {
 	font-size: 20px;
 	line-height: 1.7;
 	position: relative;
+	-webkit-font-smoothing: antialiased;
 }
 
 main {
@@ -52,6 +53,9 @@ main {
 	background-color: rgb(var(--sepia));
 	box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
 	border: 1px solid rgba(0, 0, 0, 0.1);
+	background-image: url("/public/Noise.png");
+	background-size: 100px;
+	background-repeat: repeat;
 }
 
 h1,
@@ -139,13 +143,15 @@ img {
 
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: rgb(var(--gray-dark));
 	border-radius: 2px;
+	border: 0.3px dotted rgba(255, 255, 255, 0.1);
 }
 
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	border: 0.3px dotted rgba(255, 255, 255, 0.1);
 }
 
 pre > code {
