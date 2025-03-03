@@ -1,0 +1,204 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			main {
+				width: 720px;
+			}
+			.section-title {
+				text-align: center;
+				font-size: 2.5em;
+				margin: 1em 0 0.3em;
+				color: var(--text-primary);
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				border-bottom: 4px double var(--text-primary);
+				padding-bottom: 0.5em;
+			}
+			.section-description {
+				text-align: center;
+				margin: 0 auto 2em;
+				border-bottom: 4px double var(--text-primary);
+				padding: 0 1em 0.5em;
+			}
+			.timeline {
+				position: relative;
+				max-width: 100%;
+				margin: 4em auto;
+			}
+			.timeline::before {
+				content: '';
+				position: absolute;
+				left: 82px;
+				top: 0;
+				bottom: 0;
+				width: 1px;
+				background: var(--text-primary);
+				opacity: 0.3;
+			}
+			.project {
+				position: relative;
+				margin: 4em 0;
+				padding-left: 120px;
+			}
+			.project::before {
+				content: '';
+				position: absolute;
+				left: 73px;
+				top: 0;
+				width: 16px;
+				height: 16px;
+				border: 2px solid var(--accent);
+				background: rgb(var(--paper));
+				border-radius: 50%;
+			}
+			.date-block {
+				position: absolute;
+				left: 0;
+				top: -10px;
+				max-width: 100px;
+				text-align: right;
+				color: var(--accent);
+				font-style: italic;
+				font-size: 0.9em;
+				line-height: 1.4;
+				transform: rotate(-90deg);
+			}
+			.project-content {
+				/* background: rgb(var(--sepia)); */
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			}
+			.project-header {
+				margin-bottom: 1em;
+			}
+			.title {
+				margin: 0;
+				font-size: 1.5em;
+				color: var(--text-primary);
+				line-height: 1.2;
+				font-weight: 700;
+			}
+			.description {
+				margin: 0.5em 0;
+				color: var(--text-primary);
+				font-size: 1em;
+				line-height: 1.5;
+				opacity: 0.8;
+			}
+			.project-image {
+				margin: 1em 0;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+			}
+			.project-image img {
+				width: 100%;
+				height: auto;
+				display: block;
+				filter: sepia(20%);
+			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5em;
+				margin: 1em 0;
+			}
+			.tag {
+				padding: 0.1em 0.4em;
+				border: 1px solid var(--accent);
+				font-size: 0.7em;
+				color: var(--accent);
+			}
+			.status {
+				/* padding: 0.2em 1em; */
+				margin-bottom: 1em;
+				/* border: 1px solid var(--accent); */
+				color: var(--accent);
+				font-size: 0.8em;
+				text-transform: capitalize;
+				margin-top: 1em;
+			}
+			.read-more {
+				display: inline-block;
+				margin-top: 1em;
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1px solid transparent;
+				transition: border-color 0.3s ease;
+			}
+			.read-more:hover {
+				border-bottom-color: var(--accent);
+			}
+			@media (max-width: 720px) {
+				.timeline::before {
+					left: 30px;
+				}
+				.project {
+					padding-left: 60px;
+				}
+				.project::before {
+					left: 23px;
+				}
+				.date-block {
+					width: auto;
+					text-align: left;
+					left: -30px;
+				}
+				.project-content {
+					margin-top: 1em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="section-title">My Projects</h1>
+			<p class="section-description">
+				Here are some of the projects I've worked on throughout my career.
+				This includes any of my personal projects, as well as any projects I've
+				worked on for clients or employers. For security and copyright reasons,
+				I'm not able to share the code for most of these projects.
+			</p>
+			<div class="timeline">
+				{
+					projects.map((project) => (
+						<div class="project">
+							<div class="date-block">
+								<FormattedDate date={project.data.date} />
+							</div>
+							<div class="project-content">
+								<div class="status">{project.data.status}</div>
+								<div class="project-header">
+									<h2 class="title">{project.data.title}</h2>
+									<p class="description">{project.data.description}</p>
+								</div>
+								<div class="tags">
+									{project.data.tags.map(tag => (
+										<span class="tag">{tag}</span>
+									))}
+								</div>
+								<a href={`/projects/${project.slug}/`} class="read-more">
+									Read Case Study →
+								</a>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html> 
