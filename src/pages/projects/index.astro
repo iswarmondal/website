@@ -16,25 +16,6 @@ const projects = (await getCollection('projects')).sort(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			main {
-				width: 720px;
-			}
-			.section-title {
-				text-align: center;
-				font-size: 2.5em;
-				margin: 1em 0 0.3em;
-				color: var(--text-primary);
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				border-bottom: 4px double var(--text-primary);
-				padding-bottom: 0.5em;
-			}
-			.section-description {
-				text-align: center;
-				margin: 0 auto 2em;
-				border-bottom: 4px double var(--text-primary);
-				padding: 0 1em 0.5em;
-			}
 			.timeline {
 				position: relative;
 				max-width: 100%;
@@ -165,7 +146,7 @@ const projects = (await getCollection('projects')).sort(
 	<body>
 		<Header />
 		<main>
-			<h1 class="section-title">My Projects</h1>
+			<h1>My Projects</h1>
 			<p class="section-description">
 				Here are some of the projects I've worked on throughout my career.
 				This includes any of my personal projects, as well as any projects I've

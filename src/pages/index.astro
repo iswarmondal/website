@@ -3,47 +3,152 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+).slice(0, 3);
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+).slice(0, 3);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero-section {
+				margin: 4rem 0;
+			}
+			.hero-title {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+				border-bottom: 4px solid transparent;
+				background-image: linear-gradient(45deg, transparent 45%, #fff 45%, #fff 55%, transparent 55%);
+				background-size: 8px 8px;
+				background-repeat: repeat-x;
+				background-position: bottom;
+			}
+			.hero-description {
+				font-size: 1.2rem;
+				opacity: 0.8;
+				max-width: 600px;
+			}
+			.section {
+				margin: 4rem 0;
+			}
+			.section-title {
+				font-size: 1.8rem;
+				margin-bottom: 2rem;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				text-decoration: dotted underline;
+				text-underline-offset: 0.5rem;
+			}
+			.card-grid {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+			}
+			.card-title {
+				font-size: 1.2rem;
+				margin-bottom: 0.5rem;
+			}
+			.card-description {
+				font-size: 1rem;
+				opacity: 0.6;
+			}
+			.card-date {
+				font-size: 0.9rem;
+				opacity: 0.6;
+			}
+			.social-links {
+				display: flex;
+				/* justify-content: center; */
+				gap: 1rem;
+				margin-top: 2rem;
+			}
+			.social-links img {
+				filter: grayscale(100%);
+			}
+			.social-links a {
+				opacity: 0.8;
+				transition: opacity 0.2s;
+			}
+			.social-links a:hover {
+				opacity: 1;
+			}
+			.wave-emoji {
+				display: inline-block;
+				animation: wave 2.5s infinite;
+				transform-origin: 70% 70%;
+			}
+			@keyframes wave {
+				0% { transform: rotate(0deg); }
+				10% { transform: rotate(14deg); }
+				20% { transform: rotate(-8deg); }
+				30% { transform: rotate(14deg); }
+				40% { transform: rotate(-4deg); }
+				50% { transform: rotate(10deg); }
+				60% { transform: rotate(0deg); }
+				100% { transform: rotate(0deg); }
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero-section">
+				<h1>Hi, I'm Iswar <span class="wave-emoji">👋</span></h1>
+				<p class="hero-description">
+					I'm a cat-loving full-stack developer passionate about Web Development, Sveltekit, and Pokemon. 
+					Currently working on these <a href="/projects">projects</a>.
+				</p>
+				<p class="hero-description">
+					Check-out my latest blogs and projects below.
+				</p>
+				<div class="social-links">
+					<a href="https://www.linkedin.com/in/iswarmondal/">
+						<img width="24px" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+					</a>
+					<a href="https://twitter.com/developeriswar">
+						<img width="26px" src="https://cdn-icons-png.flaticon.com/512/174/174876.png" alt="Twitter" />
+					</a>
+				</div>
+			</section>
+
+			<section class="section">
+				<h2 class="section-title">Latest Posts 📝</h2>
+				<div class="card-grid">
+					{posts.map((post) => (
+						<a href={`/blog/${post.id}/`}>
+							<h3 class="card-title">{post.data.title}</h3>
+							<time class="card-date" datetime={post.data.pubDate.toISOString()}>
+								{post.data.pubDate.toLocaleDateString('en-us', {
+									year: 'numeric',
+									month: 'short',
+									day: 'numeric',
+								})}
+							</time>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<section class="section">
+				<h2 class="section-title">Featured Projects 🚀</h2>
+				<div class="card-grid">
+					{projects.map((project) => (
+						<a href={`/projects/${project.slug}/`} class="card">
+							<h3 class="card-title">{project.data.title}</h3>
+							<p class="card-description">{project.data.description}</p>
+						</a>
+					))}
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>

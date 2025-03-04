@@ -1,0 +1,138 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.experience-item {
+				margin: 1rem 0;
+			}
+			.social-links {
+				display: flex;
+				gap: 1rem;
+				align-items: center;
+				margin: 1.5rem 0;
+				filter: grayscale(100%);
+			}
+			.footer-image {
+				max-width: 100%;
+				border-radius: 8px;
+				margin: 2rem 0;
+			}
+			.cta-section {
+				margin: 2rem 0;
+				padding: 1rem 0;
+				border-top: 1px solid #eaeaea;
+				border-bottom: 1px solid #eaeaea;
+			}
+			.wave-emoji {
+				display: inline-block;
+				animation: wave 2.5s infinite;
+				transform-origin: 70% 70%;
+			}
+			@keyframes wave {
+				0% { transform: rotate(0deg); }
+				10% { transform: rotate(14deg); }
+				20% { transform: rotate(-8deg); }
+				30% { transform: rotate(14deg); }
+				40% { transform: rotate(-4deg); }
+				50% { transform: rotate(10deg); }
+				60% { transform: rotate(0deg); }
+				100% { transform: rotate(0deg); }
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div>
+				<h1>Hey <span class="wave-emoji">👋</span></h1>
+			</div>
+			
+			<div>
+				<p>🎓 I'm Iswar, a cat-loving full-stack developer, wandering around on the internet</p>
+				<p>👨‍💻 Passionate about Development, Sveltekit and Pokemon</p>
+				<p>🌟 I love building things that make a difference in people's lives, from helping local businesses go online during the pandemic to creating innovative news classification systems.</p>
+				<p>🚀 My journey in tech has been diverse - from frontend development to crypto wallets, and from e-commerce to medical institution websites.</p>
+			</div>
+			<hr>
+			<div>
+				<p>📚 Want to dive deeper into my thoughts and technical insights? Check out my latest blog posts at <a href="/blog">my blog</a>.</p>
+				<p>💻 Interested in my technical work? Explore my projects and contributions at <a href="/projects">my project portfolio</a>.</p>
+			</div>
+
+			<hr>
+			<div>
+				<h3>Professional Journey 👷‍♂</h3>
+			</div>
+			
+			<div class="experience-item">
+				• I did my Internship in a media company <a href="https://www.linkedin.com/company/futurex-global/mycompany/">Futurex Global</a> as a front end developer
+			</div>
+			<div class="experience-item">
+				• I developed website for <a href="http://www.rampurhatgmch.edu.in/">Rampurhat Govt. Medical College</a> with PHP and MySQL
+			</div>
+			<div class="experience-item">
+				• I helped local businesses to go online during lockdown by developing e-commerce websites for them (eg- <a href="https://dosarindustries.com/">Dosar Industries</a>)
+			</div>
+			<div class="experience-item">
+				• Worked as a jr. developer in <a href="https://www.bcmnext.com/">BCM Next</a>. There I got to learn a lot about React and Redux.
+			</div>
+			<div class="experience-item">
+				• Developed a crypto wallet chrome extension for <a href="https://netsepio.com/">NetSepio</a> using Sveltekit. It was a fun project. Got some exposure to the crypto world.
+			</div>
+			<div class="experience-item">
+				• Learnt flutter and helped in developing an AI based Email Client for mobile devices.
+			</div>
+			<div class="experience-item">
+				• Worked on the web UI and data visualization of Standford AI Index. <a href="https://hai.stanford.edu/ai-index/global-vibrancy-tool">Global Vibrancy Tool</a>
+			</div>
+			<div class="experience-item">
+				• Worked on revamping traditional news classification system with <a href="https://github.com/iwanalabs/">Iwana Labs.</a> (This is a POC)
+			</div>
+			<div class="experience-item">
+				• Started exploring data engineering and machine learning and built <a href="https://namemancer.com/">Namemancer</a> for Iwana Labs. Here I had to build a full fledged startup idea research platform from scratch.
+			</div>
+			<div class="experience-item">
+				• Got a super cool project from <a href="https://www.neurolabs.ai/">Neurolabs</a> through Iwana Labs. Here I benchmarked the performance of different LLMs for custom image classification. Got some interesting results.
+			</div>
+			<div class="experience-item">
+				• Got to work more on data visualization but this time in Django and HTMX. A data visualization tool for researchers to visualize research papers in different categories and parameters. The project was for <a href="https://www.berd-nfdi.de/">BERD@NFDI</a> and here's a hosted version of it <a href="https://mim.iwanalabs.com/">BERD@NFDI</a>. Got this project through Iwana Labs.
+			</div>
+
+			<hr>
+			<div>
+				<h3>Current Focus 🚧</h3>
+			</div>
+			<div>
+				• I'm currently working on a self-classifying news app <a href="https://news.iwanalabs.com/">news.iwanalabs.com</a>
+			</div>
+
+			<hr>
+			<img 
+				class="footer-image"
+				src="https://github.com/iswarmondal/iswarmondal/assets/73457704/2d4f826e-1177-4ae1-9e46-16dfd519a259" 
+				alt="Profile Banner"
+			/>
+			<div>
+				<p> * Adventures are epic 🎒</p>
+			</div>
+			<!-- <div class="social-links">
+				<a href="https://www.linkedin.com/in/iswarmondal/">
+					<img width="24px" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+				</a>
+				<a href="https://twitter.com/developeriswar">
+					<img width="26px" src="https://cdn-icons-png.flaticon.com/512/174/174876.png" alt="Twitter" />
+				</a>
+			</div> -->
+
+		</main>
+		<Footer />
+	</body>
+</html>
