@@ -47,6 +47,7 @@ body {
 
 main {
 	min-height: 80vh;
+	max-width: 90vw;
 	margin: auto;
 	padding: 3em calc(50% - 400px);
 	background-color: rgb(var(--sepia));
