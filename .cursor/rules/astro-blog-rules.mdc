@@ -1,0 +1,26 @@
+---
+description: This rule gives an overview of what this project is about and also gives an overview about the UI design philosophy of the overall project.
+globs: 
+alwaysApply: false
+---
+# About this project
+
+- This is my own personal website build with Astro.
+- Here I will write about my own projects using the case study feature and thoughts using the blog feature.
+- I will also use this website as a live resume which showcases all my skills and experiences at one place.
+
+# Design philosophy and technical details
+
+- The frontend is implemented in the `src` folder. This is a Astro app which is using the Astro blog template.
+- This app is designed with a retro newspaper style grainy texture to give a unique look with a bit of modern colors.
+- I tried my best to ship zero JS to the client. Making the app performant and fast scoring 100 on Google Lighthouse.
+- The content management is done using the Astro's markdown file based content management system. The content lies in the `content` folder in markdown format.
+- I am not using any tailwindcss for this project. In fact each component is hand-coded and styled. And there are some global styles declared in the `src/styles/global.css` file.
+- The app is hosted on Vercel.
+
+# Project structure
+
+- `src/components` - This folder contains all the components used in the project.
+- `src/content` - This folder contains all the markdown files for the case studies and blogs.
+- `src/pages` - This folder contains all the pages of the website.
+- `src/styles` - This folder contains all the global styles for the project.
