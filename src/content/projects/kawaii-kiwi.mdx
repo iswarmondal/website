@@ -1,0 +1,145 @@
+---
+title: "Vintage CTR style video calling website"
+description: "A website where you can chat on video call with random strangers. Built with WebRTC, SocketIO and Firebase auth."
+date: "2025-02-27"
+status: "completed"
+tags: ["WebRTC", "SocketIO", "Firebase", "Sveltekit"]
+featured: true
+link: "https://kawaiikiwi.online"
+github: "https://github.com/iswarmondal/kawai-kiwi"
+image: "./blog/kawai-kiwi-landing.jpg"
+---
+
+## Abstract
+
+This is a very dear personal project of mine which is inspired by the popular video calling website [Omegle](https://omegle.com) which has been shutdown for a while now.
+
+Here I explored technologies like WebRTC and WebSocket. Also added firebase for quick and easy auth, that just works.
+
+![kawaiikiwi](/blog/kawai-kiwi-landing.jpg)
+## Introduction
+
+### Motivation
+As a yong collage student, I always used to go to Omegle with my friend to just chill and chat with strangers. 
+Later, I came to know that technologies like WebRTC exist which can easily facilitate the video calling aspect of such a website.
+
+It's safe to say, I always waned to build such a website which actually works. But never had the time or energy to build on myself.
+
+Currently, got inspired and got started building this. And here we are talking about the end product.
+
+### Personal Goals
+- The most important goal was to learn about WebRTC and how it works.
+- Building a vintage style UI which mimics the old CTR TV aesthetic.
+- Learn more about websockets specially SocketIO.
+- Manage the deployment and hosting of the server on my own.
+- Wanted to test new Svelte 5
+
+## Design Philosophy
+
+### Visual Inspiration
+The design draws inspiration from:
+- Late 90s and early 2000s CTR TV aesthetic
+- Classic Windows 95 style UI elements
+- Some funky yet subtle animations
+- Some neon style colors
+- Responsive web design which works well on a phone
+
+### Key Design Elements
+1. **CTR-like background animations**
+   - Used a combination of multiple css animations
+   - This gave a flickering CTR like background
+   - Added CTR like rendering lines
+   - Overall lite and aesthetic look
+
+2. **Windows95-like UI elements**
+   - The buttons the sections are with sharp corners
+   - The colors are mainly teal with some neon accents
+   - Overall responsiveness on mobile screens
+
+## Technical Implementation
+
+### Core Technologies
+- **Start of the show**: WebRTC
+- **Frontend Framework**: Sveltekit with TailwindCSS
+- **Backend**: Initially build with Deno, later moved to NodeJS.
+- **WebSocket**: SocketIO
+- **Programming language**: Typescript (backend and frontend)
+- **User auth**: Firebase auth
+- **Deployment**: Frontend is deployed on Firebase. The backend is hosted on my own VPS.
+
+### Key Features
+1. **Video calling without a server**
+   - Direct peer-2-peer video chat with minimal latency
+   - Quick paring between 2 users thanks to websockets
+   - No bots, thanks to firebase auth.
+   - Privacy, as the video packets do not go though the server.
+
+2. **Design**
+   - Vintage CTR TV aesthetic
+   - Windows95 like UI elements
+   - Responsive design
+
+## Learning Outcomes
+
+### Technical Skills
+1. **WebRTC**
+   - Got to learn how WebRTC works
+   - What are ICE servers and why are they useful
+   - Learnt a lot while working with Audio-Video streams
+
+2. **Signaling server (NodeJS)**
+   - Dove deeper into websockets and SocketIO
+   - How to make WebSocket connections private
+   - Usage of firebase admin with websockets
+
+3. **Deno**
+    - How top level Typescript works in Deno
+    - How to use NPM packages in Deno
+    - How to compile Deno code into executable
+    - Handling socket server in Deno
+    - Had fun with Deno
+
+4. **New Svelte 5 runes**
+    - The syntax difference of svelte runes
+    - Working with useEffect and state managements
+    - Fallen in love with Svelte, again
+
+5. **Handling DNS records**
+    - Learnt how to setup sub-domains
+    - How to connect a cloudflare tunnel to a Domain
+    - Gained a lot more info about DNS and how a domain works
+
+### Personal Growth
+- Learnt a lot on using AI tools for better developer productivity
+- Finally, got to deploy my backend to my own VPS.
+- Learnt a lot about setting up firewalls and restricting access for server safety.
+- How to use Cloudflare proxy and tunnel 
+
+## Future Enhancements
+
+### Planned Features
+1. **Working video calling using WebRTC**
+   - Completed a working version of the video calling feature of WebRTC
+
+2. **Design Additions**
+   - Vintage style design, full mobile responsiveness, fast webapp 
+
+## Reflection
+
+### Successes
+- Excellent video calling with near zero latency
+- Maintained modern functionality like Google auth and websockets
+- Achieved desired vintage aesthetic
+- Managing security and privacy successfully
+
+### Learning Points
+- WebRTC
+- Balance of style and function
+- Value of design research
+- Security and privacy of user data
+
+## Conclusion
+
+This project successfully combines vintage design aesthetics with modern web technologies, creating a unique and welcoming video chatting platform.
+
+It serves as both a practical learning experience and a showcase of my ability to learn things fast and implement them quick.
