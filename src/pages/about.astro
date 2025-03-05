@@ -46,6 +46,73 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				60% { transform: rotate(0deg); }
 				100% { transform: rotate(0deg); }
 			}
+			/* Timeline Styles */
+			.timeline {
+				position: relative;
+				max-width: 100%;
+				margin: 4em auto;
+			}
+			.timeline::before {
+				content: '';
+				position: absolute;
+				left: 82px;
+				top: 0;
+				bottom: 0;
+				width: 1px;
+				background: var(--text-primary);
+				opacity: 0.3;
+			}
+			.timeline-item {
+				position: relative;
+				margin: 2em 0;
+				padding-left: 120px;
+			}
+			.timeline-item::before {
+				content: '';
+				position: absolute;
+				left: 73px;
+				top: 0;
+				width: 16px;
+				height: 16px;
+				border: 2px solid var(--accent);
+				background: rgb(var(--paper));
+				border-radius: 50%;
+			}
+			.date-block {
+				position: absolute;
+				left: 0;
+				top: -10px;
+				max-width: 100px;
+				text-align: right;
+				color: var(--accent);
+				font-style: italic;
+				font-size: 0.9em;
+				line-height: 1.4;
+				transform: rotate(-90deg);
+			}
+			.timeline-content {
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				padding-bottom: 2em;
+			}
+			@media (max-width: 720px) {
+				.timeline::before {
+					left: 30px;
+				}
+				.timeline-item {
+					padding-left: 60px;
+				}
+				.timeline-item::before {
+					left: 23px;
+				}
+				.date-block {
+					width: auto;
+					text-align: left;
+					left: -30px;
+				}
+				.timeline-content {
+					margin-top: 1em;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -72,38 +139,83 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<h3>Professional Journey 👷‍♂</h3>
 			</div>
 			
-			<div class="experience-item">
-				• I did my Internship in a media company <a href="https://www.linkedin.com/company/futurex-global/mycompany/">Futurex Global</a> as a front end developer
-			</div>
-			<div class="experience-item">
-				• I developed website for <a href="http://www.rampurhatgmch.edu.in/">Rampurhat Govt. Medical College</a> with PHP and MySQL
-			</div>
-			<div class="experience-item">
-				• I helped local businesses to go online during lockdown by developing e-commerce websites for them (eg- <a href="https://dosarindustries.com/">Dosar Industries</a>)
-			</div>
-			<div class="experience-item">
-				• Worked as a jr. developer in <a href="https://www.bcmnext.com/">BCM Next</a>. There I got to learn a lot about React and Redux.
-			</div>
-			<div class="experience-item">
-				• Developed a crypto wallet chrome extension for <a href="https://netsepio.com/">NetSepio</a> using Sveltekit. It was a fun project. Got some exposure to the crypto world.
-			</div>
-			<div class="experience-item">
-				• Learnt flutter and helped in developing an AI based Email Client for mobile devices.
-			</div>
-			<div class="experience-item">
-				• Worked on the web UI and data visualization of Standford AI Index. <a href="https://hai.stanford.edu/ai-index/global-vibrancy-tool">Global Vibrancy Tool</a>
-			</div>
-			<div class="experience-item">
-				• Worked on revamping traditional news classification system with <a href="https://github.com/iwanalabs/">Iwana Labs.</a> (This is a POC)
-			</div>
-			<div class="experience-item">
-				• Started exploring data engineering and machine learning and built <a href="https://namemancer.com/">Namemancer</a> for Iwana Labs. Here I had to build a full fledged startup idea research platform from scratch.
-			</div>
-			<div class="experience-item">
-				• Got a super cool project from <a href="https://www.neurolabs.ai/">Neurolabs</a> through Iwana Labs. Here I benchmarked the performance of different LLMs for custom image classification. Got some interesting results.
-			</div>
-			<div class="experience-item">
-				• Got to work more on data visualization but this time in Django and HTMX. A data visualization tool for researchers to visualize research papers in different categories and parameters. The project was for <a href="https://www.berd-nfdi.de/">BERD@NFDI</a> and here's a hosted version of it <a href="https://mim.iwanalabs.com/">BERD@NFDI</a>. Got this project through Iwana Labs.
+			<div class="timeline">
+				<div class="timeline-item">
+					<div class="date-block">2024</div>
+					<div class="timeline-content">
+						Built data visualization dashboard for research papers at <a href="https://www.berd-nfdi.de/">BERD@NFDI</a> using Django & HTMX. View it <a href="https://mim.iwanalabs.com/">here</a>.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2024</div>
+					<div class="timeline-content">
+						Benchmarked LLM performance for image classification for <a href="https://www.neurolabs.ai/">Neurolabs</a>.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2024</div>
+					<div class="timeline-content">
+						Built <a href="https://namemancer.com/">Namemancer</a> - A startup idea research platform for Iwana Labs.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2024</div>
+					<div class="timeline-content">
+						Developed news classification system POC at <a href="https://github.com/iwanalabs/">Iwana Labs</a>.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2023</div>
+					<div class="timeline-content">
+						Led UI development for Stanford's <a href="https://hai.stanford.edu/ai-index/global-vibrancy-tool">AI Index Vibrancy Tool</a>.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2023</div>
+					<div class="timeline-content">
+						Developed AI-powered Email Client mobile app using Flutter.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2022</div>
+					<div class="timeline-content">
+						Built crypto wallet extension for <a href="https://netsepio.com/">NetSepio</a> using Sveltekit.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2022</div>
+					<div class="timeline-content">
+						Jr. Developer at <a href="https://www.bcmnext.com/">BCM Next</a> - React & Redux development.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2021</div>
+					<div class="timeline-content">
+						Developed e-commerce solutions for local businesses during lockdown (eg: <a href="https://dosarindustries.com/">Dosar Industries</a>).
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2021</div>
+					<div class="timeline-content">
+						Built website for <a href="http://www.rampurhatgmch.edu.in/">Rampurhat Govt. Medical College</a> using PHP & MySQL.
+					</div>
+				</div>
+
+				<div class="timeline-item">
+					<div class="date-block">2021</div>
+					<div class="timeline-content">
+						Frontend Developer Intern at <a href="https://www.linkedin.com/company/futurex-global/mycompany/">Futurex Global</a>.
+					</div>
+				</div>
 			</div>
 
 			<hr>
@@ -111,7 +223,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				<h3>Current Focus 🚧</h3>
 			</div>
 			<div>
-				• I'm currently working on a self-classifying news app <a href="https://news.iwanalabs.com/">news.iwanalabs.com</a>
+				• I'm currently working on multiple side projects of mine. Take a <a href="/projects")>look</a>.
 			</div>
 
 			<hr>
@@ -123,15 +235,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			<div>
 				<p> * Adventures are epic 🎒</p>
 			</div>
-			<!-- <div class="social-links">
-				<a href="https://www.linkedin.com/in/iswarmondal/">
-					<img width="24px" src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
-				</a>
-				<a href="https://twitter.com/developeriswar">
-					<img width="26px" src="https://cdn-icons-png.flaticon.com/512/174/174876.png" alt="Twitter" />
-				</a>
-			</div> -->
-
 		</main>
 		<Footer />
 	</body>

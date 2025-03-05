@@ -44,9 +44,11 @@ const posts = (await getCollection('blog')).sort(
 			.title {
 				margin: 0;
 				color: var(--text-primary);
-				font-size: 1.5em;
+				font-size: 1.3em;
 				line-height: 1.2;
-				font-weight: bolder;
+				font-weight: 500;
+				color: var(--accent);
+				text-transform: none;
 			}
 			.date {
 				margin: 0;
@@ -58,7 +60,7 @@ const posts = (await getCollection('blog')).sort(
 			.description {
 				margin: 0;
 				color: var(--text-primary);
-				font-size: 1em;
+				font-size: 0.8em;
 				line-height: 1.5;
 				opacity: 0.8;
 			}
