@@ -156,6 +156,7 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+	font-size: medium;
 	border: 0.3px dotted rgba(255, 255, 255, 0.1);
 }
 
