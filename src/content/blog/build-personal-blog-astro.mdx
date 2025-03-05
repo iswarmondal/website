@@ -1,0 +1,222 @@
+---
+title: 'Building a Zero-JS Blog with Astro: A Step-by-Step Guide'
+description: 'Learn how to build a blazing-fast personal blog using Astro, MDX, and zero JavaScript. This guide walks you through creating a blog that scores 100 on Lighthouse.'
+pubDate: 'Mar 10 2024'
+heroImage: '/blog/blog-hero.jpg'
+---
+
+Remember those days when websites were just HTML and CSS? No JavaScript frameworks fighting for dominance, no bundle sizes to worry about.
+Just pure, simple web pages that loaded instantly.
+
+Well, guess what? We can have that again, but with modern tools! That's exactly what I did with this blog you're reading right now.
+And I'm going to show you how I built it using [Astro](https://astro.build) - the all-in-one web framework that actually ships zero JavaScript by default.
+
+And see the results.
+![iswar.me Lighthouse score](/blog/gif/lighthouse-score.gif)
+
+## Why Astro?
+
+First off, let me tell you why I chose Astro. 
+
+Apart from the screenshot I just showed, I was tired of over-engineered solutions where a simple blog loads 5MB of JavaScript just to show some text.
+I mean, come on! We're not building the next Facebook or Youtube here (though if you are, that's cool too).
+
+What I wanted was:
+- Lightning-fast page loads
+- Simple content management
+- Great developer experience
+- Zero JavaScript. Possibly SSR. (instead got plain html)
+- Good SEO scores (instead got perfect score)
+
+And Astro checked all these boxes, pretty much. Plus, it has this cool feature where it can use any UI framework components (React, Vue, Svelte) but strips away all the JavaScript unless you explicitly need it.
+
+Let's Build It
+
+### Step 1: Project Setup
+
+First, let's create our Astro blog project. Open your terminal and run:
+
+```bash
+# Create a new project with the blog template
+# I used this template so I recommend it
+npm create astro@latest -- --template blog
+```
+
+### Step 2: Project Structure
+
+Here's how an Astro project look like with that blog template:
+
+```text
+├── public/          # Static assets live here
+├── src/
+│   ├── components/  # Your building blocks
+│   ├── content/     # Blog posts and other content
+│   ├── layouts/     # Page layouts
+│   └── pages/       # Your actual pages
+├── astro.config.mjs # Astro configuration
+└── package.json     # Project dependencies
+```
+
+### Step 3: Content Management
+
+The real magic happens in the `src/content/` directory. This is where your blog posts live in markdown or MDX form.
+Here's how a typical blog post look:
+
+```markdown
+---
+title: 'My Awesome Blog Post'
+description: 'This is going to be epic!'
+pubDate: 'Mar 10 2024'
+heroImage: '/blog/my-hero.jpg'
+---
+
+## Hello World!
+
+This is my blog post content...
+```
+
+The `---` block is where you define metadata about your blog. Things like title, publication date and description.
+Each content file is considered as a blog post.
+
+You can use MDX instead of simple markdown, which adds some additional features like importing components and rendering them.
+
+Astro handles all the TypeScript types for your content automatically.
+
+### Step 4: Setting Up the Blog Structure
+
+Let's look at how the blog routing works. If you are not using the blog template then create this file:
+
+```ts
+// src/pages/blog/[...slug].astro
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+
+// This magic function creates all your blog post pages
+export async function getStaticPaths() {
+    const posts = await getCollection('blog');
+    return posts.map((post) => ({
+        params: { slug: post.id },
+        props: post,
+    }));
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<BlogPost {...post.data}>
+    <Content />
+</BlogPost>
+```
+This file is responsible for rendering your blog. In the `---` block you can see we are importing the static contents using astro's content library.
+
+This is js code but do not worry all of this will be gone in build-time.
+
+### Step 5: Adding Some Style
+
+Now, here's where I did something different. Instead of reaching for Tailwind (which is great, by the way),
+I went old school with custom CSS. Why?
+
+I dont know. I think it was a bad decision and you should setup Tailwind.
+
+Anyways, if you are not setting up Tailwind then you can style your blog in the `global.css` like this.
+
+```css
+/* src/styles/global.css */
+:root {
+    --text-primary: #2c3e50;
+    --accent: #e74c3c;
+    --paper: 255, 255, 255;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont;
+    color: var(--text-primary);
+    background: rgb(var(--paper));
+}
+
+/* Add that vintage newspaper feel */
+.prose {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2em 1em;
+}
+
+/* Make those headings pop! */
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.2;
+}
+```
+
+### Step 6: SEO Optimization
+
+Astro makes SEO a breeze. Check out this `BaseHead` component:
+
+```astro
+<!-- src/components/BaseHead.astro -->
+---
+const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+---
+
+<!-- All the important meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<!-- OpenGraph tags for social sharing -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Don't forget RSS! -->
+<link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+```
+
+Here you can also add some trackers if you want. I didn't.
+By the way, you should customize your site title and description from the `consts.ts` file.
+
+## The Results
+
+After deploying to Vercel here's what I got:
+
+- 100/100 Lighthouse score
+- Sub-second page loads
+- Zero JavaScript by default
+- Perfect SEO optimization
+- RSS feed for free
+
+## Bonus Tips
+
+1. **Content Organization**: Keep your blog posts in yearly/monthly folders if you write a lot:
+   ```
+   src/content/blog/
+   ├── 2024/
+   │   ├── march/
+   │   │   └── build-personal-blog-astro.mdx
+   │   └── february/
+   └── 2023/
+   ```
+
+2. **Image Optimization**: Astro handles image optimization out of the box. Just use the built-in image component:
+   ```astro
+   import { Image } from 'astro:assets';
+   
+   <Image src={import('../assets/my-image.jpg')} alt="My awesome image" />
+   ```
+
+3. **Deployment**: Just push to GitHub and connect to Vercel. That's it. Seriously.
+
+## Wrapping Up
+
+Building a blog doesn't have to be complicated. With Astro, you get all the modern features you need without the bloat.
+Plus, your content is just markdown files, so you're not locked into any platform.
+
+Want to see the code? Check out [my GitHub repo](https://github.com/iswarmondal/website).
+And if you're reading this, you're already experiencing the blazing-fast result! (Think @theprimeagen will be impressed?)
+
+Remember, the best blog is the one you actually write for. So don't get too caught up in the tech - just start writing!
+
+P.S. Did you notice how fast this page loaded? That's because there's literally zero JavaScript running right now.
