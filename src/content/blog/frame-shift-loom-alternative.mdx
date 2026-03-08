@@ -1,0 +1,133 @@
+---
+title: 'Frame Shift: a Loom alternative you can actually own'
+description: 'Why I built Frame Shift, a lean Loom alternative and Loom clone for people who want a Loom-free workflow, simpler video sharing, and more control over their stack.'
+pubDate: 'Mar 8 2026'
+---
+
+If you are looking for an **alternative of Loom**, you are probably not asking for more features. You are asking for less friction, lower cost, and more control. That was the whole reason I built **Frame Shift**.
+
+Loom is polished, fast, and easy to recommend. But the more I used tools in that category, the more I felt the tradeoff: I got convenience, but I lost ownership. My videos lived inside someone else's product, pricing scaled with usage, and the experience kept expanding beyond the one thing I actually needed.
+
+So I built a smaller product with a tighter goal: upload a video, share it with a link, manage access, and know whether someone actually watched it.
+
+That is what Frame Shift is. It is a focused **Loom alternative**, a practical **Loom clone**, and a good fit for people who want async video sharing without another bloated SaaS tool in the stack.
+
+## What Frame Shift actually does
+
+![Frame-Shift landing page](/blog/images/frame-shift/home.webp)
+I kept the product intentionally small. A user can:
+
+- sign in with Google
+- upload a video
+- generate a public share link
+- edit the title and description
+- revoke access to that link
+- delete the video entirely
+- track meaningful views
+
+That last part mattered to me more than I expected. I did not want fake analytics where every page load counts as engagement. A view only gets recorded after someone watches at least a few seconds, which makes the number much more useful.
+
+This is not trying to be an enterprise video suite. It is built for founders, developers, freelancers, and small teams who mainly want a clean async workflow.
+
+## Why I built it instead of paying for another tool
+
+![Frame-Shift into video](/blog/images/frame-shift/intro.webp)
+The short answer is that I wanted the useful core without the recurring product tax.
+
+When people search for **loom free**, they usually do not mean "I need a magical video platform that never costs anything." They mean they want to stop paying per-seat SaaS pricing for a workflow that should feel simple. Frame Shift gets close to that idea by keeping the product narrow and pushing the cost down to basic infrastructure instead of subscriptions layered on subscriptions.
+
+And when people search for **selfhost loom**, what they usually want is even more specific: ownership. They want their own setup, their own data, and a product surface they can understand.
+
+To be precise, Frame Shift is not a fully self-hosted replacement today. I used managed services to move fast. But the app is small, understandable, and easy to evolve, which makes it a much better starting point for a self-hosted direction than a giant closed platform ever will be.
+
+## The stack behind it
+
+I built Frame Shift with a stack that let me ship quickly without creating unnecessary infrastructure work:
+
+- **Next.js 16 + React 19 + TypeScript** for the app and server-client split
+- **Tailwind CSS v4** for styling
+- **Supabase Auth** for Google login
+- **Supabase Postgres + Row Level Security** for ownership and video metadata
+- **Vercel Blob** for video file storage
+- **Upstash Redis** for rate limiting the public view endpoint
+- **Vitest** for testing utilities around tokens, hashing, and request logic
+
+I also gave the UI a sharper, more opinionated look instead of default SaaS styling. Hard shadows, strong borders, and simple layouts helped the product feel intentional without adding much complexity.
+
+## How the product works
+
+The private side of the app lives behind authentication. Once a user signs in, they get a dashboard where they can upload and manage videos. Each upload creates a file in blob storage and a matching database record with ownership, metadata, and a share hash.
+
+That share hash is important because it lets me generate public links without exposing raw internal IDs. The public route stays simple for the user, while the access model stays clean on the backend.
+
+After upload, the dashboard becomes the control center. From there a user can:
+
+- rename the video
+- add a Markdown description
+- copy the public link
+- revoke access
+- delete the video
+- check the current view count
+
+That is the real shape of the product. It is not overloaded with side quests. It gives you one place to manage async video sharing and nothing more than that.
+
+## Honest analytics instead of vanity numbers
+![Frame-Shift video actions](/blog/images/frame-shift/video-tools.webp)
+
+One of my favorite parts of the build is how the view tracking works.
+
+A view is not counted on page load. It only counts after the viewer has watched at least five seconds of the video. On the client, the logic is as simple as it needs to be:
+
+```ts
+const onTimeUpdate = () => {
+  if (video.currentTime < 5 || counted) return;
+  counted = true;
+
+  fetch(`/api/video/${hash}/view`, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token, watchedSeconds: video.currentTime }),
+  });
+};
+```
+
+On the backend, I verify a signed token, derive a lightweight viewer identity, and use rate limiting plus deduplication to stop the count from getting spammed. That keeps the metric small, but trustworthy.
+
+For an app like this, that is enough. I do not need a full analytics company inside the product. I just need the view number to mean something.
+
+## Why this works as a Loom clone
+
+The best part about building a **Loom clone** is realizing you do not need to clone all of Loom.
+
+Most people use a product like this for a narrow loop:
+
+1. record or export a video
+2. upload it
+3. share a link
+4. see whether it was viewed
+5. revoke or replace the link when needed
+
+That is the loop Frame Shift is optimized for. It does less than Loom overall, but it does the important part without much friction.
+
+If someone asked me for a real **alternative of Loom**, this is what I would point them to first: a smaller product with a clearer core workflow and fewer reasons to fight the tool.
+
+## What I left out on purpose
+
+I was deliberate about what I did not build:
+
+- no in-browser screen recorder
+- no comments or team threads
+- no AI summaries or transcripts
+- no complex workspace permissions
+- no giant analytics dashboard
+
+That was not a limitation of ambition. It was product discipline.
+
+I wanted to finish the part that matters before inventing ten more features that sound good on a landing page but make the product slower, heavier, and harder to own.
+
+## Final thought
+
+Frame Shift exists because I wanted a simpler answer to async video sharing. If you want a **Loom alternative** that is lean, understandable, and close to **loom free** for small-scale usage, this kind of product makes a lot of sense.
+
+And if your real goal is **selfhost loom**, the lesson here is not that you must rebuild a huge video platform. It is that you can start with the useful core, keep the architecture small, and own the workflow that actually matters.
