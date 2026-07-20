@@ -7,56 +7,72 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead
+			title={title}
+			description={description}
+			image={heroImage}
+			type="article"
+			pubDate={pubDate}
+			updatedDate={updatedDate}
+		/>
 		<style>
-			main {
-				/* width: calc(100% - 2em); */
-				max-width: 100%;
-				margin: 0;
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 2em 1em;
-				color: var(--text-primary);
+			article {
+				width: min(720px, 100%);
+				margin: 0 auto;
 			}
 			.title {
-				margin-bottom: 2em;
-				padding: 1em 0;
-				text-align: center;
-				border-bottom: 4px double var(--text-primary);
+				margin-bottom: 2rem;
+				padding: 1.5rem 1.25rem;
+				border: 4px solid var(--ink);
+				background:
+					linear-gradient(135deg, color-mix(in srgb, var(--sun) 55%, white) 0 35%, transparent 35%),
+					var(--paper);
+				box-shadow: var(--shadow-hard);
+				text-align: left;
 			}
 			.title h1 {
-				margin: 0 0 0.5em 0;
-				font-size: 2.5em;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				line-height: 1.2;
+				margin: 0 0 0.65rem;
+				font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+				letter-spacing: -0.04em;
+				line-height: 1.05;
 			}
 			.date {
-				margin-bottom: 0.5em;
-				color: var(--accent);
+				margin-bottom: 0.65rem;
+				color: var(--signal);
 				font-style: italic;
+				font-size: 0.95rem;
 			}
 			.last-updated-on {
 				font-style: italic;
-				color: var(--accent);
-				font-size: 0.9em;
-				margin-top: 0.5em;
+				color: var(--muted);
+				font-size: 0.9rem;
+				margin-top: 0.75rem;
 			}
 			.description {
-				font-size: 1.2em;
+				font-size: 1.1rem;
 				line-height: 1.6;
-				font-style: italic;
-				opacity: 0.8;
-				margin: 1em 0 2em;
-				text-align: center;
+				margin: 0;
+				color: var(--muted);
+			}
+			.prose {
+				color: var(--ink);
+			}
+			.prose :global(h2),
+			.prose :global(h3) {
+				margin-top: 2rem;
+			}
+			.prose :global(a) {
+				font-weight: 700;
+			}
+			.prose :global(img) {
+				border: 3px solid var(--ink);
+				box-shadow: 4px 4px 0 var(--ink);
+				margin: 1.5rem 0;
 			}
 		</style>
 	</head>
@@ -66,18 +82,20 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 		<main>
 			<article>
 				<div class="prose">
-					<div class="title">
+					<header class="title">
 						<div class="date">
 							<FormattedDate date={pubDate} />
 						</div>
 						<h1>{title}</h1>
 						{description && <p class="description">{description}</p>}
-						{updatedDate && (
-							<div class="last-updated-on">
-								Last updated on <FormattedDate date={updatedDate} />
-							</div>
-						)}
-					</div>
+						{
+							updatedDate && (
+								<div class="last-updated-on">
+									Last updated on <FormattedDate date={updatedDate} />
+								</div>
+							)
+						}
+					</header>
 					<slot />
 				</div>
 			</article>

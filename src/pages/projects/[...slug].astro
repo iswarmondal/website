@@ -5,7 +5,7 @@ import ProjectCase from '../../layouts/ProjectCase.astro';
 export async function getStaticPaths() {
 	const projects = await getCollection('projects');
 	return projects.map((project) => ({
-		params: { slug: project.slug },
+		params: { slug: project.id },
 		props: project,
 	}));
 }
@@ -17,4 +17,4 @@ const { Content } = await render(project);
 
 <ProjectCase {...project.data}>
 	<Content />
-</ProjectCase> 
+</ProjectCase>
