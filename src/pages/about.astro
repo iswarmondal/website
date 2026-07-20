@@ -2,239 +2,215 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title="About"
+			description="About Iswar C. Mondal — full-stack developer, builder of web products, and author of technical notes on Astro, SvelteKit, and more."
+		/>
 		<style>
-			.experience-item {
-				margin: 1rem 0;
+			.about-hero {
+				border: 4px solid var(--ink);
+				padding: clamp(1.25rem, 4vw, 2.5rem);
+				background:
+					linear-gradient(120deg, color-mix(in srgb, var(--volt) 55%, white) 0 42%, transparent 42%),
+					linear-gradient(300deg, color-mix(in srgb, var(--cobalt) 25%, white) 0 30%, var(--paper) 30%);
+				box-shadow: var(--shadow-hard);
+				margin-bottom: 2.5rem;
 			}
-			.social-links {
-				display: flex;
+			.about-hero h1 {
+				margin-bottom: 0.5rem;
+			}
+			.lead {
+				font-size: 1.15rem;
+				max-width: 40rem;
+				color: var(--muted);
+			}
+			.bio-grid {
+				display: grid;
 				gap: 1rem;
-				align-items: center;
-				margin: 1.5rem 0;
-				filter: grayscale(100%);
-			}
-			.footer-image {
-				max-width: 100%;
-				border-radius: 8px;
 				margin: 2rem 0;
 			}
-			.cta-section {
-				margin: 2rem 0;
-				padding: 1rem 0;
-				border-top: 1px solid #eaeaea;
-				border-bottom: 1px solid #eaeaea;
+			.bio-block {
+				border: 3px solid var(--ink);
+				padding: 1.15rem 1.25rem;
+				background: var(--paper);
 			}
-			.wave-emoji {
-				display: inline-block;
-				animation: wave 2.5s infinite;
-				transform-origin: 70% 70%;
+			.bio-block:nth-child(odd) {
+				background: color-mix(in srgb, var(--sun) 40%, white);
 			}
-			@keyframes wave {
-				0% { transform: rotate(0deg); }
-				10% { transform: rotate(14deg); }
-				20% { transform: rotate(-8deg); }
-				30% { transform: rotate(14deg); }
-				40% { transform: rotate(-4deg); }
-				50% { transform: rotate(10deg); }
-				60% { transform: rotate(0deg); }
-				100% { transform: rotate(0deg); }
+			.bio-block:nth-child(even) {
+				background: color-mix(in srgb, var(--volt) 22%, white);
 			}
-			/* Timeline Styles */
 			.timeline {
 				position: relative;
-				max-width: 100%;
-				margin: 4em auto;
-			}
-			.timeline::before {
-				content: '';
-				position: absolute;
-				left: 82px;
-				top: 0;
-				bottom: 0;
-				width: 1px;
-				background: var(--text-primary);
-				opacity: 0.3;
+				margin: 2.5rem 0 1rem;
+				padding-left: 1.25rem;
+				border-left: 4px solid var(--ink);
 			}
 			.timeline-item {
 				position: relative;
-				margin: 2em 0;
-				padding-left: 120px;
+				margin: 0 0 1.5rem;
+				padding: 1rem 1.15rem;
+				border: 3px solid var(--ink);
+				background: var(--paper);
+				box-shadow: 4px 4px 0 var(--ink);
 			}
 			.timeline-item::before {
 				content: '';
 				position: absolute;
-				left: 73px;
-				top: 0;
-				width: 16px;
-				height: 16px;
-				border: 2px solid var(--accent);
-				background: rgb(var(--paper));
-				border-radius: 50%;
+				left: calc(-1.25rem - 8px);
+				top: 1.35rem;
+				width: 12px;
+				height: 12px;
+				background: var(--signal);
+				border: 3px solid var(--ink);
 			}
 			.date-block {
-				position: absolute;
-				left: 0;
-				top: -10px;
-				max-width: 100px;
-				text-align: right;
-				color: var(--accent);
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: 0.8rem;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: var(--signal);
+				margin-bottom: 0.35rem;
+			}
+			.footer-image {
+				max-width: 100%;
+				margin: 2rem 0 0.5rem;
+				border: 4px solid var(--ink);
+				box-shadow: var(--shadow-hard);
+			}
+			.note {
 				font-style: italic;
-				font-size: 0.9em;
-				line-height: 1.4;
-				transform: rotate(-90deg);
-			}
-			.timeline-content {
-				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-				padding-bottom: 2em;
-			}
-			@media (max-width: 720px) {
-				.timeline::before {
-					left: 30px;
-				}
-				.timeline-item {
-					padding-left: 60px;
-				}
-				.timeline-item::before {
-					left: 23px;
-				}
-				.date-block {
-					width: auto;
-					text-align: left;
-					left: -30px;
-				}
-				.timeline-content {
-					margin-top: 1em;
-				}
+				color: var(--muted);
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<div>
-				<h1>Hey <span class="wave-emoji">👋</span></h1>
-			</div>
-			
-			<div>
-				<p>🎓 I'm Iswar, a cat-loving full-stack developer, wandering around on the internet</p>
-				<p>👨‍💻 Passionate about Development, Sveltekit and Pokemon</p>
-				<p>🌟 I love building things that make a difference in people's lives, from helping local businesses go online during the pandemic to creating innovative news classification systems.</p>
-				<p>🚀 My journey in tech has been diverse - from frontend development to crypto wallets, and from e-commerce to medical institution websites.</p>
-			</div>
-			<hr>
-			<div>
-				<p>📚 Want to dive deeper into my thoughts and technical insights? Check out my latest blog posts at <a href="/blog">my blog</a>.</p>
-				<p>💻 Interested in my technical work? Explore my projects and contributions at <a href="/projects">my project portfolio</a>.</p>
+			<section class="about-hero rise">
+				<p class="eyebrow">Live resume · Builder notes</p>
+				<h1>Hey, I'm Iswar</h1>
+				<p class="lead">
+					Cat-loving full-stack developer wandering the internet — passionate about development, SvelteKit, and Pokemon.
+					I build things that help people: from local businesses going online to research tools and product experiments.
+				</p>
+				<div class="cta-row">
+					<a class="btn" href="/blog">Read the blog</a>
+					<a class="btn btn-secondary" href="/projects">Browse projects</a>
+				</div>
+			</section>
+
+			<div class="bio-grid">
+				<div class="bio-block">
+					<p>
+						My path spans frontend craft, crypto wallets, e-commerce, medical institution sites, AI tooling, and data visualization.
+						I care about shipping fast pages and clear interfaces.
+					</p>
+				</div>
+				<div class="bio-block">
+					<p>
+						Want deeper technical notes? Visit <a href="/blog">the blog</a>.
+						Want the build stories? Explore <a href="/projects">project case studies</a>.
+					</p>
+				</div>
 			</div>
 
-			<hr>
-			<div>
-				<h3>Professional Journey 👷‍♂</h3>
+			<div class="section-head">
+				<h2>Professional journey</h2>
 			</div>
-			
+
 			<div class="timeline">
 				<div class="timeline-item">
 					<div class="date-block">2024</div>
-					<div class="timeline-content">
-						Built data visualization dashboard for research papers at <a href="https://www.berd-nfdi.de/">BERD@NFDI</a> using Django & HTMX. View it <a href="https://mim.iwanalabs.com/">here</a>.
+					<div>
+						Built data visualization dashboard for research papers at <a href="https://www.berd-nfdi.de/">BERD@NFDI</a> using Django &amp; HTMX. View the <a href="https://mim.iwanalabs.com/">MIM dashboard</a>.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2024</div>
-					<div class="timeline-content">
+					<div>
 						Benchmarked LLM performance for image classification for <a href="https://www.neurolabs.ai/">Neurolabs</a>.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2024</div>
-					<div class="timeline-content">
-						Built <a href="https://namemancer.com/">Namemancer</a> - A startup idea research platform for Iwana Labs.
+					<div>
+						Built <a href="https://namemancer.com/">Namemancer</a> — a startup idea research platform for Iwana Labs.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2024</div>
-					<div class="timeline-content">
+					<div>
 						Developed news classification system POC at <a href="https://github.com/iwanalabs/">Iwana Labs</a>.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2023</div>
-					<div class="timeline-content">
+					<div>
 						Led UI development for Stanford's <a href="https://hai.stanford.edu/ai-index/global-vibrancy-tool">AI Index Vibrancy Tool</a>.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2023</div>
-					<div class="timeline-content">
-						Developed AI-powered Email Client mobile app using Flutter.
+					<div>
+						Developed AI-powered email client mobile app using Flutter.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2022</div>
-					<div class="timeline-content">
-						Built crypto wallet extension for <a href="https://netsepio.com/">NetSepio</a> using Sveltekit.
+					<div>
+						Built crypto wallet extension for <a href="https://netsepio.com/">NetSepio</a> using SvelteKit.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2022</div>
-					<div class="timeline-content">
-						Jr. Developer at <a href="https://www.bcmnext.com/">BCM Next</a> - React & Redux development.
+					<div>
+						Jr. Developer at <a href="https://www.bcmnext.com/">BCM Next</a> — React &amp; Redux development.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2021</div>
-					<div class="timeline-content">
+					<div>
 						Developed e-commerce solutions for local businesses during lockdown (eg: <a href="https://dosarindustries.com/">Dosar Industries</a>).
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2021</div>
-					<div class="timeline-content">
-						Built website for <a href="http://www.rampurhatgmch.edu.in/">Rampurhat Govt. Medical College</a> using PHP & MySQL.
+					<div>
+						Built website for <a href="http://www.rampurhatgmch.edu.in/">Rampurhat Govt. Medical College</a> using PHP &amp; MySQL.
 					</div>
 				</div>
-
 				<div class="timeline-item">
 					<div class="date-block">2021</div>
-					<div class="timeline-content">
+					<div>
 						Frontend Developer Intern at <a href="https://www.linkedin.com/company/futurex-global/mycompany/">Futurex Global</a>.
 					</div>
 				</div>
 			</div>
 
-			<hr>
-			<div>
-				<h3>Current Focus 🚧</h3>
+			<div class="section-head">
+				<h2>Current focus</h2>
 			</div>
-			<div>
-				• I'm currently working on multiple side projects of mine. Take a <a href="/projects")>look</a>.
-			</div>
+			<p>
+				Working on multiple side projects — take a <a href="/projects">look</a>.
+			</p>
 
-			<hr>
-			<img 
+			<img
 				class="footer-image"
-				src="https://github.com/iswarmondal/iswarmondal/assets/73457704/2d4f826e-1177-4ae1-9e46-16dfd519a259" 
-				alt="Profile Banner"
+				src="https://github.com/iswarmondal/iswarmondal/assets/73457704/2d4f826e-1177-4ae1-9e46-16dfd519a259"
+				alt="Banner collage of projects and adventures by Iswar"
+				loading="lazy"
+				decoding="async"
+				width="1200"
+				height="400"
 			/>
-			<div>
-				<p> * Adventures are epic 🎒</p>
-			</div>
+			<p class="note">Adventures are epic.</p>
 		</main>
 		<Footer />
 	</body>

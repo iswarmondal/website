@@ -2,7 +2,6 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 
@@ -14,96 +13,45 @@ const posts = (await getCollection('blog')).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title="Blog"
+			description="Articles on Astro, SvelteKit, WebRTC, and building fast personal sites — written by Iswar C. Mondal."
+		/>
 		<style>
-			.articles-list {
-				list-style-type: none;
-				margin: 2em 0;
-				padding: 0 1rem;
+			.page-hero {
+				border: 4px solid var(--ink);
+				padding: clamp(1.25rem, 4vw, 2.25rem);
+				margin-bottom: 1.5rem;
+				background:
+					linear-gradient(90deg, var(--sun) 0 18%, transparent 18%),
+					linear-gradient(180deg, color-mix(in srgb, var(--signal) 18%, white), var(--paper));
+				box-shadow: var(--shadow-hard);
 			}
-			.article-item {
-				border-bottom: 1px dotted rgba(0, 0, 0, 0.415);
-			}
-			.article-item:last-child {
-				border-bottom: 4px double var(--text-primary);
-			}
-			.article-link {
-				width: 100%;
-				height: 100%;
-				padding: 1.5em 0;
-				display: block;
-				text-decoration: none;
-			}
-			.article-header {
-				display: flex;
-				justify-content: space-between;
-				align-items: baseline;
-				gap: 1em;
-				margin-bottom: 0.5em;
-			}
-			.title {
-				margin: 0;
-				color: var(--text-primary);
-				font-size: 1.3em;
-				line-height: 1.2;
-				font-weight: 500;
-				color: var(--accent);
-				text-transform: none;
-			}
-			.date {
-				margin: 0;
-				color: var(--accent);
-				font-style: italic;
-				font-size: 0.9em;
-				white-space: nowrap;
-			}
-			.description {
-				margin: 0;
-				color: var(--text-primary);
-				font-size: 0.8em;
-				line-height: 1.5;
-				opacity: 0.8;
-			}
-			.description:first-letter {
-				font-size: 1.2em;
-				font-weight: 600;
-			}
-			@media (max-width: 720px) {
-				.article-header {
-					flex-direction: column;
-					gap: 0.5em;
-				}
-				.date {
-					font-size: 0.8em;
-				}
-				.title {
-					font-size: 1.3em;
-				}
+			.page-hero h1 {
+				margin-bottom: 0.4rem;
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1 class="section-title">Latest Articles</h1>
-			<p class="section-description">
-				Here are some of the articles I've written. I write about my experiences and thoughts on
-				technology, personal projects, and more.
-			</p>
-			<ul class="articles-list">
+			<section class="page-hero rise">
+				<p class="eyebrow">Writing</p>
+				<h1>Latest articles</h1>
+				<p class="section-description" style="margin-bottom: 0;">
+					Notes on technology, personal projects, and shipping durable web software.
+				</p>
+			</section>
+			<ul class="list-stack">
 				{
 					posts.map((post) => (
-						<li class="article-item">
-							<a href={`/blog/${post.id}/`} class="article-link">
-								<div class="article-header">
-									<h5 class="title">{post.data.title}</h5>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</div>
-								{post.data.description && (
-									<p class="description">{post.data.description}</p>
-								)}
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<h2 class="item-title">{post.data.title}</h2>
+								<p class="item-meta">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+								{post.data.description && <p class="item-desc">{post.data.description}</p>}
 							</a>
 						</li>
 					))
