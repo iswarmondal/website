@@ -12,17 +12,6 @@ const posts = (await getCollection('blog'))
 const projects = (await getCollection('projects'))
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 	.slice(0, 3);
-
-const marqueeItems = [
-	'Astro',
-	'SvelteKit',
-	'WebRTC',
-	'Full-stack',
-	'Case studies',
-	'Zero client JS',
-	'Open web',
-	'Product builds',
-];
 ---
 
 <!doctype html>
@@ -32,10 +21,10 @@ const marqueeItems = [
 		<style>
 			.hero {
 				position: relative;
-				min-height: min(78vh, 720px);
+				min-height: min(72vh, 680px);
 				display: grid;
 				align-content: end;
-				padding: 2rem 0 2.5rem;
+				padding: 1.5rem 0 2rem;
 				isolation: isolate;
 			}
 			.hero__backdrop {
@@ -44,7 +33,7 @@ const marqueeItems = [
 				z-index: -1;
 				border: 4px solid var(--ink);
 				background:
-					linear-gradient(135deg, rgba(255, 61, 0, 0.92) 0 38%, transparent 38%),
+					linear-gradient(135deg, rgba(198, 40, 0, 0.92) 0 38%, transparent 38%),
 					linear-gradient(225deg, rgba(26, 69, 255, 0.9) 0 28%, transparent 28%),
 					linear-gradient(0deg, rgba(255, 204, 0, 0.95) 0 18%, transparent 18%),
 					repeating-linear-gradient(
@@ -52,7 +41,7 @@ const marqueeItems = [
 						#12141a 0 10px,
 						#1f2430 10px 20px
 					);
-				box-shadow: 10px 10px 0 var(--ink);
+				box-shadow: 8px 8px 0 var(--ink);
 				overflow: hidden;
 			}
 			.hero__backdrop::after {
@@ -62,7 +51,7 @@ const marqueeItems = [
 				bottom: -8%;
 				font-family: var(--font-display);
 				font-weight: 800;
-				font-size: clamp(5rem, 22vw, 14rem);
+				font-size: clamp(4rem, 18vw, 12rem);
 				letter-spacing: -0.06em;
 				line-height: 0.8;
 				color: rgba(242, 244, 248, 0.12);
@@ -70,17 +59,17 @@ const marqueeItems = [
 				user-select: none;
 			}
 			.hero__content {
-				max-width: 34rem;
+				max-width: min(34rem, 100%);
 				padding: 1.5rem;
 				margin: 1.5rem;
 				background: color-mix(in srgb, var(--paper) 94%, white);
 				border: 4px solid var(--ink);
-				box-shadow: 8px 8px 0 rgba(18, 20, 26, 0.85);
+				box-shadow: 6px 6px 0 rgba(18, 20, 26, 0.85);
 			}
 			.hero__brand {
 				font-family: var(--font-display);
 				font-weight: 800;
-				font-size: clamp(2.8rem, 8vw, 5rem);
+				font-size: clamp(2.4rem, 8vw, 4.5rem);
 				letter-spacing: -0.05em;
 				line-height: 0.9;
 				margin: 0 0 0.85rem;
@@ -92,9 +81,9 @@ const marqueeItems = [
 			.hero__headline {
 				font-family: var(--font-display);
 				font-weight: 800;
-				font-size: clamp(1.35rem, 3vw, 1.85rem);
+				font-size: clamp(1.2rem, 2.8vw, 1.65rem);
 				letter-spacing: -0.03em;
-				line-height: 1.15;
+				line-height: 1.2;
 				margin: 0 0 0.75rem;
 			}
 			.hero__headline::after {
@@ -118,37 +107,36 @@ const marqueeItems = [
 			@media (max-width: 720px) {
 				.hero {
 					min-height: auto;
-					padding-top: 1rem;
+					padding: 0.75rem 0 1.25rem;
+				}
+				.hero__backdrop {
+					box-shadow: 4px 4px 0 var(--ink);
 				}
 				.hero__content {
-					margin: 1rem;
-					padding: 1.15rem;
+					margin: 0.85rem;
+					padding: 1.1rem;
+					box-shadow: 4px 4px 0 rgba(18, 20, 26, 0.85);
 				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<div class="marquee" aria-hidden="true">
-			<div class="marquee__track">
-				{[...marqueeItems, ...marqueeItems].map((item) => <span>{item}</span>)}
-			</div>
-		</div>
 		<main>
 			<section class="hero" aria-labelledby="hero-brand">
 				<div class="hero__backdrop" aria-hidden="true"></div>
 				<div class="hero__content rise">
-					<p class="eyebrow">Full-stack developer · Builder · Writer</p>
+					<p class="eyebrow">Full-stack developer</p>
 					<h1 id="hero-brand" class="hero__brand">iswar<span>.me</span></h1>
 					<p class="hero__headline rise rise-delay-1">
-						Case studies, experiments, and notes from shipping on the open web.
+						Technical writing and project case studies.
 					</p>
 					<p class="hero__lede rise rise-delay-2">
-						I build fast interfaces and thoughtful products — Astro, SvelteKit, WebRTC, and whatever the next problem needs.
+						I build web apps with Astro, SvelteKit, and WebRTC — and document what I learn along the way.
 					</p>
 					<div class="cta-row rise rise-delay-3">
-						<a class="btn" href="/blog">Read the blog</a>
-						<a class="btn btn-secondary" href="/projects">See projects</a>
+						<a class="btn" href="/blog">Blog</a>
+						<a class="btn btn-secondary" href="/projects">Projects</a>
 					</div>
 				</div>
 			</section>

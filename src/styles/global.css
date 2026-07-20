@@ -64,6 +64,7 @@
 
 html {
 	scroll-behavior: smooth;
+	overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -90,7 +91,7 @@ body {
 	background-color: var(--paper);
 	background-image:
 		radial-gradient(circle at 12% 18%, rgba(26, 69, 255, 0.08), transparent 42%),
-		radial-gradient(circle at 88% 8%, rgba(255, 61, 0, 0.1), transparent 38%),
+		radial-gradient(circle at 88% 8%, rgba(198, 40, 0, 0.1), transparent 38%),
 		radial-gradient(circle at 70% 90%, rgba(0, 184, 107, 0.08), transparent 40%),
 		repeating-linear-gradient(
 			-12deg,
@@ -99,9 +100,9 @@ body {
 			rgba(18, 20, 26, 0.03) 11px,
 			rgba(18, 20, 26, 0.03) 12px
 		);
-	background-attachment: fixed;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
+	overflow-x: clip;
 	-webkit-font-smoothing: antialiased;
 	min-height: 100vh;
 }
@@ -313,46 +314,6 @@ hr {
 	margin-top: 1.75rem;
 }
 
-.marquee {
-	overflow: hidden;
-	border-block: 3px solid var(--ink);
-	background: var(--ink);
-	color: var(--paper);
-	margin: 0 calc(-1 * var(--site-pad));
-}
-
-.marquee__track {
-	display: flex;
-	width: max-content;
-	gap: 2rem;
-	padding: 0.7rem 0;
-	animation: marquee 28s linear infinite;
-	font-family: var(--font-display);
-	font-weight: 800;
-	font-size: 0.95rem;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-}
-
-.marquee__track span {
-	white-space: nowrap;
-}
-
-.marquee__track span::after {
-	content: "◆";
-	margin-left: 2rem;
-	color: var(--signal);
-}
-
-@keyframes marquee {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(-50%);
-	}
-}
-
 @keyframes rise-in {
 	from {
 		opacity: 0;
@@ -494,6 +455,7 @@ hr {
 @media (max-width: 720px) {
 	main {
 		padding: 1.25rem var(--site-pad) 3rem;
+		overflow-x: clip;
 	}
 
 	.section-head {
@@ -501,7 +463,16 @@ hr {
 		align-items: start;
 	}
 
-	.marquee {
-		margin-inline: calc(-1 * var(--site-pad));
+	.btn {
+		box-shadow: 4px 4px 0 var(--ink);
+	}
+
+	.btn:hover {
+		box-shadow: 5px 5px 0 var(--ink);
+	}
+
+	blockquote,
+	pre {
+		box-shadow: 4px 4px 0 var(--ink);
 	}
 }

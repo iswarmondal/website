@@ -118,12 +118,21 @@ import HeaderLink from './HeaderLink.astro';
 		color: white;
 	}
 	@media (max-width: 720px) {
+		.site-nav {
+			gap: 0.5rem;
+			flex-wrap: wrap;
+		}
 		.social-links {
 			display: none;
 		}
+		.internal-links {
+			min-width: 0;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+		}
 		.internal-links :global(a) {
-			padding: 0.4rem 0.5rem;
-			font-size: 0.88rem;
+			padding: 0.35rem 0.45rem;
+			font-size: 0.82rem;
 		}
 	}
 </style>
