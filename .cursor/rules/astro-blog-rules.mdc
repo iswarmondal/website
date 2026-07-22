@@ -18,6 +18,7 @@ alwaysApply: false
 - The content management is done using the Astro's markdown file based content management system. The content lies in the `content` folder in markdown format.
 - I am not using any tailwindcss for this project. In fact each component is hand-coded and styled. And there are some global styles declared in the `src/styles/global.css` file.
 - The app is hosted on Vercel.
+- Cross-surface branding (PPT, social, subdomain apps) is documented in `DESIGN.md` — that guide uses the blog’s Libre Baskerville typography as the brand standard.
 
 # Project structure
 
