@@ -12,7 +12,8 @@ alwaysApply: false
 # Design philosophy and technical details
 
 - The frontend is implemented in the `src` folder. This is a Astro app which is using the Astro blog template.
-- This app uses a maximalist visual language: bold color blocks, hard shadows, expressive Syne display type, and a light grain overlay — while staying hand-coded CSS (no Tailwind).
+- This app uses a monochrome negative-space visual language: black, white, and soft greys; generous whitespace; Syne for UI display type; Libre Baskerville (print/newspaper tradition) reserved for blog articles — while staying hand-coded CSS (no Tailwind).
+- Blog posts use a multi-column newspaper layout on wide viewports, with italic/decorative typography treatments.
 - I tried my best to ship zero JS to the client. Making the app performant and fast scoring 95+ on Google Lighthouse.
 - The content management is done using the Astro's markdown file based content management system. The content lies in the `content` folder in markdown format.
 - I am not using any tailwindcss for this project. In fact each component is hand-coded and styled. And there are some global styles declared in the `src/styles/global.css` file.
