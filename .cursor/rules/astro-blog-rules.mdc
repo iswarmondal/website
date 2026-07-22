@@ -27,4 +27,7 @@ alwaysApply: false
 - `src/content` - This folder contains all the markdown files for the case studies and blogs.
 - `src/pages` - This folder contains all the pages of the website.
 - `src/styles` - This folder contains all the global styles for the project.
+<<<<<<< HEAD
 - `public/design.md` - Networked brand / design system (raw markdown at `/design.md`).
+=======
+>>>>>>> origin/master
