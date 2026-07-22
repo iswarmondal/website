@@ -33,10 +33,9 @@ const projects = (await getCollection('projects'))
 				height: min(70%, 28rem);
 				z-index: -1;
 				background:
-					radial-gradient(ellipse at 30% 40%, rgba(0, 0, 0, 0.05), transparent 55%),
-					radial-gradient(ellipse at 78% 20%, rgba(0, 0, 0, 0.035), transparent 45%);
+					radial-gradient(ellipse at 30% 40%, rgba(0, 0, 0, 0.04), transparent 55%),
+					radial-gradient(ellipse at 78% 20%, rgba(0, 0, 0, 0.03), transparent 45%);
 				pointer-events: none;
-				animation: fade-soft 1.1s ease both;
 			}
 			.hero__content {
 				max-width: min(40rem, 100%);
@@ -44,11 +43,12 @@ const projects = (await getCollection('projects'))
 			.hero__brand {
 				font-family: var(--font-display);
 				font-weight: 800;
-				font-size: clamp(3.2rem, 12vw, 6.5rem);
+				font-size: clamp(2.75rem, 9vw, 5.5rem);
 				letter-spacing: -0.06em;
-				line-height: 0.88;
+				line-height: 0.92;
 				margin: 0 0 1.5rem;
 				color: var(--ink);
+				white-space: nowrap;
 			}
 			.hero__headline {
 				font-family: var(--font-display);

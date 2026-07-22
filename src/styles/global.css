@@ -179,6 +179,7 @@ img {
 	max-width: 100%;
 	height: auto;
 	display: block;
+	filter: grayscale(50%);
 }
 
 code {
@@ -193,8 +194,8 @@ code {
 pre {
 	padding: 1.25em;
 	border: 1px solid var(--mist);
-	background: var(--ink);
-	color: var(--paper);
+	background: #fafafa;
+	color: var(--ink);
 	overflow-x: auto;
 	font-size: 0.88rem;
 }
@@ -294,11 +295,9 @@ hr {
 
 @keyframes rise-in {
 	from {
-		opacity: 0;
-		transform: translateY(14px);
+		transform: translateY(12px);
 	}
 	to {
-		opacity: 1;
 		transform: translateY(0);
 	}
 }
