@@ -1,13 +1,13 @@
 # iswar.me — Brand & Design System
 
 > **Fetch URL (raw markdown):** https://iswar.me/design.md  
-> Share URL, not file attach — same idea as `llms.txt` feeds.
+> Share that URL instead of attaching a file — same idea as documentation `llms.txt` feeds.
 >
-> **Purpose:** Context for AI agent / designer / developer building branded work for **iswar.me** — presentations, social, subdomain apps, POCs, decks, PDFs, email headers, marketing.
+> **Purpose:** Context for any AI agent, designer, or developer building branded work for **iswar.me** — presentations, social posts, subdomain apps, POCs, slide decks, PDFs, email headers, and marketing surfaces.
 >
-> **Goal:** Every surface feel like same calm monochrome brand as [iswar.me](https://iswar.me).
+> **Goal:** Every surface should feel like it belongs to the same calm, professional monochrome brand as [iswar.me](https://iswar.me).
 >
-> **Maintenance:** Networked source of truth. Repo path: `public/design.md`. Agents changing site UI must update this file in same change set (see `.cursor/rules/design-system-sync.mdc`).
+> **Maintenance:** This file is the networked source of truth. Repo path: `public/design.md`. Agents that change this website’s UI must update this document in the same change set (see `.cursor/rules/design-system-sync.mdc`).
 
 ---
 
@@ -15,7 +15,7 @@
 
 **Quiet newspaper on soft paper** — black ink, generous empty space, classical serif type, no noise.
 
-Loud, colorful, glassy, neon, “startup purple” = off-brand.
+If a design looks loud, colorful, glassy, neon, or “startup purple,” it is off-brand.
 
 ---
 
@@ -23,32 +23,32 @@ Loud, colorful, glassy, neon, “startup purple” = off-brand.
 
 | Principle | Meaning |
 |-----------|---------|
-| **Negative space first** | Emptiness = feature. Large margins, sparse composition, one idea per section. |
-| **Monochrome calm** | Black, white, greys only. Colour reserved for product screenshots / photos (see imagery). |
-| **Print heritage** | Layout + type from newspapers + fine books — columns, italics, drop caps, small caps, thin rules. |
-| **Professional, not cold** | Warm-neutral paper tones. Not sterile white or stark high-tech black. |
-| **Restraint over decoration** | No hard drop shadows, thick borders, badges, pill clusters, glow. |
-| **Brand as hero** | Covers / first slides / heroes: **iswar.me** (or Iswar) = dominant name signal — not tiny corner logo alone. |
+| **Negative space first** | Emptiness is a feature. Large margins, sparse composition, one idea per section. |
+| **Monochrome calm** | Only black, white, and greys. Colour is reserved for product screenshots / photos (see imagery). |
+| **Print heritage** | Layout and type borrow from newspapers and fine books — columns, italics, drop caps, small caps, thin rules. |
+| **Professional, not cold** | Warm-neutral paper tones, not sterile pure white or stark high-tech black. |
+| **Restraint over decoration** | No hard drop shadows, no thick borders, no badges, no pill clusters, no glow. |
+| **Brand as hero** | On branded covers / first slides / heroes, **iswar.me** (or Iswar) must be the dominant name signal — not a tiny logo in the corner alone. |
 
 ### Emotional target
 
-Calm · Confident · Editorial · Timeless · Readable · Serious without stiff.
+Calm · Confident · Editorial · Timeless · Readable · Serious without being stiff.
 
 ### Anti-patterns (never do)
 
 - Purple / indigo gradients, neon accents, glassmorphism, multi-layer shadows
 - Warm cream + terracotta “AI default” looks
-- Dense broadsheet clutter (many rules, packed columns, chrome overload) — want **space**, not newspaper chaos
+- Dense broadsheet clutter (many rules, packed columns, chrome overload) — we want **space**, not newspaper chaos
 - Rounded-full pill tags as decoration
 - Emoji as brand ornament
-- Dark mode as default brand (light paper = canonical)
+- Dark mode as default brand expression (light paper is canonical)
 - Inter / Roboto / Arial / system UI stacks as primary brand type
 
 ---
 
 ## 3. Colour system
 
-Canonical tokens from website. Use exact hex when possible.
+Canonical tokens from the website. Use these exact hex values when possible.
 
 | Token | Hex | Role |
 |-------|-----|------|
@@ -64,9 +64,9 @@ Canonical tokens from website. Use exact hex when possible.
 
 ### Background recipe
 
-Prefer **Paper `#F6F6F4`**, optional soft radial wash (black ~3–4% opacity) — atmosphere, no colour.
+Prefer **Paper `#F6F6F4`**, optionally with a very soft radial wash (black at ~3–4% opacity) — atmosphere without colour.
 
-Avoid flat pure `#FFFFFF` alone on large canvases; paper tone = brand.
+Avoid flat pure `#FFFFFF` as the only background on large canvases; paper tone is part of the brand.
 
 ### Contrast rules
 
@@ -86,9 +86,9 @@ Avoid flat pure `#FFFFFF` alone on large canvases; paper tone = brand.
 
 ## 4. Typography (brand standard = blog type)
 
-**All branded materials: follow blog / article typography — not site chrome (Syne).**
+**For all branded materials, follow the blog / article typography — not the site chrome (Syne).**
 
-Website uses Syne for nav + UI chrome. **Exception for marketing site shell.** Cross-product branding (decks, social, subdomain POCs) = **article / newspaper** voice.
+The website uses Syne for navigation and UI chrome. **That is an exception for the marketing site shell.** Cross-product branding (decks, social, subdomain POCs) should feel like the **article / newspaper** voice.
 
 ### Primary typeface — Libre Baskerville
 
@@ -96,7 +96,7 @@ Website uses Syne for nav + UI chrome. **Exception for marketing site shell.** C
 |--|--|
 | **Family** | Libre Baskerville |
 | **Fallback** | `"Times New Roman", Times, Georgia, serif` |
-| **Why** | Baskerville lineage — books + serious print; calm, scholarly, editorial. |
+| **Why** | Baskerville lineage — historically used for books and serious print; calm, scholarly, editorial. |
 | **Files on site** | Regular 400 · Italic 400 · Bold 700 (self-hosted `.woff2`) |
 | **License** | SIL Open Font License (free for commercial use) |
 | **Source** | [Google Fonts — Libre Baskerville](https://fonts.google.com/specimen/Libre+Baskerville) |
@@ -110,14 +110,14 @@ Website uses Syne for nav + UI chrome. **Exception for marketing site shell.** C
 | **Bold 700** | Section titles, drop caps, strong emphasis |
 | **Small caps** (or faux small-caps via `letter-spacing` + uppercase at reduced size) | Bylines, meta labels (`BY ISWAR C. MONDAL`) |
 
-Lean into **italic + decorative print manners**: drop caps, italic decks, ornamental short rules, generous leading. That *is* brand voice.
+Lean into **italic and decorative print manners**: drop caps, italic decks, ornamental short rules, generous leading. That *is* the brand voice.
 
 ### Optional display exception
 
-Main website only: **Syne** (Bold / ExtraBold) for UI + some page titles.  
-**Do not require Syne** in PPT, social, subdomain apps unless matching specific web screenshot. Prefer **Libre Baskerville Bold** (or Italic) for headlines in branded kits.
+On the main website only, **Syne** (Bold / ExtraBold) appears for UI and some page titles.  
+**Do not require Syne** in PPT, social, or subdomain apps unless matching a specific web screenshot. Prefer **Libre Baskerville Bold** (or Italic) for headlines in branded kits.
 
-Geometric sans for app UI chrome (buttons, nav): secondary + sparse — never replace Baskerville for reading text.
+If a geometric sans is needed for UI chrome in an app (buttons, nav), keep it secondary and sparse — never replace Baskerville for reading text.
 
 ### Type scale (guidance)
 
@@ -125,7 +125,7 @@ Relative scale for slides / posters / apps (adjust to medium):
 
 | Role | Guidance |
 |------|----------|
-| **Display / cover title** | Large, bold or italic; tight leading (~0.95–1.1); lowercase OK for editorial punch |
+| **Display / cover title** | Large, bold or italic; tight leading (~0.95–1.1); can be lowercase for editorial punch |
 | **Section head** | Bold or italic; clear hierarchy below display |
 | **Deck / standfirst** | Italic, ~40–60% of title size, max ~2–3 lines |
 | **Body** | Regular, comfortable leading **1.6–1.8** |
@@ -134,11 +134,11 @@ Relative scale for slides / posters / apps (adjust to medium):
 
 ### Text treatments (blog vocabulary)
 
-Reuse patterns so work feels native:
+Reuse these patterns so work feels native:
 
-1. **Kicker** — italic date or section label above title  
+1. **Kicker** — italic date or section label above the title  
 2. **Lowercase display titles** — editorial, confident (optional; not mandatory for product UI)  
-3. **Italic deck** under title  
+3. **Italic deck** under the title  
 4. **Small-caps byline**  
 5. **Short ink ornament rule** (~3rem / 48px wide, 1px tall) under mastheads  
 6. **Drop cap** on opening paragraph of longform  
@@ -147,12 +147,12 @@ Reuse patterns so work feels native:
 
 ### Multi-column layout
 
-Long reading (articles, one-pagers, dense PPT appendix):
+For long reading (articles, one-pagers, dense PPT appendix slides):
 
 - Prefer **2 columns** on wide canvases  
 - Generous gutter  
 - Collapse to **1 column** on narrow / mobile  
-- Headings, images, code, quotes may span full width  
+- Headings, images, code, and quotes may span full width  
 
 ---
 
@@ -162,7 +162,7 @@ Long reading (articles, one-pagers, dense PPT appendix):
 
 - Prefer **too much** margin over too little  
 - One job per section: one headline + one short supporting line + one primary action or image  
-- Align to clear left edge; avoid scattered floating widgets  
+- Align to a clear left edge; avoid scattered floating widgets  
 
 ### Rules & borders
 
@@ -172,7 +172,7 @@ Long reading (articles, one-pagers, dense PPT appendix):
 
 ### Buttons / CTAs
 
-Two OK patterns:
+Two acceptable patterns:
 
 1. **Editorial underline** — uppercase + thick Ink underline (preferred for brand posts)  
 2. **Rect button** — Ink fill + Paper text, or Paper fill + Ink border (`1px`); no shadow; no pill radius  
@@ -182,11 +182,11 @@ Hover: invert fill/border or reduce opacity — keep monochrome.
 ### Cards
 
 Default: **no cards**.  
-Bordered containers only for real interactive control or grouped form. If removing border/background doesn’t hurt understanding, don’t use card.
+Only use bordered containers when they hold a real interactive control or grouped form. If removing border/background doesn’t hurt understanding, don’t use a card.
 
 ### Hero / cover budget
 
-First viewport or title slide usually only:
+First viewport or title slide should usually contain only:
 
 1. Brand name (**iswar.me** / Iswar)  
 2. One headline  
@@ -194,7 +194,7 @@ First viewport or title slide usually only:
 4. One CTA group (optional)  
 5. One dominant image or empty paper field  
 
-No stats strips, chip clouds, promo stickers on hero.
+No stats strips, chip clouds, or promo stickers on the hero.
 
 ---
 
@@ -202,7 +202,7 @@ No stats strips, chip clouds, promo stickers on hero.
 
 | Rule | Detail |
 |------|--------|
-| **Grayscale** | Apply **`grayscale(50%)`** to photographs + UI screenshots across branded surfaces (matches website). |
+| **Grayscale** | Apply **`grayscale(50%)`** to photographs and UI screenshots across branded surfaces (matches the website). |
 | **Subject** | Real product, place, craft, or context — not abstract 3D blobs. |
 | **Placement** | Full-bleed or generous; avoid tiny floating rounded thumbnails in heroes. |
 | **Overlays** | No floating badges, stickers, or chips on top of hero media. |
@@ -219,10 +219,10 @@ img {
 
 ## 7. Motion (when the medium allows)
 
-Motion quiet + purposeful:
+Keep motion quiet and purposeful:
 
 - Soft rise / translate (~8–14px), no opacity-from-zero on primary titles (hurts perceived quality / LCP on web)  
-- Hairline rules draw from left  
+- Hairline rules that draw from left  
 - Soft fade on decorative mega-type only  
 
 Respect **reduced motion**. Prefer 2–3 intentional motions max per experience — never constant parallax noise.
@@ -248,10 +248,10 @@ Respect **reduced motion**. Prefer 2–3 intentional motions max per experience 
 
 ## 9. Logo / wordmark
 
-- Primary mark: wordmark **`iswar.me`** in brand type (Libre Baskerville Bold, or matching web Syne ExtraBold only when mirroring live site chrome)  
+- Primary mark: the wordmark **`iswar.me`** in brand type (Libre Baskerville Bold, or matching web Syne ExtraBold only when mirroring the live site chrome)  
 - Colour: Ink on Paper (or Paper on Ink for inverted footers / end cards)  
-- Clear space: ≥ height of wordmark’s “i” on all sides  
-- No icons, diamonds, gradients, outlines unless reproducing existing site element intentionally  
+- Clear space: at least the height of the wordmark’s “i” on all sides  
+- Do not add icons, diamonds, gradients, or outlines unless reproducing an existing site element intentionally  
 
 ---
 
@@ -297,7 +297,7 @@ img {
 - Master background: `#F6F6F4`  
 - Title: Libre Baskerville Bold or Italic, Ink  
 - Body: Libre Baskerville Regular, Ink soft  
-- One thin horizontal rule — not shapes stacks  
+- Decorate with one thin horizontal rule — not shapes stacks  
 - Max ~1 photo per slide; 50% grayscale  
 - End slide: large **iswar.me** wordmark + muted URL / handle  
 
@@ -306,15 +306,15 @@ img {
 - Paper canvas, large italic or bold Baskerville headline  
 - Small kicker above, short deck below  
 - Leave ≥20% empty margin  
-- Include **iswar.me** as readable wordmark (not only favicon)  
+- Include **iswar.me** as readable wordmark (not only a favicon)  
 - Safe zones: keep type away from platform UI chrome  
 
 ### Subdomain apps / POCs (`*.iswar.me`)
 
-- Import palette + Libre Baskerville  
-- Light paper theme default  
-- Match CTA + rule language above  
-- Performance: self-host fonts (woff2), minimize client JS when possible — brand = craft, not only look  
+- Import this palette + Libre Baskerville  
+- Light paper theme by default  
+- Match CTA and rule language above  
+- Performance: self-host fonts (woff2), minimize client JS when possible — brand includes craft, not only look  
 
 ### PDFs / one-pagers
 
@@ -326,14 +326,14 @@ img {
 
 ## 12. Quick checklist for agents & designers
 
-Before shipping branded artifact, confirm:
+Before shipping any branded artifact, confirm:
 
 - [ ] Only black / white / grey (plus 50% grayscale photos)  
-- [ ] Background Paper-like, not loud colour  
-- [ ] Primary type **Libre Baskerville** (italic/bold used intentionally)  
+- [ ] Background is Paper-like, not loud colour  
+- [ ] Primary type is **Libre Baskerville** (italic/bold used intentionally)  
 - [ ] Generous negative space; one idea per section  
 - [ ] Hairline rules, not thick brutalist frames or hard shadows  
-- [ ] Brand name clearly present  
+- [ ] Brand name is clearly present  
 - [ ] No purple gradients, glass, neon, emoji ornament, or pill clutter  
 - [ ] Feels calm enough to lower someone’s heart rate  
 
@@ -351,14 +351,14 @@ Before shipping branded artifact, confirm:
 | Self-hosted fonts | `public/fonts/LibreBaskerville-*.woff2` |
 | Agent sync rule | `.cursor/rules/design-system-sync.mdc` |
 
-Website vs this file disagree on **branded** work → prefer **this file** + **blog article** aesthetic. Implementing main marketing site chrome → defer to repo CSS, then **update this file** so public guide matches.
+When the website and this file disagree on **branded** work, prefer **this file** + the **blog article** aesthetic. When implementing the main marketing site chrome specifically, defer to the repo CSS — then **update this file** so the public guide matches.
 
 ---
 
 ## 14. Keeping this document current
 
-UI / brand change on iswar.me affecting colours, type, layout language, imagery, motion, or CTAs → update `public/design.md` in same PR. Do not let live site and https://iswar.me/design.md drift.
+Any UI / brand change on iswar.me that affects colours, type, layout language, imagery, motion, or CTAs must update `public/design.md` in the same PR. Do not let the live site and https://iswar.me/design.md drift.
 
 ---
 
-*Last aligned with monochrome negative-space redesign of iswar.me.*
+*Last aligned with the monochrome negative-space redesign of iswar.me.*
