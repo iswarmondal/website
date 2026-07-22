@@ -18,6 +18,8 @@ alwaysApply: false
 - The content management is done using the Astro's markdown file based content management system. The content lies in the `content` folder in markdown format.
 - I am not using any tailwindcss for this project. In fact each component is hand-coded and styled. And there are some global styles declared in the `src/styles/global.css` file.
 - The app is hosted on Vercel.
+- Cross-surface branding is documented in **`public/design.md`**, served raw at **`/design.md`** (https://iswar.me/design.md). That guide uses the blog’s Libre Baskerville typography as the brand standard.
+- **Required:** When changing this site’s UI or brand tokens, update `public/design.md` in the same change (see `.cursor/rules/design-system-sync.mdc`).
 
 # Project structure
 
@@ -25,3 +27,4 @@ alwaysApply: false
 - `src/content` - This folder contains all the markdown files for the case studies and blogs.
 - `src/pages` - This folder contains all the pages of the website.
 - `src/styles` - This folder contains all the global styles for the project.
+- `public/design.md` - Networked brand / design system (raw markdown at `/design.md`).
