@@ -1,6 +1,6 @@
 # Content ideas queue (Supabase)
 
-Reference for Auto Content on the linked Supabase project. Schema is **already applied** — do not recreate blindly. Use MCP `execute_sql` for reads/updates; use `apply_migration` only if intentionally changing DDL on a project that lacks this schema.
+Reference for Auto Content on the linked Supabase project. Schema is **already applied** - do not recreate blindly. Use MCP `execute_sql` for reads/updates; use `apply_migration` only if intentionally changing DDL on a project that lacks this schema.
 
 ## Purpose
 
@@ -66,7 +66,7 @@ limit 1;
 
 ## RLS (summary)
 
-- RLS on; policies for `authenticated` only (SELECT/INSERT/UPDATE/DELETE all true) — single-tenant.
+- RLS on; policies for `authenticated` only (SELECT/INSERT/UPDATE/DELETE all true) - single-tenant.
 - `anon`: no policies.
 - MCP / secret key path bypasses RLS (agent usage).
 
