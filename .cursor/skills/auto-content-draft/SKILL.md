@@ -1,6 +1,6 @@
 ---
 name: auto-content-draft
-description: Draft an iswar.me blog post from the Supabase content_ideas queue - peek/claim via Supabase MCP, write in Iswar's voice, drop MDX under src/content/blog, validate with npm run build, open a draft PR, and update queue status. Use when the user asks to draft from content ideas, Auto Content queue, claim a topic, or run auto-content-draft.
+description: Draft an iswar.me blog post from the Supabase content_ideas queue - peek/claim via Supabase MCP, write in Iswar's voice, drop MDX under src/content/blog, run the mandatory SEO gate (Google + AI/GEO), validate with npm run build, open a draft PR, and update queue status. Use when the user asks to draft from content ideas, Auto Content queue, claim a topic, or run auto-content-draft.
 disable-model-invocation: true
 ---
 
@@ -14,8 +14,9 @@ Supabase holds **queue + assignment + status only**. Markdown lives in git under
 
 1. Read [voice.md](voice.md) (writing taste).
 2. Read [queue.md](queue.md) (schema, RPC, MCP SQL patterns).
-3. Call `GetMcpTools` for server `Supabase` before any `CallMcpTool`.
-4. Confirm table exists (`list_tables` or a peek query). Do **not** re-apply the create-table migration - schema is already live on the Auto Content project.
+3. Read [seo-gate.md](seo-gate.md) (mandatory SEO / AI-SEO pass before PR).
+4. Call `GetMcpTools` for server `Supabase` before any `CallMcpTool`.
+5. Confirm table exists (`list_tables` or a peek query). Do **not** re-apply the create-table migration - schema is already live on the Auto Content project.
 
 ## Workflow checklist
 
@@ -29,10 +30,11 @@ Auto Content Draft:
 - [ ] 4. Mark status = drafting
 - [ ] 5. Study 1-2 similar existing posts + voice.md
 - [ ] 6. Write MDX draft in src/content/blog/
-- [ ] 7. npm run build (must pass)
-- [ ] 8. Branch → commit → push → draft PR
-- [ ] 9. Leave idea drafting; put idea id + PR link in PR body
-- [ ] 10. Summarize for human (title, slug, claimer, PR URL, next steps)
+- [ ] 7. SEO gate (required) - assess + fix per seo-gate.md; use seo-audit + ai-seo skills when present
+- [ ] 8. npm run build (must pass)
+- [ ] 9. Branch → commit → push → draft PR (include SEO gate notes in PR body)
+- [ ] 10. Leave idea drafting; put idea id + PR link in PR body
+- [ ] 11. Summarize for human (title, slug, claimer, PR URL, SEO gate OK, next steps)
 ```
 
 ### 1. Peek (never claim yet)
@@ -127,17 +129,29 @@ pubDate: 'Mon DD YYYY'
 ```
 
   Rules: blank line before and after; header row + `| --- |` separator required; 2-4 columns; short cells (one clause); first column = dimension/signal label; prefer this over parallel bullet lists for side-by-side contrasts. Blog CSS in `BlogPost.astro` styles these as bordered full-width tables.
+- Draft with SEO / AI-SEO patterns in mind (answer-first, FAQ, internal links) - then still run step 7 as a hard gate.
 - Do **not** mark `published` in Supabase yet. PR merge ≠ live publish ritual unless user says so.
 
-### 7. Validate
+### 7. SEO gate (required - never skip)
+
+**Before** build and **before** opening the draft PR, assess and fix the post for Google SEO **and** AI/answer-engine extractability.
+
+1. Follow [seo-gate.md](seo-gate.md) pass/fail checklist end to end.
+2. If present in the repo, apply `.cursor/skills/seo-audit/SKILL.md` (on-page) and `.cursor/skills/ai-seo/SKILL.md` (GEO/AEO patterns). Prefer fixing the MDX over filing issues for later.
+3. Re-scan for em/en dashes and fake tables.
+4. Only proceed to step 8 when blocking gate items pass.
+
+If the human asked for outline-only, still note SEO gaps in the handoff - but full drafts must clear the gate.
+
+### 8. Validate
 
 ```bash
 npm run build
 ```
 
-Fix frontmatter/MDX until build passes. No lint/test suite in this repo; build is the gate.
+Fix frontmatter/MDX until build passes. No lint/test suite in this repo; build is the gate for compile; SEO gate is separate and earlier.
 
-### 8. Git + draft PR
+### 9. Git + draft PR
 
 1. Feature branch from current base (cloud agents: `cursor/<descriptive-name>-8ddc`).
 2. Stage only the new/edited post files (and any real assets you added).
@@ -147,11 +161,12 @@ Fix frontmatter/MDX until build passes. No lint/test suite in this repo; build i
    - Content idea `id`
    - Original queue title / angle
    - Claimer string
+   - **SEO gate summary** (what passed; any allowed leftovers)
    - Note: status left as `drafting`; publish step still human/agent follow-up
 
 Cloud agents: use `ManagePullRequest` (`create_pr`, `draft: true`). Do not use `gh` for PR write.
 
-### 9. Queue status after PR
+### 10. Queue status after PR
 
 Leave `status = 'drafting'` while PR is open.
 
@@ -180,9 +195,9 @@ set status = 'killed'
 where id = '<uuid>';
 ```
 
-### 10. Hand off
+### 11. Hand off
 
-Tell human: slug path, idea id, PR URL, build OK, and that publish/queue close is still pending.
+Tell human: slug path, idea id, PR URL, build OK, SEO gate OK, and that publish/queue close is still pending.
 
 ## Hard rules
 
@@ -195,6 +210,7 @@ Tell human: slug path, idea id, PR URL, build OK, and that publish/queue close i
 - One idea per skill run unless user asks for a batch (batch = repeat checklist per idea, separate PRs preferred).
 - Never ship blog MDX containing em dashes (U+2014) or en dashes (U+2013). Use ASCII `-` only (see [voice.md](voice.md)).
 - Comparison / vs sections must use GFM pipe tables (see Body rules), not ASCII art or tab-aligned plain text.
+- **Never open the draft PR until the SEO gate ([seo-gate.md](seo-gate.md)) passes.** Build success alone is not enough.
 
 ## Optional filters
 

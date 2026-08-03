@@ -83,9 +83,11 @@ limit 1;
 2. Human confirms
 3. `claim_next_content_idea(...)`
 4. `status = 'drafting'`
-5. Write MDX in repo; PR
-6. On live ship: `published` + `published_url` (+ `published_at`)
-7. On abandon: back to `idea` (clear claim fields) or `killed`
+5. Write MDX in repo
+6. **SEO gate** (Google + AI/GEO) per [seo-gate.md](seo-gate.md) - required before PR
+7. `npm run build` + draft PR
+8. On live ship: `published` + `published_url` (+ `published_at`)
+9. On abandon: back to `idea` (clear claim fields) or `killed`
 
 ## Canonical DDL (bootstrap other projects only)
 
