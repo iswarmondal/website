@@ -152,7 +152,27 @@ Long reading (articles, one-pagers, dense PPT appendix):
 - Prefer **2 columns** on wide canvases  
 - Generous gutter  
 - Collapse to **1 column** on narrow / mobile  
-- Headings, images, code, quotes may span full width  
+- Headings, images, code, quotes, **tables** may span full width  
+
+### Comparison / data tables (blog)
+
+Markdown GFM tables in articles render as real bordered tables (not tab-spaced plain text):
+
+- Full-bleed across the newspaper column span  
+- Hairline cell borders (`1px` Line); header row uses Paper deep wash + thicker Ink bottom rule  
+- First-column / row labels may stay bold for scanability  
+- Short cells (one clause); 2–4 columns max  
+- On narrow screens: horizontal scroll if needed, still looks like a table  
+
+Authoring format (required in content skills):
+
+```md
+| Signal | Google SEO | ChatGPT / answer engines |
+| --- | --- | --- |
+| Primary win | Ranked URL in SERPs | Named citation or recommendation |
+```
+
+Blank line before and after. No ASCII “fake tables,” no bare tab columns.
 
 ---
 
@@ -361,4 +381,4 @@ UI / brand change on iswar.me affecting colours, type, layout language, imagery,
 
 ---
 
-*Last aligned with monochrome negative-space redesign of iswar.me.*
+*Last aligned with blog comparison-table styling (hairline bordered GFM tables in newspaper layout).*

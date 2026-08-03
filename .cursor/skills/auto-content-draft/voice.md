@@ -32,15 +32,33 @@ Also: `src/pages/about.astro` for bio tone.
 
 For SEO/GEO topics from the queue: still sound like a builder explaining a system - not a purple-prose affiliate article. Put search phrases where they read natural (Frame Shift post is the model).
 
+## Comparison tables
+
+When contrasting two approaches, use a real GFM Markdown table so the blog UI can render borders and alignment:
+
+```md
+| Signal | Google SEO | ChatGPT / answer engines |
+| --- | --- | --- |
+| Primary win | Ranked URL in SERPs | Named citation or recommendation |
+| Proof | Backlinks, topical authority | Original specifics a model can quote |
+```
+
+- Header + separator row required
+- Blank line before and after the table
+- 2-4 columns; cells = one short clause
+- First column = the dimension being compared
+- Do not fake tables with spaces/tabs or bullet pairs labeled "left vs right"
+
 ## Hard avoid
 
 - Generic AI sludge: "In today's fast-paced world…", "Let's dive in!", "Moreover/Furthermore" stacks, empty "It is important to note."
-- Em dashes (`-`). They read as AI default punctuation. Always use a regular hyphen (`-`) instead (with the same spacing you would have used around the dash). Apply this to titles, descriptions, and body. Do not use en dashes (`-`) as a substitute either - prefer `-` or rewrite with commas / periods.
+- Em dashes (U+2014) and en dashes (U+2013). They read as AI default punctuation. Always use a regular ASCII hyphen (`-`) instead (with the same spacing you would have used around the dash). Apply this to titles, descriptions, and body. Prefer `-` or rewrite with commas / periods.
 - Fake expertise / invented benchmarks / fake customer quotes.
 - Engagement bait, emoji floods, pill-shaped CTA speak.
 - Rewriting the author's identity (no third-person "Iswar thinks" essays unless asked).
 - Card-layout thinking in prose; no dashboard-of-sections fluff.
 - Shipping outline-only stubs labeled as a full draft.
+- ASCII or tab-aligned "tables" that are not GFM pipe tables.
 
 ## Description / title craft
 
