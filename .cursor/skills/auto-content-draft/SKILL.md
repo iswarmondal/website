@@ -116,7 +116,17 @@ pubDate: 'Mon DD YYYY'
 - Code blocks when they teach; skip filler scaffolding.
 - Images: only real paths under `public/blog/`.
 - Length: substantial first draft (aim useful end-to-end), not outline stubs - unless user asked for outline-only.
-- **No em dashes (`-`) and no en dashes (`-`).** Replace every one with a regular hyphen (`-`), or rewrite with commas / periods. Scan the finished MDX before commit; AI drafts love `-`.
+- **No em dashes (Unicode U+2014) and no en dashes (U+2013).** Replace every one with a regular ASCII hyphen (`-`), or rewrite with commas / periods. Scan the finished MDX before commit; AI drafts love em dashes.
+- **Comparison tables:** when the post contrasts two+ approaches (SEO vs GEO, X vs Y), use a real GFM Markdown table - never ASCII/tab "fake tables." Format:
+
+```md
+| Signal | Option A | Option B |
+| --- | --- | --- |
+| Primary win | Short clause | Short clause |
+| Structure | Short clause | Short clause |
+```
+
+  Rules: blank line before and after; header row + `| --- |` separator required; 2-4 columns; short cells (one clause); first column = dimension/signal label; prefer this over parallel bullet lists for side-by-side contrasts. Blog CSS in `BlogPost.astro` styles these as bordered full-width tables.
 - Do **not** mark `published` in Supabase yet. PR merge ≠ live publish ritual unless user says so.
 
 ### 7. Validate
@@ -183,7 +193,8 @@ Tell human: slug path, idea id, PR URL, build OK, and that publish/queue close i
 - Do not recreate schema; see [queue.md](queue.md) for reference only.
 - Match existing site patterns; do not redesign the blog layout for a content task.
 - One idea per skill run unless user asks for a batch (batch = repeat checklist per idea, separate PRs preferred).
-- Never ship blog MDX containing `-` or `-`. Use `-` only (see [voice.md](voice.md)).
+- Never ship blog MDX containing em dashes (U+2014) or en dashes (U+2013). Use ASCII `-` only (see [voice.md](voice.md)).
+- Comparison / vs sections must use GFM pipe tables (see Body rules), not ASCII art or tab-aligned plain text.
 
 ## Optional filters
 

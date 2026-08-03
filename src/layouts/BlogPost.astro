@@ -218,6 +218,54 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				break-inside: avoid;
 			}
 
+			.columns :global(table) {
+				width: 100%;
+				margin: 1.75em 0;
+				border-collapse: collapse;
+				table-layout: fixed;
+				font-size: 0.92em;
+				line-height: 1.45;
+				hyphens: manual;
+				background: var(--paper);
+			}
+
+			.columns :global(caption) {
+				caption-side: bottom;
+				margin-top: 0.65em;
+				font-style: italic;
+				font-size: 0.9em;
+				color: var(--muted);
+				text-align: left;
+			}
+
+			.columns :global(th),
+			.columns :global(td) {
+				border: 1px solid var(--line);
+				padding: 0.7rem 0.85rem;
+				vertical-align: top;
+				text-align: left;
+				overflow-wrap: anywhere;
+			}
+
+			.columns :global(thead th) {
+				font-weight: 700;
+				font-style: normal;
+				background: var(--paper-deep);
+				border-bottom: 2px solid var(--ink);
+				color: var(--ink);
+			}
+
+			.columns :global(tbody th) {
+				font-weight: 700;
+				font-style: normal;
+				background: var(--paper-deep);
+				width: 22%;
+			}
+
+			.columns :global(tbody tr:nth-child(even) td) {
+				background: color-mix(in srgb, var(--paper-deep) 55%, var(--paper));
+			}
+
 			.columns :global(img) {
 				margin: 1.75rem auto;
 				border: none;
@@ -269,6 +317,21 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 				.columns :global(p:first-of-type::first-letter) {
 					font-size: 2.85em;
+				}
+
+				.columns :global(table) {
+					table-layout: auto;
+					display: block;
+					width: 100%;
+					overflow-x: auto;
+					-webkit-overflow-scrolling: touch;
+				}
+
+				.columns :global(thead),
+				.columns :global(tbody) {
+					display: table;
+					width: 100%;
+					min-width: 32rem;
 				}
 			}
 		</style>
