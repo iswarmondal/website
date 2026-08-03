@@ -1,0 +1,150 @@
+---
+title: 'How to Rank in ChatGPT Answers (Not Just Google)'
+description: 'Practical generative engine optimization (GEO): what makes ChatGPT cite you, how that differs from classic SEO, and the content patterns that actually get recommended.'
+pubDate: 'Aug 3 2026'
+---
+
+For years, "ranking" meant one thing: a blue link on Google. You wrote for crawlers, earned backlinks, and watched Search Console.
+
+That game still matters. But a growing chunk of discovery now happens inside answers — ChatGPT, Perplexity, Gemini, Copilot — where the product is not ten links. It is one synthesized reply that *names* a few sources and ignores everyone else.
+
+If ChatGPT never mentions you, you are invisible to people who never open Google for that query. That is the problem **generative engine optimization** (GEO) is trying to solve: not "rank position 3," but "get cited, recommended, or woven into the answer."
+
+I have been thinking about this while shipping content systems that need to work for both SERPs and LLMs. Same site. Same pages. Different success criteria. Here is the practical version of what I have landed on — without the affiliate sludge.
+
+## What "ranking" in ChatGPT actually means
+
+ChatGPT does not give you a stable rank the way Google does. There is no public "position 4 for keyword X" dashboard. What you can observe, roughly:
+
+- **Named citation** — the answer links or attributes a claim to your site
+- **Brand / product recommendation** — you show up as a suggested tool, library, or approach
+- **Paraphrased inclusion** — your framing gets reused even when the URL is not shown
+- **Training-data familiarity** — older, widely mirrored content shows up because the model already "knows" it
+
+Only some of that is controllable week-to-week. Live browsing / retrieval modes behave differently from pure parametric memory. Treat GEO as *increasing the odds you are the clear, quotable source* — not as a guaranteed slot.
+
+That framing keeps you honest. You are optimizing for **citability**, not gaming a public ranking UI that does not exist.
+
+## Google SEO vs ChatGPT citation (same page, different job)
+
+Classic SEO still cares about:
+
+- topical authority and internal linking
+- backlinks and entity clarity
+- technical crawlability
+- intent match for a query
+
+LLMs quoting you care more about:
+
+- **Clear, extractable answers** near the top of the page
+- **Original specifics** — numbers, steps, constraints, named stacks — not recycled platitudes
+- **Stable structure** — headings that map to questions people actually ask
+- **Source-shaped writing** — definitions, comparisons, how-tos that survive being summarized
+- **Freshness signals** when the topic moves fast (dates, updated sections, current versions)
+
+You can serve both with one content system. You cannot pretend they are identical. A page that ranks on Google for a fuzzy commercial query might still be too thin, too salesy, or too buried to be a clean citation target for an answer engine.
+
+## What makes an answer engine cite you
+
+When I look at pages that get pulled into AI answers (including my own when they do), a pattern shows up. It is boring. It also works.
+
+### 1. Lead with the answer, then earn the depth
+
+Models and retrieval systems love a page that states the thing up front.
+
+Bad pattern: three paragraphs of vibes, then the definition in section four.
+
+Better pattern: one or two sentences that *are* the answer, then the nuance, then the build details.
+
+If someone asked ChatGPT "what is GEO?", your first useful block should almost be pasteable:
+
+> Generative engine optimization is the practice of structuring content so AI answer engines can find, trust, and cite it — not only so Google can rank the URL.
+
+That is not dumbing down. That is making the page **quotable**.
+
+### 2. Be the primary source for something small and real
+
+LLMs overweight content that looks like evidence: benchmarks you ran, architecture you shipped, failure modes you hit, exact config that worked.
+
+Generic "10 tips" posts compete with a million clones. A post that says "here is the exact view-tracking loop I use, and why five seconds matters" has a different fingerprint. Frame Shift's writeup works that way — specific product loop, not "video SaaS best practices."
+
+If you have no original data, you can still be primary on **process**: the exact steps you take, the tradeoffs you chose, what you left out on purpose.
+
+### 3. Structure like a FAQ the model can slice
+
+Headings should sound like questions or crisp claims:
+
+- "What GEO is (and is not)"
+- "Signals ChatGPT seems to prefer"
+- "How I structure a page for citation"
+
+Unordered tips under a vague H2 get mashed into mush. Named sections get lifted cleanly.
+
+Tables, short definition lists, and numbered procedures survive summarization better than essay fog. Use them when they teach — not as decoration.
+
+### 4. Make the entity obvious
+
+Say the product name, the person, the repo, the stack. Repeatedly, naturally.
+
+Answer engines need to attach claims to an entity. If your page never clearly says *who* built *what*, you become anonymous prose — easy to paraphrase, hard to cite.
+
+Same rule as good SEO entity clarity. GEO just punishes vagueness faster because the UI only has room for a few names.
+
+### 5. Keep a freshness cadence on moving topics
+
+For GEO, AI tooling, model behavior, and ranking tactics, stale 2023 advice is liability.
+
+You do not need to rewrite everything weekly. You do need:
+
+- a visible `pubDate` / update date when it matters
+- versioned claims ("as of mid-2026…")
+- the courage to kill advice that stopped being true
+
+Retrieval-augmented answers prefer pages that look current when the query is time-sensitive.
+
+## A practical GEO checklist I actually use
+
+When I draft or edit a page that should work in ChatGPT-style answers, I run this pass:
+
+1. **One-sentence answer** in the first screenful
+2. **One original artifact** — code, diagram, metric, or lived constraint
+3. **Question-shaped H2s** that match how people ask, not how marketers brand
+4. **Comparison or "vs" block** if the query is choice-shaped (Google vs ChatGPT, X vs Y)
+5. **Honest limits** — what this does *not* guarantee
+6. **Clean technical surface** — fast HTML, readable without JS, crawlable URL (Astro zero-JS blogs are boringly good at this)
+7. **Internal links** to deeper supporting pages so the topic cluster is obvious
+
+None of that requires a new CMS. It requires editing discipline.
+
+## Content at scale without becoming thin spam
+
+GEO and SEO both reward coverage. Neither rewards hollow pages forever.
+
+If you use AI to draft at volume, the citation risk is obvious: you publish the same sludge the model already knows, then wonder why it never cites *you*. Why would it? You added no new signal.
+
+The pattern that holds up:
+
+- **AI for scaffolding and cluster expansion** — outlines, related questions, first passes
+- **Human for the fingerprint** — real stack, real numbers, real opinions, real "what I skipped"
+- **Publish only if the page teaches something a summarizer cannot invent**
+
+Volume compounds when each URL is a sharp node in a cluster. Volume destroys trust when each URL is interchangeable filler. Answer engines are especially good at ignoring filler because they only need a handful of sources per reply.
+
+## What I would not waste time on
+
+A few GEO myths I skip:
+
+- **Keyword stuffing for robots that do not rank keywords like Google.** Clarity beats density.
+- **Fake "as featured in ChatGPT" badges.** Embarrassing and useless.
+- **Chasing one magic schema trick as a silver bullet.** Structured data can help machines parse; it will not save empty content.
+- **Pretending citations are deterministic.** Prompt, model version, browsing mode, and personalization all move. Optimize the page; do not obsess over one screenshot.
+
+Also: do not abandon Google. Most buying journeys still touch search. GEO is an extra win condition on the same useful pages — not a replacement religion.
+
+## Closing
+
+Ranking in ChatGPT answers is less about a secret algorithm and more about becoming the cleanest source in the room: answer-first, specific, structured, attributable, and updated when the ground moves.
+
+Google still wants relevance and authority. Answer engines want something they can quote without lying.
+
+Build pages that do both. Start with one cluster you actually know — ship the quotable version — then expand. That is GEO you can run today, without waiting for a leaderboard that may never exist.
