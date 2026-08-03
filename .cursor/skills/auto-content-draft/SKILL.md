@@ -1,6 +1,6 @@
 ---
 name: auto-content-draft
-description: Draft an iswar.me blog post from the Supabase content_ideas queue — peek/claim via Supabase MCP, write in Iswar's voice, drop MDX under src/content/blog, validate with npm run build, open a draft PR, and update queue status. Use when the user asks to draft from content ideas, Auto Content queue, claim a topic, or run auto-content-draft.
+description: Draft an iswar.me blog post from the Supabase content_ideas queue - peek/claim via Supabase MCP, write in Iswar's voice, drop MDX under src/content/blog, validate with npm run build, open a draft PR, and update queue status. Use when the user asks to draft from content ideas, Auto Content queue, claim a topic, or run auto-content-draft.
 disable-model-invocation: true
 ---
 
@@ -15,7 +15,7 @@ Supabase holds **queue + assignment + status only**. Markdown lives in git under
 1. Read [voice.md](voice.md) (writing taste).
 2. Read [queue.md](queue.md) (schema, RPC, MCP SQL patterns).
 3. Call `GetMcpTools` for server `Supabase` before any `CallMcpTool`.
-4. Confirm table exists (`list_tables` or a peek query). Do **not** re-apply the create-table migration — schema is already live on the Auto Content project.
+4. Confirm table exists (`list_tables` or a peek query). Do **not** re-apply the create-table migration - schema is already live on the Auto Content project.
 
 ## Workflow checklist
 
@@ -27,7 +27,7 @@ Auto Content Draft:
 - [ ] 2. Human confirms topic (unless they already named one / said claim it)
 - [ ] 3. Atomic claim via claim_next_content_idea
 - [ ] 4. Mark status = drafting
-- [ ] 5. Study 1–2 similar existing posts + voice.md
+- [ ] 5. Study 1-2 similar existing posts + voice.md
 - [ ] 6. Write MDX draft in src/content/blog/
 - [ ] 7. npm run build (must pass)
 - [ ] 8. Branch → commit → push → draft PR
@@ -85,8 +85,8 @@ where id = '<claimed-uuid>'
 ### 5. Voice + research
 
 - Follow [voice.md](voice.md).
-- Skim 1–2 posts in `src/content/blog/` closest in type (build guide vs product narrative).
-- Treat `notes` as **personal voice material / constraints** — weave in, don't dump as bullet laundry.
+- Skim 1-2 posts in `src/content/blog/` closest in type (build guide vs product narrative).
+- Treat `notes` as **personal voice material / constraints** - weave in, don't dump as bullet laundry.
 - Treat `angle` as thesis. Title in DB is topic cue; final post `title` may be tightened for the page.
 
 ### 6. Write the draft
@@ -115,7 +115,8 @@ pubDate: 'Mon DD YYYY'
 - Prefer lived-build specificity over generic listicles.
 - Code blocks when they teach; skip filler scaffolding.
 - Images: only real paths under `public/blog/`.
-- Length: substantial first draft (aim useful end-to-end), not outline stubs — unless user asked for outline-only.
+- Length: substantial first draft (aim useful end-to-end), not outline stubs - unless user asked for outline-only.
+- **No em dashes (`-`) and no en dashes (`-`).** Replace every one with a regular hyphen (`-`), or rewrite with commas / periods. Scan the finished MDX before commit; AI drafts love `-`.
 - Do **not** mark `published` in Supabase yet. PR merge ≠ live publish ritual unless user says so.
 
 ### 7. Validate
@@ -182,6 +183,7 @@ Tell human: slug path, idea id, PR URL, build OK, and that publish/queue close i
 - Do not recreate schema; see [queue.md](queue.md) for reference only.
 - Match existing site patterns; do not redesign the blog layout for a content task.
 - One idea per skill run unless user asks for a batch (batch = repeat checklist per idea, separate PRs preferred).
+- Never ship blog MDX containing `-` or `-`. Use `-` only (see [voice.md](voice.md)).
 
 ## Optional filters
 
