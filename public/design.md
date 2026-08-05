@@ -13,7 +13,7 @@
 
 ## 1. Brand in one sentence
 
-**Quiet newspaper on soft paper** — black ink, generous empty space, classical serif type, no noise.
+**Quiet newspaper on soft paper** — black ink, generous empty space, classical serif type, no noise. The site is a **performative technical blog**: articles first, thin chrome, no portfolio clutter.
 
 Loud, colorful, glassy, neon, “startup purple” = off-brand.
 
@@ -29,6 +29,7 @@ Loud, colorful, glassy, neon, “startup purple” = off-brand.
 | **Professional, not cold** | Warm-neutral paper tones. Not sterile white or stark high-tech black. |
 | **Restraint over decoration** | No hard drop shadows, thick borders, badges, pill clusters, glow. |
 | **Brand as hero** | Covers / first slides / heroes: **iswar.me** (or Iswar) = dominant name signal — not tiny corner logo alone. |
+| **Blog-first IA** | Home = masthead + article feed. Nav: Blog · About. Contact lives on About + footer. No projects / case-study section. |
 
 ### Emotional target
 
@@ -211,10 +212,21 @@ First viewport or title slide usually only:
 1. Brand name (**iswar.me** / Iswar)  
 2. One headline  
 3. One short supporting sentence  
-4. One CTA group (optional)  
+4. One CTA group (optional) — or go straight into the article feed  
 5. One dominant image or empty paper field  
 
-No stats strips, chip clouds, promo stickers on hero.
+No stats strips, chip clouds, promo stickers on hero. On the live site, the home masthead is brand + italic headline + short lede, then the latest-articles list — the feed *is* the product.
+
+### Site map (canonical)
+
+| Route | Role |
+|-------|------|
+| `/` | Publication home — brand masthead + full latest feed |
+| `/blog/` | Article archive |
+| `/blog/[slug]/` | Newspaper article layout |
+| `/about/` | Short bio + contact |
+| `/rss.xml` | Feed |
+| `/projects` (legacy) | Redirects to `/blog` |
 
 ---
 
@@ -255,14 +267,15 @@ Respect **reduced motion**. Prefer 2–3 intentional motions max per experience 
 |----|-------|
 | Clear, technical, human | Hype, buzzword salad |
 | Short supporting sentences | Long hero paragraphs |
-| Specific (Astro, WebRTC, case study) | Vague “synergy / disrupt” |
+| Specific (Astro, SEO, AI search) | Vague “synergy / disrupt” |
 | Lowercase editorial titles when aiming for blog feel | ALL CAPS walls of text |
 
 **Brand strings**
 
 - Site / product: **iswar.me** (lowercase)  
 - Person: **Iswar C. Mondal** / **Iswar**  
-- Tagline territory: technical writing, project case studies, shipping durable web software  
+- Tagline territory: technical writing that ranks — SEO, AI search, shipping durable software  
+- Contact: `developeriswar@gmail.com` · [@developeriswar](https://twitter.com/developeriswar) · [GitHub](https://github.com/iswarmondal) · `/rss.xml`  
 
 ---
 
@@ -381,4 +394,4 @@ UI / brand change on iswar.me affecting colours, type, layout language, imagery,
 
 ---
 
-*Last aligned with blog comparison-table styling (hairline bordered GFM tables in newspaper layout).*
+*Last aligned with blog-first redesign: projects removed; slim nav/footer; home = masthead + article feed; About = bio + contact.*

@@ -15,18 +15,27 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead
 			title="Blog"
-			description="Articles on Astro, SvelteKit, WebRTC, and building fast personal sites — written by Iswar C. Mondal."
+			description="Articles on SEO, AI search, Astro, and building on the open web — by Iswar C. Mondal."
 		/>
 		<style>
 			.page-hero {
-				margin-bottom: 2.5rem;
-				padding-bottom: 1.75rem;
+				margin-bottom: 2.25rem;
+				padding-bottom: 1.5rem;
 				border-bottom: 1px solid var(--line);
 				max-width: 36rem;
 			}
 			.page-hero h1 {
 				margin-bottom: 0.65rem;
+				font-size: clamp(2rem, 5vw, 3rem);
 				text-transform: lowercase;
+			}
+			.page-hero p {
+				margin: 0;
+				font-family: var(--font-article);
+				font-style: italic;
+				font-weight: 400;
+				color: var(--muted);
+				line-height: 1.65;
 			}
 		</style>
 	</head>
@@ -34,10 +43,10 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<main>
 			<section class="page-hero rise">
-				<p class="eyebrow">Writing</p>
-				<h1>Latest articles</h1>
-				<p class="section-description" style="margin-bottom: 0;">
-					Notes on technology, personal projects, and shipping durable web software.
+				<p class="eyebrow">Archive</p>
+				<h1>All articles</h1>
+				<p>
+					{posts.length} pieces — technical writing meant to rank and to read.
 				</p>
 			</section>
 			<ul class="list-stack">

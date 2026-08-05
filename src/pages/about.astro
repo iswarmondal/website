@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SITE_EMAIL, SITE_TWITTER, SITE_GITHUB } from '../consts';
 ---
 
 <!doctype html>
@@ -9,65 +10,84 @@ import Footer from '../components/Footer.astro';
 	<head>
 		<BaseHead
 			title="About"
-			description="About Iswar C. Mondal — full-stack developer, builder of web products, and author of technical notes on Astro, SvelteKit, and more."
+			description="About Iswar C. Mondal — full-stack developer and author of iswar.me, a technical blog on SEO, AI search, and the open web."
 		/>
 		<style>
-			.about-hero {
-				margin-bottom: 3.5rem;
-				padding-bottom: 2rem;
-				border-bottom: 1px solid var(--line);
-				max-width: 40rem;
+			.about {
+				max-width: 36rem;
 			}
-			.about-hero h1 {
-				margin-bottom: 0.85rem;
+			.about h1 {
+				margin-bottom: 1rem;
+				font-size: clamp(2rem, 5vw, 3rem);
 			}
 			.lead {
-				font-size: 1.08rem;
-				max-width: 38rem;
-				color: var(--muted);
-				line-height: 1.75;
+				font-family: var(--font-article);
+				font-style: italic;
+				font-weight: 400;
+				font-size: clamp(1.05rem, 2vw, 1.2rem);
+				line-height: 1.6;
+				color: var(--ink-soft);
+				margin: 0 0 1.75rem;
 			}
-			.bio-grid {
-				display: grid;
-				gap: 2rem;
-				margin: 2.5rem 0 1rem;
-				max-width: 42rem;
+			.lead::after {
+				content: '';
+				display: block;
+				width: 3rem;
+				height: 1px;
+				margin-top: 1.5rem;
+				background: var(--ink);
+				transform-origin: left;
+				animation: draw-rule 0.85s 0.2s ease both;
 			}
-			.bio-block p {
-				margin: 0;
+			.bio {
+				font-family: var(--font-article);
+				font-weight: 400;
 				color: var(--ink-soft);
 				line-height: 1.75;
 			}
-			.timeline {
-				position: relative;
-				margin: 2rem 0 1rem;
-				max-width: 42rem;
+			.bio p {
+				margin: 0 0 1.15em;
 			}
-			.timeline-item {
-				position: relative;
-				margin: 0;
-				padding: 1.5rem 0;
-				border-bottom: 1px solid var(--line);
-			}
-			.timeline-item:first-child {
+			.contact {
+				margin-top: 3rem;
+				padding-top: 1.75rem;
 				border-top: 1px solid var(--line);
 			}
-			.date-block {
+			.contact h2 {
+				font-size: 1rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				margin-bottom: 1.15rem;
+			}
+			.contact-list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-direction: column;
+				gap: 0.85rem;
+			}
+			.contact-list a {
 				font-family: var(--font-display);
 				font-weight: 700;
-				font-size: 0.72rem;
-				letter-spacing: 0.14em;
-				text-transform: uppercase;
-				color: var(--muted);
-				margin-bottom: 0.45rem;
+				font-size: 0.95rem;
+				text-decoration: none;
+				color: var(--ink);
+				border-bottom: 2px solid var(--ink);
+				padding-bottom: 0.12rem;
+				width: fit-content;
 			}
-			.footer-image {
-				max-width: 100%;
-				margin: 2.5rem 0 0.75rem;
-				opacity: 0.92;
+			.contact-list a:hover {
+				opacity: 0.5;
+				color: var(--ink);
 			}
-			.note {
+			.contact-list span {
+				display: block;
+				margin-top: 0.25rem;
+				font-family: var(--font-article);
 				font-style: italic;
+				font-weight: 400;
+				font-size: 0.9rem;
 				color: var(--muted);
 			}
 		</style>
@@ -75,124 +95,44 @@ import Footer from '../components/Footer.astro';
 	<body>
 		<Header />
 		<main>
-			<section class="about-hero rise">
-				<p class="eyebrow">Live resume · Builder notes</p>
-				<h1>Hey, I'm Iswar</h1>
+			<article class="about rise">
+				<p class="eyebrow">About</p>
+				<h1>Iswar C. Mondal</h1>
 				<p class="lead">
-					Cat-loving full-stack developer wandering the internet — passionate about development, SvelteKit, and Pokemon.
-					I build things that help people: from local businesses going online to research tools and product experiments.
+					Full-stack developer. I write about search, AI answers, and shipping software that lasts.
 				</p>
-				<div class="cta-row">
-					<a class="btn" href="/blog">Read the blog</a>
-					<a class="btn btn-secondary" href="/projects">Browse projects</a>
-				</div>
-			</section>
-
-			<div class="bio-grid">
-				<div class="bio-block">
+				<div class="bio">
 					<p>
-						My path spans frontend craft, crypto wallets, e-commerce, medical institution sites, AI tooling, and data visualization.
-						I care about shipping fast pages and clear interfaces.
+						This site is a blog — long-form notes meant to rank in search and stay useful when someone lands here months later.
+						I care about clear structure, fast pages, and writing that earns citations.
+					</p>
+					<p>
+						Day to day I build with Astro, SvelteKit, and the broader web stack. Past work spans product UI, research tooling, and experiments on the open web.
 					</p>
 				</div>
-				<div class="bio-block">
-					<p>
-						Want deeper technical notes? Visit <a href="/blog">the blog</a>.
-						Want the build stories? Explore <a href="/projects">project case studies</a>.
-					</p>
-				</div>
-			</div>
 
-			<div class="section-head">
-				<h2>Professional journey</h2>
-			</div>
-
-			<div class="timeline">
-				<div class="timeline-item">
-					<div class="date-block">2024</div>
-					<div>
-						Built data visualization dashboard for research papers at <a href="https://www.berd-nfdi.de/">BERD@NFDI</a> using Django &amp; HTMX. View the <a href="https://mim.iwanalabs.com/">MIM dashboard</a>.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2024</div>
-					<div>
-						Benchmarked LLM performance for image classification for <a href="https://www.neurolabs.ai/">Neurolabs</a>.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2024</div>
-					<div>
-						Built <a href="https://namemancer.com/">Namemancer</a> — a startup idea research platform for Iwana Labs.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2024</div>
-					<div>
-						Developed news classification system POC at <a href="https://github.com/iwanalabs/">Iwana Labs</a>.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2023</div>
-					<div>
-						Led UI development for Stanford's <a href="https://hai.stanford.edu/ai-index/global-vibrancy-tool">AI Index Vibrancy Tool</a>.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2023</div>
-					<div>
-						Developed AI-powered email client mobile app using Flutter.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2022</div>
-					<div>
-						Built crypto wallet extension for <a href="https://netsepio.com/">NetSepio</a> using SvelteKit.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2022</div>
-					<div>
-						Jr. Developer at <a href="https://www.bcmnext.com/">BCM Next</a> — React &amp; Redux development.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2021</div>
-					<div>
-						Developed e-commerce solutions for local businesses during lockdown (eg: <a href="https://dosarindustries.com/">Dosar Industries</a>).
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2021</div>
-					<div>
-						Built website for <a href="http://www.rampurhatgmch.edu.in/">Rampurhat Govt. Medical College</a> using PHP &amp; MySQL.
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="date-block">2021</div>
-					<div>
-						Frontend Developer Intern at <a href="https://www.linkedin.com/company/futurex-global/mycompany/">Futurex Global</a>.
-					</div>
-				</div>
-			</div>
-
-			<div class="section-head">
-				<h2>Current focus</h2>
-			</div>
-			<p>
-				Working on multiple side projects — take a <a href="/projects">look</a>.
-			</p>
-
-			<img
-				class="footer-image"
-				src="https://github.com/iswarmondal/iswarmondal/assets/73457704/2d4f826e-1177-4ae1-9e46-16dfd519a259"
-				alt="Banner collage of projects and adventures by Iswar"
-				loading="lazy"
-				decoding="async"
-				width="1200"
-				height="400"
-			/>
-			<p class="note">Adventures are epic.</p>
+				<section class="contact" aria-labelledby="contact-heading">
+					<h2 id="contact-heading">Contact</h2>
+					<ul class="contact-list">
+						<li>
+							<a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>
+							<span>Email</span>
+						</li>
+						<li>
+							<a href={SITE_TWITTER} target="_blank" rel="noopener noreferrer">@developeriswar</a>
+							<span>X / Twitter</span>
+						</li>
+						<li>
+							<a href={SITE_GITHUB} target="_blank" rel="noopener noreferrer">github.com/iswarmondal</a>
+							<span>GitHub</span>
+						</li>
+						<li>
+							<a href="/rss.xml">RSS feed</a>
+							<span>Subscribe</span>
+						</li>
+					</ul>
+				</section>
+			</article>
 		</main>
 		<Footer />
 	</body>
