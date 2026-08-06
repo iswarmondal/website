@@ -26,17 +26,31 @@ const {
 const fullTitle = title === SITE_TITLE ? title : `${title} · ${SITE_TITLE}`;
 const absoluteImage = new URL(image, Astro.site ?? Astro.url);
 const pageUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const siteUrl = Astro.site?.href ?? 'https://iswar.me/';
 
 const websiteJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'WebSite',
 	name: SITE_TITLE,
-	url: Astro.site?.href ?? 'https://iswar.me/',
+	url: siteUrl,
 	description: SITE_DESCRIPTION,
 	author: {
 		'@type': 'Person',
 		name: SITE_AUTHOR,
-		url: 'https://iswar.me/',
+		url: siteUrl,
+	},
+};
+
+const blogJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Blog',
+	name: SITE_TITLE,
+	url: siteUrl,
+	description: SITE_DESCRIPTION,
+	author: {
+		'@type': 'Person',
+		name: SITE_AUTHOR,
+		url: `${siteUrl}about/`,
 	},
 };
 
@@ -53,7 +67,7 @@ const articleJsonLd =
 				author: {
 					'@type': 'Person',
 					name: SITE_AUTHOR,
-					url: 'https://iswar.me/about/',
+					url: `${siteUrl}about/`,
 				},
 				mainEntityOfPage: {
 					'@type': 'WebPage',
@@ -63,6 +77,11 @@ const articleJsonLd =
 					'@type': 'Person',
 					name: SITE_AUTHOR,
 				},
+				isPartOf: {
+					'@type': 'Blog',
+					name: SITE_TITLE,
+					url: siteUrl,
+				},
 			}
 		: null;
 
@@ -70,13 +89,14 @@ const personJsonLd = {
 	'@context': 'https://schema.org',
 	'@type': 'Person',
 	name: SITE_AUTHOR,
-	url: 'https://iswar.me/',
+	url: siteUrl,
 	sameAs: [
 		'https://twitter.com/developeriswar',
 		'https://github.com/iswarmondal',
 	],
 	jobTitle: 'Full-stack Developer',
 	description: SITE_DESCRIPTION,
+	email: 'developeriswar@gmail.com',
 };
 ---
 
@@ -127,5 +147,6 @@ const personJsonLd = {
 {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
 
 <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(blogJsonLd)} />
 <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
 {articleJsonLd && <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />}

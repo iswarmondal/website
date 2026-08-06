@@ -92,9 +92,9 @@ body {
 	color: var(--ink);
 	background-color: var(--paper);
 	background-image:
-		radial-gradient(ellipse at 20% 0%, rgba(0, 0, 0, 0.035), transparent 48%),
-		radial-gradient(ellipse at 90% 100%, rgba(0, 0, 0, 0.03), transparent 42%),
-		linear-gradient(180deg, #fafaf8 0%, var(--paper) 32%, #f3f3f0 100%);
+		radial-gradient(ellipse at 18% 0%, rgba(0, 0, 0, 0.03), transparent 46%),
+		radial-gradient(ellipse at 92% 100%, rgba(0, 0, 0, 0.025), transparent 40%),
+		linear-gradient(180deg, #fafaf8 0%, var(--paper) 28%, #f3f3f0 100%);
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	overflow-x: clip;
@@ -105,10 +105,10 @@ body {
 main {
 	position: relative;
 	z-index: 1;
-	min-height: 70vh;
+	min-height: 65vh;
 	width: min(var(--site-width), 100%);
 	margin: 0 auto;
-	padding: 3rem var(--site-pad) 5rem;
+	padding: 2.5rem var(--site-pad) 4rem;
 }
 
 h1,
@@ -233,15 +233,6 @@ hr {
 	white-space: nowrap;
 }
 
-.section-description {
-	max-width: 34rem;
-	margin: 0 0 2.5rem;
-	color: var(--muted);
-	font-size: 1.02rem;
-	font-weight: 700;
-	line-height: 1.7;
-}
-
 .eyebrow {
 	display: block;
 	font-family: var(--font-display);
@@ -251,46 +242,6 @@ hr {
 	text-transform: uppercase;
 	color: var(--muted);
 	margin-bottom: 1rem;
-}
-
-.btn {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.4rem;
-	font-family: var(--font-display);
-	font-weight: 800;
-	font-size: 0.88rem;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-	text-decoration: none;
-	padding: 0.95rem 1.4rem;
-	border: 1px solid var(--ink);
-	background: var(--ink);
-	color: var(--paper);
-	transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-}
-
-.btn:hover {
-	background: transparent;
-	color: var(--ink);
-}
-
-.btn-secondary {
-	background: transparent;
-	color: var(--ink);
-}
-
-.btn-secondary:hover {
-	background: var(--ink);
-	color: var(--paper);
-}
-
-.cta-row {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.85rem;
-	margin-top: 2rem;
 }
 
 @keyframes rise-in {
@@ -348,8 +299,8 @@ hr {
 
 .list-stack a {
 	display: grid;
-	gap: 0.4rem;
-	padding: 1.75rem 0;
+	gap: 0.35rem;
+	padding: 1.6rem 0;
 	border-bottom: 1px solid var(--line);
 	text-decoration: none;
 	color: inherit;
@@ -358,96 +309,41 @@ hr {
 
 .list-stack a:hover {
 	opacity: 0.72;
-	padding-left: 0.35rem;
+	padding-left: 0.3rem;
 	color: inherit;
 }
 
 .list-stack .item-title {
 	font-family: var(--font-display);
 	font-weight: 800;
-	font-size: clamp(1.15rem, 2vw, 1.45rem);
+	font-size: clamp(1.12rem, 2vw, 1.4rem);
 	letter-spacing: -0.03em;
 	margin: 0;
 	color: var(--ink);
 }
 
 .list-stack .item-meta {
-	font-size: 0.85rem;
+	font-family: var(--font-article);
+	font-size: 0.88rem;
 	color: var(--muted);
 	font-style: italic;
-	font-weight: 700;
-	letter-spacing: 0.02em;
+	font-weight: 400;
+	letter-spacing: 0.01em;
 }
 
 .list-stack .item-desc {
-	margin: 0;
+	margin: 0.15rem 0 0;
+	font-family: var(--font-article);
+	font-weight: 400;
 	color: var(--muted);
 	font-size: 0.95rem;
-	max-width: 38rem;
-}
-
-.section-head {
-	display: flex;
-	align-items: end;
-	justify-content: space-between;
-	gap: 1rem;
-	margin: 4.5rem 0 1.5rem;
-	padding-bottom: 1rem;
-	border-bottom: 1px solid var(--line);
-}
-
-.section-head h2 {
-	margin: 0;
-}
-
-.section-head a {
-	font-family: var(--font-display);
-	font-weight: 700;
-	font-size: 0.78rem;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	text-decoration: none;
-	border-bottom: 2px solid var(--ink);
-	padding-bottom: 0.15rem;
-}
-
-.section-head a:hover {
-	opacity: 0.55;
-	color: var(--ink);
-}
-
-.tag {
-	display: inline-block;
-	padding: 0.2em 0;
-	border: none;
-	border-bottom: 1px solid var(--mist);
-	font-family: var(--font-display);
-	font-size: 0.68rem;
-	font-weight: 700;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-	background: transparent;
-	color: var(--muted);
-}
-
-.tag-signal,
-.tag-volt,
-.tag-cobalt,
-.tag-sun {
-	background: transparent;
-	color: var(--ink);
-	border-bottom-color: var(--ink);
+	line-height: 1.55;
+	max-width: 40rem;
 }
 
 @media (max-width: 720px) {
 	main {
-		padding: 2rem var(--site-pad) 3.5rem;
+		padding: 1.75rem var(--site-pad) 3rem;
 		overflow-x: clip;
-	}
-
-	.section-head {
-		flex-direction: column;
-		align-items: start;
-		margin-top: 3.25rem;
 	}
 }
