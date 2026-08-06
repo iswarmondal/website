@@ -1,163 +1,196 @@
 ---
-title: 'Cannibalization Checks Inside a Keyword Cluster'
-description: 'How to catch keyword cannibalization inside a cluster before publish: intent tests, Search Console signals, and merge/kill rules that protect rankings and citations.'
+title: 'How to Find and Fix Keyword Cannibalization'
+description: 'Find and fix keyword cannibalization in a content cluster using intent mapping, Google Search Console, merging, redirects, and internal links.'
 pubDate: 'Aug 6 2026'
 ---
 
-A keyword cluster fails in two opposite ways. Too few pages and you leave demand on the table. Too many overlapping pages and you compete with yourself.
+**Keyword cannibalization** happens when two pages are so similar that your site has no clear answer for which URL should rank for an intent. It is not simply "two URLs received impressions for the same query." That can be perfectly healthy. The real problem is two pages doing the same job.
 
-**Keyword cannibalization** is that second failure: two or more live URLs fighting for the same primary query, the same one-sentence answer, or the same SERP slot - so Google splits signals and ChatGPT has no clear page to cite.
+I nearly created that problem while building the SEO and GEO cluster on this blog.
 
-This post is the check I run before a new cluster page ships, and again when Search Console looks weird. It sits next to [keyword clusters at scale](/blog/keyword-clusters-ai-scale/) (the map) and [Google vs ChatGPT content systems](/blog/google-vs-chatgpt-content-system/) (the draft loop).
+I already had one post about [building keyword clusters with AI](/blog/keyword-clusters-ai-scale/) and another about [writing one page for Google and ChatGPT](/blog/google-vs-chatgpt-content-system/). Then I started this post. My first outline repeated half of both: assign one intent, add internal links, avoid thin pages. Useful advice, wrong page.
 
-## What keyword cannibalization looks like in a cluster
+So I stopped drafting and compared the jobs of all three posts. That small check is now the method below.
 
-Classic SEO cannibalization is "two posts targeting the same money keyword." Inside a cluster it is subtler. Support pages are *supposed* to sit near each other. Near is fine. Same job is not.
+## Is keyword cannibalization always bad?
 
-| Healthy overlap | Cannibalization |
+No. Several pages from one site can rank for the same query without hurting each other.
+
+A broad query can have mixed intent. Google may show your guide for people learning the topic and your product page for people ready to buy. Long-tail queries also overlap naturally. I would not rewrite two useful pages only because both appear in Google Search Console.
+
+I investigate when three things happen together:
+
+1. Two pages answer essentially the same question.
+2. The URL I consider weaker keeps replacing the intended page.
+3. Clicks, rankings, or conversions fail to improve across the pair.
+
+Search Console gives me the symptom. Reading the pages tells me whether there is a disease.
+
+| Healthy overlap | Likely cannibalization |
 | --- | --- |
-| Pillar covers the topic; support page covers one sub-intent | Two pages both try to own the same primary query |
-| Shared vocabulary, different one-sentence answers | Near-duplicate intros and interchangeable outlines |
-| Sibling links because a reader would click | Soft duplicates hoping "more URLs = more rankings" |
-| One clear winner per query in Search Console | Two URLs swapping positions for the same query week to week |
+| Same topic, different search intent | Same topic and same search intent |
+| Different opening answers | Interchangeable introductions |
+| Both pages satisfy a distinct reader | One page adds no useful information |
+| Stable performance across both URLs | Wrong URL repeatedly replaces intended URL |
 
-**Rule of thumb:** if you can swap the H1s and neither page feels wrong, you do not have two pages. You have one page wearing two URLs.
+My quickest test is embarrassingly simple: swap the titles. If both articles still make sense, their jobs are probably not distinct enough.
 
-That also wrecks [GEO / ChatGPT citations](/blog/rank-in-chatgpt-answers-geo/). Answer engines keep a handful of sources per reply. Two mushy siblings teach the model nothing unique. One sharp page does.
+## How do I check cannibalization before publishing?
 
-## The pre-publish cannibalization check
+I prefer catching overlap in the draft. Fixing a brief costs less than merging two indexed articles later.
 
-I run this before the MDX file leaves draft. AI drafts are especially good at reinventing a sibling you already shipped - so the gate matters more when the cluster is growing fast.
+### Write one sentence each page must own
 
-### 1. Write the one-sentence answer first
+Before I write an outline, I complete this sentence:
 
-For the candidate page, finish this line:
+> After reading this page, someone will know how to _____.
 
-> If a stranger only reads one sentence, they learn: _____.
+For this cluster, the answers became:
 
-Then open every live sibling in the cluster and compare. Same sentence? Merge. Adjacent sentence with a different job? Keep.
+- **Keyword clusters:** map one topic into supporting pages without producing thin AI content.
+- **Google vs ChatGPT:** edit one draft against search and answer-engine requirements.
+- **Keyword cannibalization:** decide whether overlapping pages should stay separate, be narrowed, or be merged.
 
-Example from this site's own topic:
+The vocabulary overlaps because all three posts belong to one cluster. Their outcomes do not.
 
-- Pillar-ish: "A keyword cluster maps one money keyword into useful supporting pages without thin spam."
-- This page: "Cannibalization checks catch cluster pages that steal each other's primary query before they dilute rankings and citations."
+This is more useful than forcing one exact keyword onto each URL. People search with thousands of variations. Intent is the boundary; keyword lists are evidence for that boundary.
 
-Related. Not interchangeable.
+### Compare titles, openings, and outlines
 
-### 2. Lock one primary query per URL
+AI makes duplicate drafts dangerously easy. Give it the same topic twice and it will happily produce two versions of "What it is / why it matters / five tips / FAQ."
 
-Each page gets:
+I put the candidate page beside its closest siblings and compare:
 
-- **Primary query** (the SERP fight you are willing to enter)
-- **Secondary queries** (related, allowed to co-rank softly)
-- **Out of scope** (queries you will *not* chase on this URL)
+- title and promised outcome
+- direct answer in first 100 words
+- H2 headings
+- examples or first-hand details
+- internal links
 
-If two drafts share a primary, one of them is lying. Demote one to secondary, change the angle, or kill the draft.
+Shared terminology is expected. Shared promises are not.
 
-I keep this in the five-line brief from the dual-channel system: intent, primary query, one-sentence answer, fingerprint, links. No brief → no publish.
+If most headings match, I do not try to rescue the post with synonyms. I either narrow its purpose or merge the useful section into an existing page.
 
-### 3. Diff the fingerprints
+### Decide why another page should link to it
 
-A fingerprint is the lived detail only that page carries - a table you built, a failed experiment, a named process, a constraint you actually hit.
+Internal links expose fuzzy intent.
 
-Ask:
+The cluster guide links here because "check for cannibalization" is one step that deserves a deeper method. This article links back because readers may need the complete cluster map. Each link hands off a specific job.
 
-1. Does this page teach something a sibling does not already teach?
-2. Would a summarizer invent this page from neighboring posts alone?
-3. If I deleted this URL, would a reader lose a specific answer?
+If my only reason for linking is "these pages mention SEO," the new page probably has not earned its URL.
 
-No / yes / no → cannibalization risk. Fix the angle or do not ship.
+## How do I find keyword cannibalization in Search Console?
 
-### 4. Title and H1 collision test
+Google Search Console does not have a cannibalization report. I use its Performance report to find queries shared by multiple URLs, then inspect those URLs manually.
 
-Put candidate title next to live titles. Red flags:
+### Check pages shown for one query
 
-- Same head noun + soft adjective swap ("complete guide" vs "ultimate guide")
-- Same comparison pair with different filler words
-- Support page title that restates the pillar without a narrower job
+1. Open **Performance > Search results**.
+2. Choose a useful period, usually at least 28 days.
+3. Open the **Queries** tab and select a query.
+4. Switch to the **Pages** tab.
+5. Compare URLs, clicks, impressions, CTR, and average position.
 
-Titles can share a topic word. They cannot share a job description.
+Google documents this same query-to-pages workflow in its [Search Console Performance report guide](https://support.google.com/webmasters/answer/17010961?hl=en).
 
-### 5. Internal link role test
+Do not overread average position. Search Console aggregates data differently at property and page level, and results vary by device, country, and date. I use the report to find a pair worth reviewing, not to declare guilt from one chart.
 
-Before publish, decide:
+### Compare the pages over time
 
-- Does the pillar link to this page for a *specific* reason?
-- Which 1-3 siblings should link here, and with what anchor?
-- Does this page link back without pretending to be the pillar?
+For a suspicious pair, I compare the last 28 days with the previous period. I want to know:
 
-If you cannot name the link role, the page is probably a duplicate wearing a new slug.
+- Did a new page begin appearing when the intended page dropped?
+- Does the wrong page receive impressions for the core query?
+- Are both pages gaining visibility, or are they trading the same small pool?
+- Which page better satisfies the query when I read it cold?
 
-## After publish: Search Console cannibalization signals
+One day of position swapping means nothing. A repeated pattern plus near-identical content is useful evidence.
 
-Pre-publish checks miss some fights. Weekly-ish Search Console review catches the rest.
+For a larger cluster, I export query and page data and group rows by query. A regular expression filter also helps isolate a folder or related set of URLs. Search Console supports regex filters for both queries and pages.
 
-I look for:
+## How should I fix overlapping pages?
 
-1. **Query → multi-URL** - one query shows impressions/clicks across two of your cluster URLs
-2. **Position thrash** - two URLs swap average position for the same query
-3. **Wrong winner** - a thin support page outranks the page you intended for that intent
-4. **Impression split with flat clicks** - coverage without a clear click destination
-5. **Sudden sibling drop** after a new publish - classic self-competition spike
+Fix depends on whether both pages still deserve to exist.
 
-None of these alone prove cannibalization. Together with a title/intent overlap, they usually do.
-
-Honest limit: Search Console will not tell you about ChatGPT citation fights. For answer engines I still spot-check prompts. If two of my URLs could answer the same question and neither gets named, I treat that like cannibalization of *attention* - merge the mush, sharpen the survivor.
-
-## Fix patterns: merge, narrow, redirect, or kill
-
-When two pages collide, I pick one move. I do not "add more synonyms" and hope.
-
-| Move | When | What I do |
+| Fix | Use it when | Action |
 | --- | --- | --- |
-| **Narrow** | Both pages have a real fingerprint | Rewrite the weaker page to a stricter sub-intent; change primary query, H1, and opening answer |
-| **Merge** | Fingerprints belong together | Fold unique bits into the stronger URL; expand sections; update internal links |
-| **Redirect** | One URL has no remaining job | 301 the loser to the winner; fix anchors that pointed at the dead page |
-| **Kill** | No traffic, no fingerprint, no link equity worth keeping | Delete or unpublish; remove from cluster map |
-| **Demote** | Support page accidentally acts like a pillar | Strip broad claims; point hard to the real pillar; own only the sub-job |
+| **Differentiate** | Both intents are useful | Rewrite title, opening, headings, and links around separate outcomes |
+| **Merge** | One page has useful sections but no separate job | Move useful material into stronger page |
+| **Redirect** | Old URL no longer needs to exist | Permanently redirect it to merged page |
+| **Canonicalize** | Duplicate or very similar URLs must remain accessible | Point duplicate to preferred canonical URL |
+| **Delete** | Page has no value, traffic, or links | Remove it and repair internal links |
 
-Default bias: **one canonical URL per primary query**. Clusters win on coverage of *different* jobs, not on synonym density.
+### Differentiate pages with separate intent
 
-## A 10-minute cluster cannibalization audit
+Sometimes the pages are not duplicates. They are badly framed.
 
-When the map feels bloated, I run this pass on the whole cluster:
+A pillar page and a tactical guide can coexist. I make the pillar explain the whole system, then make the guide solve one narrow task. Titles, first paragraphs, and internal anchor text should make that split obvious.
 
-1. Export live slugs + primary queries + one-sentence answers into a table
-2. Highlight any shared primary query (instant fail)
-3. Highlight near-duplicate one-sentence answers (merge candidates)
-4. Check Search Console for multi-URL queries in the topic
-5. For each collision: narrow / merge / redirect / kill
-6. Update the cluster map so AI scaffolding cannot resurrect the dead intent
-7. Re-check internal links so orphaned anchors do not point at ghosts
+Do not add a canonical from the tactical page to the pillar when both contain distinct content you want indexed. A canonical says one URL represents duplicate or very similar content. It is not a general "this page belongs under that pillar" tag.
 
-Step 6 matters. If the map still lists a killed intent, the next AI outline will draft it again. Cannibalization returns as a process bug, not a one-off accident.
+### Merge and redirect a page with no job
 
-## FAQ: keyword cannibalization in clusters
+If I cannot explain why both pages exist, I pick the better destination. Usually that means the URL with stronger links, useful history, or a cleaner match for the intent.
 
-### What is keyword cannibalization?
+Then I:
 
-Keyword cannibalization happens when multiple pages on your site target the same primary search intent hard enough that they compete for the same rankings - splitting clicks, links, and clarity instead of reinforcing one winner.
+1. move any unique material into the surviving page
+2. add a permanent redirect from old URL
+3. update internal links to point directly to survivor
+4. remove old URL from sitemap and content map
+5. request reindexing if change matters enough
 
-### Do keyword clusters cause cannibalization?
+Google calls redirects a strong canonicalization signal and recommends them when deprecating a duplicate page. Its [canonical URL documentation](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) also explains when `rel="canonical"` is appropriate.
 
-They can, if you publish overlapping intents. A good cluster *prevents* cannibalization by assigning one job per URL. A bad cluster is just synonym spam with nicer filenames.
+I would not use `noindex` as first fix for two posts that should become one. It removes page from search, but does not clean up readers, links, or editorial confusion. Merge plus redirect is clearer.
 
-### How do I check for cannibalization in Google Search Console?
+## What about cannibalization in ChatGPT answers?
 
-Look up important queries and see whether multiple URLs from your site appear for the same query, especially with thrashing positions. Pair that with a manual intent diff of titles and opening answers - Search Console shows symptoms; the brief shows the disease.
+There is no equivalent of Search Console for ChatGPT citations, and I cannot prove that two overlapping URLs "split" AI visibility in a measurable way.
 
-### Should every cluster page target a different keyword?
+The practical concern is simpler: near-duplicate pages give an answer engine little reason to retrieve or cite either one. A page with a clear scope, direct answer, and original detail is a better source than two generic variations. That is why I use the same intent check in my [guide to ranking in ChatGPT answers](/blog/rank-in-chatgpt-answers-geo/).
 
-Every page should own a different **primary** query and a different one-sentence answer. Secondary keyword overlap is normal. Primary overlap is the problem.
+I treat this as an editorial quality rule, not a secret ranking factor.
 
-### Does cannibalization hurt ChatGPT citations?
+## My pre-publish cannibalization checklist
 
-Yes, indirectly. If two pages say almost the same thing, neither looks like the primary source. One specific, quotable page is easier for an answer engine to trust than two soft duplicates.
+Before another cluster page goes live, I check:
 
-## Ship coverage, not clones
+1. Can I describe its reader outcome in one sentence?
+2. Is that outcome different from every live sibling?
+3. Does title contain primary topic without copying another promise?
+4. Does opening answer target intent immediately?
+5. Do headings avoid repeating another outline?
+6. Does page contain evidence, process, or detail siblings lack?
+7. Can I name exact reason pillar should link to it?
+8. If Search Console later shows overlap, do I know which URL should win?
 
-Cannibalization checks are not anti-growth. They are how a [keyword cluster](/blog/keyword-clusters-ai-scale/) stays useful when AI makes drafting cheap.
+Failing one item does not automatically kill draft. Failing first two usually does.
 
-One intent. One primary query. One fingerprint. One URL.
+## FAQ about keyword cannibalization
 
-Run the check before publish. Audit Search Console after. Merge without ego. That is how clusters compound for Google *and* stay citable when ChatGPT only keeps a few sources in the room.
+### What is keyword cannibalization in SEO?
+
+Keyword cannibalization is harmful overlap between pages that target the same search intent without offering distinct value. Multiple URLs ranking for the same query is not automatically cannibalization.
+
+### How can I tell which page should rank?
+
+Choose the page that best satisfies search intent and has the strongest useful content, links, and conversion path. Then align its title, opening, internal links, sitemap, and redirect or canonical signals around that choice.
+
+### Should every page target a unique keyword?
+
+No. Pages naturally rank for overlapping keyword variations. Give each page a distinct primary intent and reader outcome instead of trying to reserve every phrase for one URL.
+
+### Is a canonical tag enough to fix cannibalization?
+
+Only for duplicate or very similar pages that must remain accessible. If two articles have muddled intent, improve or merge content first. Google treats canonical annotations as strong signals, not absolute commands.
+
+### How often should I run a cannibalization audit?
+
+Check before every cluster post ships. Review Search Console after publishing several related pages or when an unexpected URL starts replacing your intended result. Small sites rarely need a large monthly ritual.
+
+## One page should have one reason to exist
+
+This post got better when I stopped asking, "Which keyword has not been used?" and asked, "What job is still missing from this cluster?"
+
+That is the useful version of a cannibalization check. Do not panic because two URLs share a query. Read both. Compare intent. Keep both when they solve different problems. Merge them when they do not.
