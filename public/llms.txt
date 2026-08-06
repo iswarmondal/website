@@ -1,0 +1,22 @@
+# iswar.me
+
+> Technical writing by Iswar C. Mondal — SEO, AI search, Astro, and building on the open web.
+
+Static Astro blog. All articles are plain HTML with zero client-side JavaScript, so every page is fully readable in the initial HTML response. No authentication, no paywall, no rate limits beyond host defaults.
+
+## Content
+
+- [Home](https://iswar.me/): latest articles
+- [Blog archive](https://iswar.me/blog/): every published post
+- [About](https://iswar.me/about/): author bio and contact
+- [RSS feed](https://iswar.me/rss.xml): full article feed
+- [Sitemap](https://iswar.me/sitemap-index.xml): all canonical URLs
+
+## For AI agents
+
+- [design.md](https://iswar.me/design.md): brand and design system as raw markdown (typography, colors, layout rules) for use when producing assets or subdomain apps for this site.
+
+## Notes
+
+- Canonical URLs use trailing slashes (e.g. `/blog/post-name/`).
+- `/projects/*` URLs permanently redirect to `/blog/`.

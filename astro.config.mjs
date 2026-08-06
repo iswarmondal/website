@@ -6,7 +6,14 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://iswar.me',
-	integrations: [mdx(), sitemap()],
+	integrations: [
+		mdx(),
+		sitemap({
+			// Legacy /projects/* URLs are 301 redirect stubs (noindex);
+			// redirecting URLs must not appear in the sitemap or GSC flags them.
+			filter: (page) => !page.includes('/projects/'),
+		}),
+	],
 	markdown: {
 		shikiConfig: {
 			theme: 'github-light',
