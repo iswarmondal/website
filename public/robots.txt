@@ -1,11 +1,48 @@
-# NOTICE: Automated content collection / data mining on this site is
-# prohibited except with express written permission from Iswar C. Mondal.
-# AI / TDM preference: tdm=n, search=y, inference=y
-# (See https://contentsignals.org/ — expressed here as comments for
-# broad crawler compatibility.)
+# iswar.me — robots.txt
+# Content is open for search indexing and AI chatbot citation.
 # Contact: developeriswar@gmail.com
 
 User-agent: *
+Allow: /
+
+# Google Search
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# OpenAI (ChatGPT search, browsing, and training crawlers)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Other AI answer engines
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://iswar.me/sitemap-index.xml
