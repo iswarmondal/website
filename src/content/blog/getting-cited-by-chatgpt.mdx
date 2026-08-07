@@ -1,0 +1,219 @@
+---
+title: 'Getting Cited by ChatGPT: Structure, Sources, and Freshness'
+description: 'Learn how to get cited by ChatGPT with answer-first structure, original sources, clear headings, and a practical content update cadence.'
+pubDate: 'Aug 7 2026'
+---
+
+Getting cited by ChatGPT is mostly a clarity problem. If an answer engine cannot quickly identify what your page says, who says it, and whether it is still current, it has little reason to use your page as a source.
+
+There is no reliable button that submits a post to ChatGPT citations. You improve your odds by publishing useful material with a clear answer, original evidence, recognizable entities, and visible freshness. The same work helps Google SEO too, but ChatGPT and other answer engines put more pressure on extractable passages.
+
+I think about this as **GEO**, or generative engine optimization. It is not a replacement for search engine optimization. It is a content discipline for making pages easy for people and language models to understand.
+
+## What makes a page citable by ChatGPT?
+
+A citable page usually does four things well:
+
+1. answers a specific question directly
+2. supports claims with original or authoritative sources
+3. uses headings that expose the page's structure
+4. keeps important facts fresh and easy to verify
+
+That sounds obvious. Most pages still bury their answer under a long introduction, vague headings, and a conclusion that repeats the same claim without adding evidence.
+
+The goal is not to write for a robot. The goal is to remove work for every reader who wants to know what is true.
+
+## Start with answer-first structure
+
+Put definition and conclusion near top of page. A reader should understand page's main answer after first screenful, even if they never read rest.
+
+For example, if page answers "How do I get cited by ChatGPT?", opening should say:
+
+> Publish a page that gives a direct answer, explains its reasoning, cites identifiable sources, and includes details that are original enough for an answer engine to quote. Then keep page accurate as facts change.
+
+This passage works because it is self-contained. It does not depend on a heading above it or a promise several paragraphs later.
+
+After answer, explain the mechanism. Use sections such as:
+
+- What does this term mean?
+- Why does this approach work?
+- What evidence supports it?
+- When should you update it?
+- What are its limits?
+
+Question-shaped headings help humans scan. They also create clean boundaries around answer blocks. Avoid heading like "A few thoughts" when heading like "How often should you update a GEO page?" tells reader exactly what follows.
+
+## Make headings carry meaning
+
+Good heading hierarchy is not decoration. It is page's outline.
+
+Weak:
+
+```text
+## Some things to consider
+### More context
+### Final notes
+```
+
+Useful:
+
+```text
+## What makes a page citable by ChatGPT?
+## How should you structure a citation-ready article?
+### Put direct answer first
+### Name entities and sources
+## How often should you update a page?
+```
+
+Each useful heading narrows question. Each section should answer that question without forcing reader to reconstruct argument from scattered paragraphs.
+
+One H1 is enough. Blog layout supplies it from frontmatter title, so body can start with answer and use H2 headings for major questions.
+
+## Give answer engines something original to cite
+
+Generic advice is hard to distinguish. Original evidence gives page a reason to exist.
+
+That evidence does not need to be a giant research report. It could be:
+
+- a small dataset you collected
+- implementation details from a real build
+- screenshots with dates and context
+- a documented before-and-after result
+- a failure mode you found and fixed
+- a narrow comparison using stated criteria
+
+I would rather publish a short test with method and limitations than another 2,000-word list of tips copied from ten other articles.
+
+Say exactly what you measured. "Page loaded faster" is weak. "Removing client-side search reduced transferred JavaScript from 42 KB to 0 KB on article routes" is useful if you can support it.
+
+If number is estimate, label it estimate. If observation comes from one project, say that too. Honest scope makes evidence more trustworthy, not less.
+
+## Use sources that can be identified
+
+Source quality is not just a references section at bottom. Make important claims traceable where they appear.
+
+Name source clearly:
+
+- official documentation for product behavior
+- standards bodies for protocols and specifications
+- primary research for research claims
+- your own method and dataset for first-party results
+
+Link descriptive text instead of hiding every citation behind "here". For example, link [Astro's official islands architecture documentation](https://docs.astro.build/en/concepts/islands/) when explaining why Astro can ship less client JavaScript.
+
+A source list cannot rescue unsupported paragraphs. When claim matters, connect claim to source in same section. Keep source's identity in text so excerpt still makes sense if link is removed.
+
+## Clarify entities and terminology
+
+Answer engines need to know what nouns refer to. Define product, company, framework, person, and acronym before using shorthand.
+
+Bad:
+
+> It solves this with islands and partial hydration.
+
+Better:
+
+> Astro is a web framework that uses an islands architecture. Static HTML renders by default, while interactive UI islands receive client JavaScript only when page asks for it.
+
+Second version names Astro, defines islands, and explains relationship. It is easier to quote without context.
+
+Do this for your own products too. State what product is, who it is for, what it replaces, and what it does not do. Clear limits prevent answer engines from turning a narrow tool into a false universal recommendation.
+
+## Compare SEO and ChatGPT visibility honestly
+
+Google SEO and ChatGPT visibility overlap, but they reward different immediate signals.
+
+| Signal | Google SEO | ChatGPT and answer engines |
+| --- | --- | --- |
+| Primary win | Ranked URL in search results | Named source in generated answer |
+| Useful structure | Search intent and crawlable hierarchy | Self-contained answer blocks |
+| Strong proof | Topical authority and links | Original specifics and identifiable sources |
+| Freshness cue | Updated page and stable relevance | Current facts with visible update context |
+
+This is not a clean split. Backlinks can help both. A page that answers nobody will not become valuable because it has an FAQ section. Structure improves discoverability; substance earns citation.
+
+I cover the broader difference in [Google vs ChatGPT: building one content system for both](/blog/google-vs-chatgpt-content-system/). For planning a topic set, [keyword clusters at AI scale](/blog/keyword-clusters-ai-scale/) is a useful companion.
+
+## Add an update cadence that matches facts
+
+Freshness is not changing publication date every week. That creates a newer-looking page without newer information.
+
+Choose update cadence based on how fast page's claims can become wrong:
+
+- stable concepts: review every six to twelve months
+- product APIs and pricing: review after each meaningful release
+- statistics and market data: review whenever source publishes new data
+- workflows and tool lists: review quarterly or when tools change
+- active projects: update when implementation changes
+
+Keep a small change log when updates matter. State what changed and why. A visible "Updated Aug 2026: replaced old API example and checked official docs" is more useful than silently changing five paragraphs.
+
+During update, check:
+
+1. facts and numbers
+2. outbound links
+3. code examples
+4. product names and capabilities
+5. claims that depend on a date
+
+Do not rewrite page only to satisfy a calendar. If page still answers question accurately, preserve useful passages and make targeted changes.
+
+## Build answer blocks that stand alone
+
+An answer block is a short section with enough context to survive extraction. It usually has:
+
+- a question or descriptive heading
+- a direct answer in first sentence
+- two to four supporting details
+- source or qualification when needed
+
+Example:
+
+### How long should a GEO article be?
+
+There is no useful universal word count for a GEO article. Write enough to answer question, show evidence, and explain limits without repeating yourself. A focused 900-word guide can be more citable than a padded 3,000-word article because its claims are easier to isolate and verify.
+
+This answer avoids fake precision. It gives reader a decision, then explains reason.
+
+Lists and tables help when they compress real distinctions. Do not add FAQ or table only because SEO checklist says so. Empty structure is still empty content.
+
+## What does not work?
+
+Several common tactics look like GEO but do not create durable value:
+
+- stuffing "ChatGPT citation" into every heading
+- adding a giant FAQ with one-sentence generic answers
+- inventing statistics to make article look original
+- changing `updatedDate` without checking claims
+- copying search snippets and calling them research
+- publishing dozens of near-identical pages with swapped keywords
+
+Language models are not perfect judges. A page can be cited while being wrong, and a strong page can be missed. That uncertainty is why I treat citation as a useful outcome, not sole content KPI.
+
+For a practical guard against scaled low-quality output, see [how to rank in ChatGPT answers](/blog/rank-in-chatgpt-answers-geo/). The rule is simple: automation can increase coverage, but human review must protect accuracy and point of view.
+
+## FAQ
+
+### Can I submit my website directly to ChatGPT for citations?
+
+No guaranteed submission path makes ChatGPT cite a page. Make page crawlable, publish useful material, and focus on sources and structure. Search and answer products decide independently what they retrieve and cite.
+
+### Does Google ranking guarantee ChatGPT citation?
+
+No. Strong search visibility can improve discovery, but citation depends on query, retrieval system, source quality, freshness, and answer context. Treat Google ranking as helpful distribution, not a citation guarantee.
+
+### Should every article include original data?
+
+No. Every article should include a clear reason to trust it. Original data is one strong form of evidence, but direct build experience, primary sources, tested code, and precise explanations can also make page valuable.
+
+### How often should I update content for ChatGPT?
+
+Update content when facts change, not on arbitrary schedule. Review stable guides every six to twelve months. Review pricing, APIs, statistics, and tool comparisons whenever their underlying sources change.
+
+## Final thought
+
+Getting cited by ChatGPT is a side effect of making page unusually easy to understand and verify.
+
+Lead with answer. Name things precisely. Show original work. Link sources. Keep changing facts current. Then give page time to be discovered.
+
+That process also makes better content for people. This is why I prefer GEO work that looks like good publishing, not a bag of tricks for forcing mentions into generated answers.
