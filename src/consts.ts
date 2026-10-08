@@ -3,7 +3,7 @@
 
 export const SITE_TITLE = 'iswar.me';
 export const SITE_DESCRIPTION =
-	'Technical writing by Iswar C. Mondal — SEO, AI search, Astro, and building on the open web.';
+	'An AI receptionist that answers missed calls and helps set follow-up appointments. A product by Iswar C. Mondal.';
 export const SITE_AUTHOR = 'Iswar C. Mondal';
 export const SITE_EMAIL = 'developeriswar@gmail.com';
 export const SITE_TWITTER = 'https://twitter.com/developeriswar';

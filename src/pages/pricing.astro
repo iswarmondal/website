@@ -1,0 +1,93 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const receptionistFeatures = [
+	'24/7 AI call answering',
+	'Lead qualification',
+	'Appointment booking + booking integration',
+	'Call notifications',
+	'Call summaries',
+	'Monthly performance report',
+];
+
+const reputationFeatures = [
+	'Google review requests',
+	'Automated review follow-ups',
+	'Review monitoring',
+	'Review response management',
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Pricing" description="Simple pricing for an AI receptionist and reputation management add-on." />
+		<style>
+			.pricing-hero { max-width: 47rem; padding: 5rem 0 3.5rem; }
+			.pricing-hero h1 { margin-bottom: 1rem; font-size: clamp(2.6rem, 7vw, 4.75rem); }
+			.pricing-hero p:last-child { max-width: 34rem; margin: 0; font-family: var(--font-article); font-size: 1.05rem; font-weight: 400; line-height: 1.7; color: var(--muted); }
+			.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: stretch; }
+			.plan { display: flex; flex-direction: column; min-height: 31rem; padding: clamp(1.5rem, 3vw, 2.25rem); border: 1px solid var(--ink); }
+			.plan--primary { color: var(--paper); background: var(--ink); }
+			.plan--primary h2, .plan--primary .plan__price { color: var(--paper); }
+			.plan--primary .plan__eyebrow, .plan--primary .plan__description, .plan--primary .plan__price span { color: var(--mist); }
+			.plan--primary .feature-list { border-color: #454545; }
+			.plan--primary .feature-list li::before { color: var(--mist); }
+			.plan--reputation { border-color: var(--line); background: rgba(255, 255, 255, 0.32); }
+			.plan__eyebrow { margin: 0 0 1rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+			.plan h2 { margin-bottom: 0.6rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+			.plan__description { min-height: 3.2rem; margin: 0; font-family: var(--font-article); font-size: 0.9rem; font-weight: 400; line-height: 1.6; color: var(--muted); }
+			.plan__price { margin: 2rem 0 1.5rem; font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: -0.07em; line-height: 0.95; }
+			.plan__price span { font-family: var(--font-article); font-size: 0.9rem; font-weight: 400; letter-spacing: 0; color: var(--muted); }
+			.feature-list { display: grid; gap: 0.8rem; margin: auto 0 0; padding: 1.5rem 0 0; border-top: 1px dashed var(--line); list-style: none; }
+			.feature-list li { position: relative; padding-left: 1.3rem; font-size: 0.9rem; line-height: 1.4; }
+			.feature-list li::before { content: '✓'; position: absolute; left: 0; font-family: var(--font-article); font-weight: 700; color: var(--muted); }
+			.pricing-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1rem; padding: 1.35rem 1.5rem; border: 1px solid var(--line); background: var(--paper-deep); }
+			.pricing-footer p { margin: 0; font-family: var(--font-article); font-size: 0.9rem; font-weight: 400; line-height: 1.6; color: var(--muted); }
+			.pricing-footer strong { color: var(--ink); }
+			.pricing-cta { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0.85rem 1.1rem; border: 1px solid var(--ink); font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; text-decoration: none; color: var(--paper); background: var(--ink); }
+			.pricing-cta:hover { color: var(--ink); background: transparent; }
+			.pricing-note { margin: 1.25rem 0 0; font-family: var(--font-article); font-size: 0.78rem; font-weight: 400; color: var(--muted); }
+			@media (max-width: 720px) {
+				.pricing-hero { padding: 3.5rem 0 2.5rem; }
+				.plans { grid-template-columns: 1fr; }
+				.plan { min-height: auto; }
+				.pricing-footer { align-items: flex-start; flex-direction: column; }
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="pricing-hero">
+				<p class="eyebrow">Simple, transparent pricing</p>
+				<h1>Choose the help your business needs.</h1>
+				<p>Start with an AI receptionist that catches missed opportunities. Add reputation management when you’re ready to turn great service into more five-star reviews.</p>
+			</section>
+			<section class="plans" aria-label="Plans">
+				<article class="plan plan--primary">
+					<p class="plan__eyebrow">Core plan</p>
+					<h2>AI Receptionist</h2>
+					<p class="plan__description">A reliable first response for every call your team cannot answer.</p>
+					<p class="plan__price">$497 <span>/ month</span></p>
+					<ul class="feature-list">{receptionistFeatures.map((feature) => <li>{feature}</li>)}</ul>
+				</article>
+				<article class="plan plan--reputation">
+					<p class="plan__eyebrow">Optional add-on</p>
+					<h2>Reputation Management</h2>
+					<p class="plan__description">Keep reviews coming in, stay on top of feedback, and protect your online reputation.</p>
+					<p class="plan__price">+$199 <span>/ month</span></p>
+					<ul class="feature-list">{reputationFeatures.map((feature) => <li>{feature}</li>)}</ul>
+				</article>
+			</section>
+			<section class="pricing-footer" aria-label="Pricing offer">
+				<p><strong>Limited-time offer:</strong> Free website redesign included.<br />Reputation Management is completely optional.</p>
+				<a class="pricing-cta" href="#book-a-call" data-cal-link="iswar-mondal/hi" data-cal-namespace="hi" data-cal-config='{"layout":"week_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'>Book a conversation →</a>
+			</section>
+			<p class="pricing-note">Start with the AI Receptionist at $497/month. Add Reputation Management whenever it makes sense for your business.</p>
+		</main>
+		<Footer />
+	</body>
+</html>
