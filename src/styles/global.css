@@ -49,8 +49,9 @@
 	--line: #c8c8c2;
 	--line-strong: #111111;
 	--focus: #111111;
-	--font-display: "Syne", "Arial Black", sans-serif;
-	--font-body: "Syne", "Helvetica Neue", sans-serif;
+	/* Avenir Next keeps the geometric feel, but is much easier to read at paragraph and UI sizes. */
+	--font-display: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+	--font-body: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
 	--font-article: "Libre Baskerville", "Times New Roman", Times, serif;
 	--max-read: 42rem;
 	--site-pad: clamp(1.25rem, 5vw, 3.5rem);
@@ -87,7 +88,7 @@ body {
 	padding: 0;
 	font-family: var(--font-body);
 	font-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
-	font-weight: 700;
+	font-weight: 500;
 	line-height: 1.65;
 	color: var(--ink);
 	background-color: var(--paper);
@@ -121,7 +122,7 @@ h6 {
 	margin: 0 0 0.75rem;
 	color: var(--ink);
 	line-height: 1.08;
-	font-weight: 800;
+	font-weight: 700;
 	letter-spacing: -0.035em;
 	text-wrap: balance;
 }
@@ -148,7 +149,7 @@ h5 {
 
 strong,
 b {
-	font-weight: 800;
+	font-weight: 700;
 }
 
 a {
