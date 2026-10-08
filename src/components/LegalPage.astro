@@ -1,0 +1,89 @@
+---
+import BaseHead from './BaseHead.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+	 title: string;
+	 description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article class="legal-page">
+				<p class="eyebrow">iswar.me</p>
+				<h1>{title}</h1>
+				<p class="legal-page__updated">Last updated: October 8, 2026</p>
+				<div class="legal-page__content">
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.legal-page {
+		max-width: 48rem;
+	}
+
+	.legal-page h1 {
+		margin-bottom: 0.75rem;
+	}
+
+	.legal-page__updated {
+		margin: 0 0 3.25rem;
+		font-family: var(--font-article);
+		font-size: 0.9rem;
+		font-style: italic;
+		font-weight: 400;
+		color: var(--muted);
+	}
+
+	.legal-page__content {
+		font-family: var(--font-article);
+		font-size: 0.98rem;
+		font-weight: 400;
+		line-height: 1.8;
+		color: var(--ink-soft);
+	}
+
+	.legal-page__content :global(h2) {
+		margin: 2.5rem 0 0.75rem;
+		font-family: var(--font-display);
+		font-size: 1.45rem;
+		line-height: 1.2;
+	}
+
+	.legal-page__content :global(h2:first-child) {
+		margin-top: 0;
+	}
+
+	.legal-page__content :global(p) {
+		margin: 0 0 1.15rem;
+	}
+
+	.legal-page__content :global(ul) {
+		margin: 0 0 1.25rem;
+		padding-left: 1.35rem;
+	}
+
+	.legal-page__content :global(li) {
+		margin-bottom: 0.5rem;
+	}
+
+	.legal-page__content :global(a) {
+		font-weight: 700;
+		color: var(--ink);
+	}
+</style>
