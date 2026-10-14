@@ -13,7 +13,9 @@ export function getStaticPaths() {
 
 const { packageSlug } = Astro.props as { packageSlug: CheckoutPackageSlug };
 const selectedPackage = checkoutPackages[packageSlug];
-const environment = import.meta.env.PUBLIC_PADDLE_ENV ?? 'sandbox';
+// Local sandbox testing may still explicitly set PUBLIC_PADDLE_ENV=sandbox.
+// A build without that override targets the live Paddle environment.
+const environment = import.meta.env.PUBLIC_PADDLE_ENV ?? 'production';
 const priceIds = {
 	aiReceptionist: import.meta.env.PUBLIC_PADDLE_PRICE_AI_RECEPTIONIST ?? '',
 	reputationManagement: import.meta.env.PUBLIC_PADDLE_PRICE_REPUTATION_MANAGEMENT ?? '',
@@ -98,7 +100,7 @@ const checkoutConfigured = paddleToken.length > 0 && priceIdsForPackage.length =
 				</ul>
 				<div class="order__total"><p class="order__total-label">First charge · <span data-charge-date>In 2 weeks</span></p><p class="order__total-price">${selectedPackage.monthlyTotal}</p></div>
 				<div class="order__footer">
-					<p class="checkout__notice"><strong>No charge today.</strong> Payment method required · No setup fee · Taxes calculated by Paddle</p>
+					<p class="checkout__notice"><strong>No charge today.</strong> Payment method required · No setup fee · Taxes calculated by Paddle<br /><a href="/refund-policy">View our refund policy</a></p>
 					<button
 						class="checkout__button"
 						type="button"
