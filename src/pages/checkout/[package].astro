@@ -29,31 +29,44 @@ const checkoutConfigured = paddleToken.length > 0 && priceIdsForPackage.length =
 	<head>
 		<BaseHead title={`${selectedPackage.title} checkout`} description={`Start your ${selectedPackage.title} subscription.`} />
 		<style>
-			.checkout { width: min(760px, 100%); padding-top: 4.5rem; }
-			.checkout__intro { max-width: 42rem; margin-bottom: 2.5rem; }
+			.checkout { width: min(800px, 100%); padding-top: 4.5rem; }
+			.checkout__intro { max-width: 44rem; margin-bottom: 1.5rem; }
 			.checkout__intro h1 { margin-bottom: 1rem; font-size: clamp(2.4rem, 6vw, 4.4rem); }
 			.checkout__intro p:last-child, .checkout__notice, .checkout__support { font-family: var(--font-article); font-weight: 400; color: var(--muted); }
-			.order { border: 1px solid var(--ink); background: rgba(255, 255, 255, 0.38); }
+			.trial-banner { display: flex; align-items: center; justify-content: center; gap: 0.65rem; margin: 0 0 1.5rem; padding: 0.8rem 1.15rem; border: 1px solid #9ed3bc; border-radius: 0.9rem; color: #175c43; background: #eaf7f0; }
+			.trial-banner__icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 50%; font-weight: 800; color: #fff; background: #23845f; }
+			.trial-banner p { margin: 0; font-size: 0.92rem; line-height: 1.45; }
+			.trial-banner strong { color: #14553e; }
+			.order { overflow: hidden; border: 1px solid #d7e1da; border-radius: 1rem; background: #fff; box-shadow: 0 1rem 2.5rem rgba(31, 75, 53, 0.08); }
 			.order__header, .order__total, .order__footer { padding: clamp(1.25rem, 3vw, 2rem); }
-			.order__header { border-bottom: 1px solid var(--line); }
+			.order__header { border-bottom: 1px solid #e3ebe5; }
 			.order__header h2 { margin: 0; font-size: 1.2rem; }
 			.order__items { margin: 0; padding: 0; list-style: none; }
-			.order__item { display: flex; justify-content: space-between; gap: 1.5rem; padding: 1.25rem clamp(1.25rem, 3vw, 2rem); border-bottom: 1px solid var(--line); }
+			.order__item { display: flex; justify-content: space-between; gap: 1.5rem; padding: 1.25rem clamp(1.25rem, 3vw, 2rem); border-bottom: 1px solid #e3ebe5; }
 			.order__item-name { display: block; font-weight: 700; }
 			.order__item-note { display: block; margin-top: 0.25rem; font-family: var(--font-article); font-size: 0.84rem; font-weight: 400; color: var(--muted); }
+			.order__item-value { display: block; margin-top: 0.3rem; font-family: var(--font-article); font-size: 0.82rem; color: #23845f; }
+			.order__item-value del { margin-right: 0.35rem; color: var(--muted); }
+			.order__item-value strong { font-family: var(--font-display); font-size: 1rem; }
 			.order__item-price { flex-shrink: 0; font-family: var(--font-article); font-weight: 700; white-space: nowrap; }
-			.order__total { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; color: var(--paper); background: var(--ink); }
+			.order__total { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; color: #14553e; background: #eaf7f0; }
 			.order__total p { margin: 0; }
 			.order__total-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-			.order__total-price { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700; letter-spacing: -0.06em; line-height: 1; }
-			.order__footer { border-top: 1px solid var(--line); }
+			.order__total-price { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700; letter-spacing: -0.06em; line-height: 1; color: #1c7654; }
+			.order__footer { border-top: 1px solid #e3ebe5; }
 			.checkout__notice { margin: 0 0 1.4rem; font-size: 0.92rem; line-height: 1.7; }
-			.checkout__button { width: 100%; padding: 1rem 1.25rem; border: 1px solid var(--ink); cursor: pointer; font: inherit; font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--paper); background: var(--ink); }
-			.checkout__button:hover:not(:disabled) { color: var(--ink); background: transparent; }
+			.checkout__button { width: 100%; padding: 1rem 1.25rem; border: 1px solid #1c7654; border-radius: 0.65rem; cursor: pointer; font: inherit; font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: #fff; background: #23845f; box-shadow: 0 0.4rem 1rem rgba(35, 132, 95, 0.2); }
+			.checkout__button:hover:not(:disabled) { border-color: #176344; background: #176344; }
 			.checkout__button:disabled { cursor: wait; opacity: 0.6; }
 			.checkout__error { min-height: 1.4rem; margin: 1rem 0 0; font-family: var(--font-article); font-size: 0.84rem; font-weight: 400; color: #8c2626; }
 			.checkout__support { margin-top: 1.5rem; font-size: 0.85rem; }
-			@media (max-width: 720px) { .checkout { padding-top: 2.5rem; } .order__item { gap: 0.8rem; } }
+			.timeline { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0 0 1.5rem; }
+			.timeline::before { content: ''; position: absolute; top: 1.1rem; right: 12%; left: 12%; height: 2px; background: #b7deca; }
+			.timeline__step { position: relative; z-index: 1; display: grid; justify-items: center; gap: 0.35rem; text-align: center; }
+			.timeline__dot { width: 0.7rem; height: 0.7rem; border: 2px solid #23845f; border-radius: 50%; background: var(--paper); }
+			.timeline__when { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #23845f; }
+			.timeline__amount { margin: 0; font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+			@media (max-width: 720px) { .checkout { padding-top: 2.5rem; } .order__item { gap: 0.8rem; } .timeline { grid-template-columns: 1fr; } }
 		</style>
 	</head>
 	<body>
@@ -64,19 +77,28 @@ const checkoutConfigured = paddleToken.length > 0 && priceIdsForPackage.length =
 				<h1>{selectedPackage.title}</h1>
 				<p>{selectedPackage.description}</p>
 			</section>
+			<section class="trial-banner" aria-label="Free trial offer">
+				<span class="trial-banner__icon" aria-hidden="true">✓</span>
+				<p><strong>2-week free trial</strong></p>
+			</section>
+			<section class="timeline" aria-label="Payment timeline">
+				<div class="timeline__step"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__when">Today</span><p class="timeline__amount">$0</p></div>
+				<div class="timeline__step"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__when">First charge · <span data-charge-date>In 2 weeks</span></span><p class="timeline__amount">${selectedPackage.monthlyTotal}</p></div>
+				<div class="timeline__step"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__when">Monthly</span><p class="timeline__amount">${selectedPackage.monthlyTotal}</p></div>
+			</section>
 			<section class="order" aria-label="Order summary">
 				<div class="order__header"><h2>Your package</h2></div>
 				<ul class="order__items">
 					{selectedPackage.items.map((item) => (
 						<li class="order__item">
-							<span><span class="order__item-name">{item.name}</span><span class="order__item-note">{item.recurring ? 'Billed monthly after your trial' : 'Included at no cost'}</span></span>
+							<span><span class="order__item-name">{item.name}</span><span class="order__item-note">{item.recurring ? 'Billed monthly after your trial' : 'Included at no cost'}</span>{item.key === 'websiteRedesign' && <span class="order__item-value"><del>$1,000</del><strong>$0</strong></span>}</span>
 							<span class="order__item-price">{item.price}</span>
 						</li>
 					))}
 				</ul>
-				<div class="order__total"><p class="order__total-label">Then each month</p><p class="order__total-price">${selectedPackage.monthlyTotal}</p></div>
+				<div class="order__total"><p class="order__total-label">First charge · <span data-charge-date>In 2 weeks</span></p><p class="order__total-price">${selectedPackage.monthlyTotal}</p></div>
 				<div class="order__footer">
-					<p class="checkout__notice"><strong>Today: $0.</strong> Your two-week trial is free. A payment method is required today; your subscription begins at ${selectedPackage.monthlyTotal}/month after the trial. There is no setup fee. Taxes, if applicable, are calculated by Paddle at checkout.</p>
+					<p class="checkout__notice"><strong>No charge today.</strong> Payment method required · No setup fee · Taxes calculated by Paddle</p>
 					<button
 						class="checkout__button"
 						type="button"
@@ -98,6 +120,16 @@ const checkoutConfigured = paddleToken.length > 0 && priceIdsForPackage.length =
 
 			const button = document.querySelector('[data-paddle-checkout]') as HTMLButtonElement | null;
 			const errorMessage = document.querySelector('[data-checkout-error]');
+			const firstChargeDate = new Date();
+			firstChargeDate.setDate(firstChargeDate.getDate() + 14);
+			const formattedChargeDate = new Intl.DateTimeFormat(undefined, {
+				month: 'short',
+				day: 'numeric',
+				year: 'numeric',
+			}).format(firstChargeDate);
+			document.querySelectorAll('[data-charge-date]').forEach((element) => {
+				element.textContent = formattedChargeDate;
+			});
 			const paddleToken = button?.dataset.paddleToken ?? '';
 			const environment = button?.dataset.paddleEnvironment as Environments | undefined;
 			const priceIdsForPackage = JSON.parse(button?.dataset.paddlePriceIds ?? '[]') as string[];
