@@ -59,6 +59,18 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Paddle checkout
+
+The shareable package pages are `/checkout/ai-receptionist/` and
+`/checkout/ai-receptionist-with-reputation/`. They use Paddle's hosted
+checkout and do not store customer data in this site.
+
+For local sandbox testing, copy `.env.sandbox.example` to `.env` and replace
+each placeholder with the matching sandbox client token and price ID. For the
+production deployment, set the values in `.env.production.example` in the
+hosting provider's environment-variable settings. Client tokens and catalog
+prices are separate for Paddle sandbox and production.
+
 ## 👀 Want to learn more?
 
 Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

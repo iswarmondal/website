@@ -1,0 +1,141 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { checkoutPackages, type CheckoutPackageSlug } from '../../lib/checkout-packages';
+
+export function getStaticPaths() {
+	return Object.keys(checkoutPackages).map((packageSlug) => ({
+		params: { package: packageSlug },
+		props: { packageSlug },
+	}));
+}
+
+const { packageSlug } = Astro.props as { packageSlug: CheckoutPackageSlug };
+const selectedPackage = checkoutPackages[packageSlug];
+const environment = import.meta.env.PUBLIC_PADDLE_ENV ?? 'sandbox';
+const priceIds = {
+	aiReceptionist: import.meta.env.PUBLIC_PADDLE_PRICE_AI_RECEPTIONIST ?? '',
+	reputationManagement: import.meta.env.PUBLIC_PADDLE_PRICE_REPUTATION_MANAGEMENT ?? '',
+	websiteRedesign: import.meta.env.PUBLIC_PADDLE_PRICE_WEBSITE_REDESIGN ?? '',
+};
+const priceIdsForPackage = selectedPackage.items.map((item) => priceIds[item.key]).filter(Boolean);
+const paddleToken = import.meta.env.PUBLIC_PADDLE_CLIENT_TOKEN ?? '';
+const checkoutConfigured = paddleToken.length > 0 && priceIdsForPackage.length === selectedPackage.items.length;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${selectedPackage.title} checkout`} description={`Start your ${selectedPackage.title} subscription.`} />
+		<style>
+			.checkout { width: min(760px, 100%); padding-top: 4.5rem; }
+			.checkout__intro { max-width: 42rem; margin-bottom: 2.5rem; }
+			.checkout__intro h1 { margin-bottom: 1rem; font-size: clamp(2.4rem, 6vw, 4.4rem); }
+			.checkout__intro p:last-child, .checkout__notice, .checkout__support { font-family: var(--font-article); font-weight: 400; color: var(--muted); }
+			.order { border: 1px solid var(--ink); background: rgba(255, 255, 255, 0.38); }
+			.order__header, .order__total, .order__footer { padding: clamp(1.25rem, 3vw, 2rem); }
+			.order__header { border-bottom: 1px solid var(--line); }
+			.order__header h2 { margin: 0; font-size: 1.2rem; }
+			.order__items { margin: 0; padding: 0; list-style: none; }
+			.order__item { display: flex; justify-content: space-between; gap: 1.5rem; padding: 1.25rem clamp(1.25rem, 3vw, 2rem); border-bottom: 1px solid var(--line); }
+			.order__item-name { display: block; font-weight: 700; }
+			.order__item-note { display: block; margin-top: 0.25rem; font-family: var(--font-article); font-size: 0.84rem; font-weight: 400; color: var(--muted); }
+			.order__item-price { flex-shrink: 0; font-family: var(--font-article); font-weight: 700; white-space: nowrap; }
+			.order__total { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; color: var(--paper); background: var(--ink); }
+			.order__total p { margin: 0; }
+			.order__total-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+			.order__total-price { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 700; letter-spacing: -0.06em; line-height: 1; }
+			.order__footer { border-top: 1px solid var(--line); }
+			.checkout__notice { margin: 0 0 1.4rem; font-size: 0.92rem; line-height: 1.7; }
+			.checkout__button { width: 100%; padding: 1rem 1.25rem; border: 1px solid var(--ink); cursor: pointer; font: inherit; font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--paper); background: var(--ink); }
+			.checkout__button:hover:not(:disabled) { color: var(--ink); background: transparent; }
+			.checkout__button:disabled { cursor: wait; opacity: 0.6; }
+			.checkout__error { min-height: 1.4rem; margin: 1rem 0 0; font-family: var(--font-article); font-size: 0.84rem; font-weight: 400; color: #8c2626; }
+			.checkout__support { margin-top: 1.5rem; font-size: 0.85rem; }
+			@media (max-width: 720px) { .checkout { padding-top: 2.5rem; } .order__item { gap: 0.8rem; } }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="checkout">
+			<section class="checkout__intro">
+				<p class="eyebrow">Checkout</p>
+				<h1>{selectedPackage.title}</h1>
+				<p>{selectedPackage.description}</p>
+			</section>
+			<section class="order" aria-label="Order summary">
+				<div class="order__header"><h2>Your package</h2></div>
+				<ul class="order__items">
+					{selectedPackage.items.map((item) => (
+						<li class="order__item">
+							<span><span class="order__item-name">{item.name}</span><span class="order__item-note">{item.recurring ? 'Billed monthly after your trial' : 'Included at no cost'}</span></span>
+							<span class="order__item-price">{item.price}</span>
+						</li>
+					))}
+				</ul>
+				<div class="order__total"><p class="order__total-label">Then each month</p><p class="order__total-price">${selectedPackage.monthlyTotal}</p></div>
+				<div class="order__footer">
+					<p class="checkout__notice"><strong>Today: $0.</strong> Your two-week trial is free. A payment method is required today; your subscription begins at ${selectedPackage.monthlyTotal}/month after the trial. There is no setup fee. Taxes, if applicable, are calculated by Paddle at checkout.</p>
+					<button
+						class="checkout__button"
+						type="button"
+						data-paddle-checkout
+						data-paddle-token={paddleToken}
+						data-paddle-environment={environment}
+						data-paddle-price-ids={JSON.stringify(priceIdsForPackage)}
+						data-paddle-configured={String(checkoutConfigured)}
+						disabled
+					>Continue to secure payment →</button>
+					<p class="checkout__error" aria-live="polite" data-checkout-error></p>
+				</div>
+			</section>
+			<p class="checkout__support">Paddle is the Merchant of Record and securely handles payment, receipts, taxes, and subscription management.</p>
+		</main>
+		<Footer />
+		<script>
+			import { initializePaddle, type Environments } from '@paddle/paddle-js';
+
+			const button = document.querySelector('[data-paddle-checkout]') as HTMLButtonElement | null;
+			const errorMessage = document.querySelector('[data-checkout-error]');
+			const paddleToken = button?.dataset.paddleToken ?? '';
+			const environment = button?.dataset.paddleEnvironment as Environments | undefined;
+			const priceIdsForPackage = JSON.parse(button?.dataset.paddlePriceIds ?? '[]') as string[];
+			const checkoutConfigured = button?.dataset.paddleConfigured === 'true';
+
+			const showError = (message) => {
+				if (errorMessage) errorMessage.textContent = message;
+			};
+
+			if (!checkoutConfigured) {
+				showError('Checkout is being configured. Please try again shortly.');
+			} else {
+				initializePaddle({
+					token: paddleToken,
+					environment,
+					eventCallback: (event) => {
+						if (event.name === 'checkout.error') showError('Checkout could not open. Please refresh the page and try again.');
+					},
+				}).then((paddle) => {
+					if (!paddle || !button) {
+						showError('Checkout could not load. Please refresh the page and try again.');
+						return;
+					}
+
+					button.disabled = false;
+					button.addEventListener('click', () => {
+						button.disabled = true;
+						paddle.Checkout.open({
+							items: priceIdsForPackage.map((priceId) => ({ priceId, quantity: 1 })),
+							settings: {
+								variant: 'one-page',
+								successUrl: new URL('/checkout/complete/', window.location.origin).href,
+							},
+						});
+						button.disabled = false;
+					});
+				});
+			}
+		</script>
+	</body>
+</html>

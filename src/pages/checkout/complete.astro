@@ -1,0 +1,28 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Payment complete" description="Your subscription payment is complete." />
+		<style>
+			.complete { max-width: 46rem; padding-top: 6rem; padding-bottom: 6rem; }
+			.complete h1 { margin-bottom: 1rem; font-size: clamp(2.5rem, 6vw, 4.5rem); }
+			.complete p { max-width: 38rem; font-family: var(--font-article); font-weight: 400; line-height: 1.7; color: var(--muted); }
+			.complete a { display: inline-block; margin-top: 1rem; font-family: var(--font-display); font-weight: 700; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="complete">
+			<p class="eyebrow">Payment complete</p>
+			<h1>Thank you. You’re all set.</h1>
+			<p>Paddle has emailed your receipt and will manage your subscription. We’ll be in touch to begin onboarding.</p>
+			<a href="/">Return to iswar.me →</a>
+		</main>
+		<Footer />
+	</body>
+</html>
