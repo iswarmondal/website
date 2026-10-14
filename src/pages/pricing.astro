@@ -44,9 +44,9 @@ const reputationFeatures = [
 			.feature-list { display: grid; gap: 0.8rem; margin: auto 0 1.35rem; padding: 1.5rem 0 0; border-top: 1px dashed var(--line); list-style: none; }
 			.feature-list li { position: relative; padding-left: 1.3rem; font-size: 0.9rem; line-height: 1.4; }
 			.feature-list li::before { content: '✓'; position: absolute; left: 0; font-family: var(--font-article); font-weight: 700; color: var(--muted); }
-			.plan__cta { display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 1rem; border: 1px solid var(--ink); font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; text-decoration: none; color: var(--paper); background: var(--ink); }
+			.plan__cta { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 3rem; padding: 0.8rem 1rem; border: 1px solid var(--ink); font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; text-decoration: none; color: var(--paper); background: var(--ink); }
 			.plan__cta:hover { color: var(--ink); background: transparent; }
-			.plan--primary .plan__cta { color: var(--ink); background: var(--paper); }
+			.plan--primary .plan__cta { color: var(--ink); background: var(--paper); border-color: var(--paper); }
 			.plan--primary .plan__cta:hover { color: var(--paper); background: transparent; border-color: var(--paper); }
 			.pricing-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1rem; padding: 1.35rem 1.5rem; border: 1px solid var(--line); background: var(--paper-deep); }
 			.pricing-footer p { margin: 0; font-family: var(--font-article); font-size: 0.9rem; font-weight: 400; line-height: 1.6; color: var(--muted); }
