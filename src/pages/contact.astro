@@ -1,0 +1,161 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Contact"
+			description="Get in touch with iswar.me — reach out about AI receptionists, reputation management, or anything else."
+		/>
+		<style>
+			.contact-page {
+				max-width: 52rem;
+			}
+
+			.contact-page h1 {
+				font-size: clamp(2rem, 6vw, 3.5rem);
+				line-height: 1.1;
+				margin: 0 0 0.75rem;
+			}
+
+			.contact-page__intro {
+				max-width: 38rem;
+				margin-bottom: 3rem;
+			}
+
+			.contact-page__intro p {
+				margin: 0;
+				font-family: var(--font-article);
+				font-size: 1.05rem;
+				font-weight: 400;
+				line-height: 1.75;
+				color: var(--muted);
+			}
+
+			.contact-page__eyebrow {
+				margin-bottom: 1rem;
+			}
+
+			.form-wrapper {
+				border-top: 1px solid var(--line);
+				padding-top: 2.5rem;
+			}
+
+			/* ── Skeleton loader ── */
+			.form-skeleton {
+				display: flex;
+				flex-direction: column;
+				gap: 1.25rem;
+				min-height: 480px;
+			}
+
+			.form-skeleton__row {
+				height: 3.25rem;
+				border-radius: 2px;
+				background: linear-gradient(
+					90deg,
+					var(--paper-deep) 25%,
+					var(--mist) 50%,
+					var(--paper-deep) 75%
+				);
+				background-size: 200% 100%;
+				animation: shimmer 1.4s ease-in-out infinite;
+			}
+
+			.form-skeleton__row--half  { width: 55%; }
+			.form-skeleton__row--label { height: 0.85rem; width: 30%; }
+			.form-skeleton__row--btn   { height: 2.75rem; width: 9rem; margin-top: 0.5rem; }
+
+			@keyframes shimmer {
+				0%   { background-position: 200% 0; }
+				100% { background-position: -200% 0; }
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.form-skeleton__row { animation: none; }
+			}
+
+			/* iframe hidden until loaded; skeleton shown until then */
+			.form-embed {
+				width: 100%;
+				min-height: 600px;
+				border: none;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article class="contact-page">
+				<div class="contact-page__intro">
+					<p class="eyebrow contact-page__eyebrow">Get in touch</p>
+					<h1>Let's talk.</h1>
+					<p>Have a question about the AI receptionist, reputation management, or anything else? Fill out the form below and I'll get back to you directly.</p>
+				</div>
+
+				<div class="form-wrapper">
+					<!-- Skeleton: visible until iframe loads -->
+					<div class="form-skeleton" id="form-skeleton" aria-hidden="true">
+						<div class="form-skeleton__row form-skeleton__row--label"></div>
+						<div class="form-skeleton__row"></div>
+						<div class="form-skeleton__row form-skeleton__row--label"></div>
+						<div class="form-skeleton__row"></div>
+						<div class="form-skeleton__row form-skeleton__row--label"></div>
+						<div class="form-skeleton__row form-skeleton__row--half"></div>
+						<div class="form-skeleton__row form-skeleton__row--label"></div>
+						<div class="form-skeleton__row"></div>
+						<div class="form-skeleton__row form-skeleton__row--btn"></div>
+					</div>
+
+					<!-- iframe: hidden until loaded, then swapped in -->
+					<iframe
+						src="https://api.leadconnectorhq.com/widget/form/8qM8Eq8x5VlFeHxovsll"
+						class="form-embed"
+						id="inline-8qM8Eq8x5VlFeHxovsll"
+						data-layout="{'id':'INLINE'}"
+						data-trigger-type="alwaysShow"
+						data-trigger-value=""
+						data-activation-type="alwaysActivated"
+						data-activation-value=""
+						data-deactivation-type="neverDeactivate"
+						data-deactivation-value=""
+						data-form-name="Contact Form"
+						data-height="600"
+						data-layout-iframe-id="inline-8qM8Eq8x5VlFeHxovsll"
+						data-form-id="8qM8Eq8x5VlFeHxovsll"
+						title="Contact Form"
+					></iframe>
+
+					<!-- LeadConnector embed script loaded normally (no is:inline on src) -->
+					<script defer src="https://link.msgsndr.com/js/form_embed.js"></script>
+
+					<script is:inline>
+						(function () {
+							var iframe   = document.getElementById('inline-8qM8Eq8x5VlFeHxovsll');
+							var skeleton = document.getElementById('form-skeleton');
+
+							function reveal() {
+								if (!iframe || iframe.dataset.revealed) return;
+								iframe.dataset.revealed = '1';
+								if (skeleton) skeleton.style.display = 'none';
+								iframe.style.display = 'block';
+							}
+
+							if (iframe) {
+								iframe.addEventListener('load', reveal);
+								// Hard fallback — show regardless after 7 s
+								setTimeout(reveal, 7000);
+							}
+						})();
+					</script>
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

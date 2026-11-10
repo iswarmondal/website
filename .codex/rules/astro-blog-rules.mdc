@@ -1,0 +1,31 @@
+---
+description: This rule gives an overview of what this project is about and also gives an overview about the UI design philosophy of the overall project.
+globs: 
+alwaysApply: false
+---
+# About this project
+
+- This is my personal technical blog built with Astro.
+- The site exists to publish articles that rank in search and stay useful to readers.
+- A short About page covers who I am and how to contact me. There is no projects / case-study section.
+
+# Design philosophy and technical details
+
+- The frontend is implemented in the `src` folder. This is an Astro app based on the Astro blog template.
+- This app uses a monochrome negative-space visual language: black, white, and soft greys; generous whitespace; Syne for UI display type; Libre Baskerville (print/newspaper tradition) for blog articles — while staying hand-coded CSS (no Tailwind).
+- Blog posts use a multi-column newspaper layout on wide viewports, with italic/decorative typography treatments.
+- I tried my best to ship zero JS to the client. Making the app performant and fast scoring 95+ on Google Lighthouse.
+- The content management is done using Astro's markdown file based content management system. Blog posts live in `src/content/blog`.
+- I am not using any tailwindcss for this project. In fact each component is hand-coded and styled. And there are some global styles declared in the `src/styles/global.css` file.
+- The app is hosted on Vercel.
+- Cross-surface branding is documented in **`public/design.md`**, served raw at **`/design.md`** (https://iswar.me/design.md). That guide uses the blog’s Libre Baskerville typography as the brand standard.
+- **Required:** When changing this site’s UI or brand tokens, update `public/design.md` in the same change (see `.codex/rules/design-system-sync.mdc`).
+
+# Project structure
+
+- `src/components` - Shared chrome (header, footer, head, date).
+- `src/content/blog` - Markdown / MDX articles.
+- `src/pages` - Routes: home, blog archive, about, RSS.
+- `src/layouts/BlogPost.astro` - Article reading layout.
+- `src/styles` - Global styles.
+- `public/design.md` - Networked brand / design system (raw markdown at `/design.md`).

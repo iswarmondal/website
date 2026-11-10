@@ -1,0 +1,34 @@
+---
+description: Keep public/design.md in sync whenever site UI or brand tokens change. Always apply for design/UI work.
+alwaysApply: true
+---
+# Design system sync (required)
+
+Canonical brand guide lives at **`public/design.md`**.
+
+It is served as **raw markdown** at **`https://iswar.me/design.md`** (and locally at `/design.md`). Other agents, designers, and subdomain apps fetch this URL as brand context (like `llms.txt`).
+
+## When you MUST update `public/design.md`
+
+If you change any of the following on this website, update `public/design.md` in the **same PR / commit** so the networked brand doc stays accurate:
+
+- Colours / CSS variables in `src/styles/global.css` (or equivalent tokens)
+- Typography (font families, weights, blog vs UI type roles)
+- Layout philosophy, spacing, borders, shadows, CTAs, cards, heroes
+- Imagery rules (e.g. grayscale amount)
+- Motion / interaction patterns that are part of the brand feel
+- Logo / wordmark treatment
+- Anything that would make PPT, social, or `*.iswar.me` apps look wrong if they followed the old guide
+
+## How to update
+
+1. Edit **`public/design.md` only** (do not invent a second competing guide at repo root).
+2. Keep the **blog / Libre Baskerville** voice as the cross-surface typography standard unless the product owner explicitly changes that policy.
+3. Refresh tokens, examples, anti-patterns, and the “Source of truth” / checklist sections.
+4. Bump or refresh the “last aligned” note at the bottom when the visual system meaningfully changes.
+
+## Do not
+
+- Serve a styled HTML page instead of raw markdown at `/design.md`
+- Duplicate the full guide elsewhere and let copies drift
+- Change site UI brand and leave `public/design.md` stale
