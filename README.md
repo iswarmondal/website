@@ -61,9 +61,10 @@ All commands are run from the root of the project, from a terminal:
 
 ## Paddle checkout
 
-The shareable package pages are `/checkout/ai-receptionist/` and
-`/checkout/ai-receptionist-with-reputation/`. They use Paddle's hosted
-checkout and do not store customer data in this site.
+The shareable checkout page is `/checkout/core-plan/`. It uses Paddle's hosted
+checkout and does not store customer data in this site. The live catalog uses
+the Core plan at $297/month after a one-week free trial, plus a $299 one-time
+setup fee.
 
 For local sandbox testing, copy `.env.sandbox.example` to `.env` and replace
 each placeholder with the matching sandbox client token and price ID. For the

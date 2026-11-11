@@ -17,9 +17,8 @@ const selectedPackage = checkoutPackages[packageSlug];
 // A build without that override targets the live Paddle environment.
 const environment = import.meta.env.PUBLIC_PADDLE_ENV ?? 'production';
 const priceIds = {
-	aiReceptionist: import.meta.env.PUBLIC_PADDLE_PRICE_AI_RECEPTIONIST ?? '',
-	reputationManagement: import.meta.env.PUBLIC_PADDLE_PRICE_REPUTATION_MANAGEMENT ?? '',
-	websiteRedesign: import.meta.env.PUBLIC_PADDLE_PRICE_WEBSITE_REDESIGN ?? '',
+	corePlan: import.meta.env.PUBLIC_PADDLE_PRICE_CORE_PLAN ?? (environment === 'production' ? 'pri_01m4dp9j48hn3arhr15t1tk5wh' : ''),
+	setupFee: import.meta.env.PUBLIC_PADDLE_PRICE_SETUP_FEE ?? (environment === 'production' ? 'pri_01m4dp6wa0t5yc1ctmrykdq4aq' : ''),
 };
 const priceIdsForPackage = selectedPackage.items.map((item) => priceIds[item.key]).filter(Boolean);
 const paddleToken = import.meta.env.PUBLIC_PADDLE_CLIENT_TOKEN ?? '';
@@ -81,11 +80,11 @@ const checkoutConfigured = paddleToken.length > 0 && priceIdsForPackage.length =
 			</section>
 			<section class="trial-banner" aria-label="Free trial offer">
 				<span class="trial-banner__icon" aria-hidden="true">✓</span>
-				<p><strong>2-week free trial</strong></p>
+				<p><strong>1-week free trial</strong> · Your $297/month subscription starts after the trial.</p>
 			</section>
 			<section class="timeline" aria-label="Payment timeline">
-				<div class="timeline__step"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__when">Today</span><p class="timeline__amount">$0</p></div>
-				<div class="timeline__step"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__when">First charge · <span data-charge-date>In 2 weeks</span></span><p class="timeline__amount">${selectedPackage.monthlyTotal}</p></div>
+				<div class="timeline__step"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__when">Today</span><p class="timeline__amount">${selectedPackage.setupFee}</p></div>
+				<div class="timeline__step"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__when">After trial · <span data-charge-date>In 1 week</span></span><p class="timeline__amount">${selectedPackage.monthlyTotal}</p></div>
 				<div class="timeline__step"><span class="timeline__dot" aria-hidden="true"></span><span class="timeline__when">Monthly</span><p class="timeline__amount">${selectedPackage.monthlyTotal}</p></div>
 			</section>
 			<section class="order" aria-label="Order summary">
@@ -93,14 +92,14 @@ const checkoutConfigured = paddleToken.length > 0 && priceIdsForPackage.length =
 				<ul class="order__items">
 					{selectedPackage.items.map((item) => (
 						<li class="order__item">
-							<span><span class="order__item-name">{item.name}</span><span class="order__item-note">{item.recurring ? 'Billed monthly after your trial' : 'Included at no cost'}</span>{item.key === 'websiteRedesign' && <span class="order__item-value"><del>$1,000</del><strong>$0</strong></span>}</span>
+							<span><span class="order__item-name">{item.name}</span><span class="order__item-note">{item.recurring ? 'Billed monthly after your one-week trial' : 'Charged once today'}</span></span>
 							<span class="order__item-price">{item.price}</span>
 						</li>
 					))}
 				</ul>
-				<div class="order__total"><p class="order__total-label">First charge · <span data-charge-date>In 2 weeks</span></p><p class="order__total-price">${selectedPackage.monthlyTotal}</p></div>
+				<div class="order__total"><p class="order__total-label">After trial · <span data-charge-date>In 1 week</span></p><p class="order__total-price">${selectedPackage.monthlyTotal} / month</p></div>
 				<div class="order__footer">
-					<p class="checkout__notice"><strong>No charge today.</strong> Payment method required · No setup fee · Taxes calculated by Paddle<br /><a href="/refund-policy">View our refund policy</a></p>
+					<p class="checkout__notice"><strong>$299 setup fee due today.</strong> Your $297/month subscription starts after your one-week free trial. Payment method required · Taxes calculated by Paddle<br /><a href="/refund-policy">View our refund policy</a></p>
 					<button
 						class="checkout__button"
 						type="button"
@@ -123,7 +122,7 @@ const checkoutConfigured = paddleToken.length > 0 && priceIdsForPackage.length =
 			const button = document.querySelector('[data-paddle-checkout]') as HTMLButtonElement | null;
 			const errorMessage = document.querySelector('[data-checkout-error]');
 			const firstChargeDate = new Date();
-			firstChargeDate.setDate(firstChargeDate.getDate() + 14);
+			firstChargeDate.setDate(firstChargeDate.getDate() + 7);
 			const formattedChargeDate = new Intl.DateTimeFormat(undefined, {
 				month: 'short',
 				day: 'numeric',

@@ -3,66 +3,59 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const receptionistFeatures = [
-	'24/7 AI call answering',
-	'Lead qualification',
-	'Appointment booking + booking integration',
-	'Call notifications',
-	'Call summaries',
-	'Monthly performance report',
-];
-
-const reputationFeatures = [
-	'Google review requests',
-	'Automated review follow-ups',
-	'Review monitoring',
-	'Review response management',
+const corePlanFeatures = [
+	'High-converting website',
+	'Missed-call text-back',
+	'Automated Google reviews',
+	'Database reactivation',
+	'Optional: Referral Engine setup',
+	'Mobile app',
 ];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title="Pricing" description="Simple pricing for an AI receptionist and reputation management add-on." />
+		<BaseHead title="Pricing" description="Simple, transparent pricing for more leads and better customer follow-up." />
 		<style>
-			.pricing-hero { max-width: 47rem; padding: 5rem 0 3.5rem; }
-			.pricing-hero h1 { margin-bottom: 1rem; font-size: clamp(2.6rem, 7vw, 4.75rem); }
-			.pricing-hero p:last-child { max-width: 34rem; margin: 0; font-family: var(--font-article); font-size: 1.05rem; font-weight: 400; line-height: 1.7; color: var(--muted); }
-			.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: stretch; }
-			.plan { display: flex; flex-direction: column; min-height: 31rem; padding: clamp(1.5rem, 3vw, 2.25rem); border: 1px solid #d7e1da; border-radius: 1rem; background: #fff; box-shadow: 0 1rem 2.5rem rgba(31, 75, 53, 0.07); }
-			.plan--primary { border-color: #9ed3bc; background: #f3fbf6; }
-			.plan--primary h2, .plan--primary .plan__price { color: var(--ink); }
-			.plan--primary .plan__eyebrow, .plan--primary .plan__description, .plan--primary .plan__price span { color: var(--muted); }
-			.plan--reputation { border-color: #d7e1da; background: #fff; }
-			.plan__eyebrow { margin: 0 0 1rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-			.plan__badge { display: inline-flex; align-items: center; align-self: flex-start; margin: -0.1rem 0 1rem; padding: 0.35rem 0.65rem; border-radius: 999px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: #23845f; }
-			.plan h2 { margin-bottom: 0.6rem; font-size: clamp(1.4rem, 3vw, 2rem); }
-			.plan__description { min-height: 3.2rem; margin: 0; font-family: var(--font-article); font-size: 0.9rem; font-weight: 400; line-height: 1.6; color: var(--muted); }
-			.plan__trial { display: inline-flex; align-self: flex-start; margin: 0 0 1.15rem; padding: 0.35rem 0.65rem; border: 1px solid #9ed3bc; border-radius: 999px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: #175c43; background: #eaf7f0; }
-			.plan__price { margin: 1rem 0 1.5rem; font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: -0.07em; line-height: 0.95; }
+			.pricing-hero { max-width: 48rem; margin: 0 auto; padding: 5.5rem 0 3rem; text-align: center; }
+			.pricing-hero h1 { max-width: 46rem; margin: 0 auto 1rem; font-size: clamp(2.6rem, 7vw, 4.75rem); }
+			.pricing-hero p:last-child { max-width: 39rem; margin: 0 auto; font-family: var(--font-article); font-size: 1.05rem; font-weight: 400; line-height: 1.7; color: var(--muted); }
+			.plans { display: grid; grid-template-columns: minmax(0, 52rem); justify-content: center; }
+			.plan { overflow: hidden; border: 1px solid #9ed3bc; border-radius: 1.25rem; background: #fff; box-shadow: 0 1.2rem 3.5rem rgba(31, 75, 53, 0.1); }
+			.plan__top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; padding: clamp(1.5rem, 4vw, 2.75rem); background: linear-gradient(135deg, #effaf3 0%, #f9fdfb 72%); }
+			.plan__eyebrow { margin: 0 0 0.85rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #327659; }
+			.plan__badge { display: inline-flex; align-items: center; align-self: flex-start; margin: 0 0 1rem; padding: 0.35rem 0.65rem; border-radius: 999px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: #23845f; }
+			.plan h2 { margin: 0 0 0.65rem; font-size: clamp(1.8rem, 3vw, 2.45rem); }
+			.plan__description { max-width: 30rem; margin: 0; font-family: var(--font-article); font-size: 0.98rem; font-weight: 400; line-height: 1.6; color: var(--muted); }
+			.plan__price-box { min-width: 12rem; padding-top: 0.15rem; text-align: right; }
+			.plan__trial { display: inline-flex; margin: 0 0 0.8rem; padding: 0.38rem 0.65rem; border: 1px solid #9ed3bc; border-radius: 999px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: #175c43; background: #eaf7f0; }
+			.plan__price { margin: 0; font-size: clamp(3rem, 6vw, 4.4rem); letter-spacing: -0.08em; line-height: 0.9; color: var(--ink); }
 			.plan__price span { font-family: var(--font-article); font-size: 0.9rem; font-weight: 400; letter-spacing: 0; color: var(--muted); }
-			.plan__included { margin: -0.65rem 0 1.1rem; font-family: var(--font-article); font-size: 0.82rem; font-style: italic; color: #23845f; }
-			.feature-list { display: grid; gap: 0.8rem; margin: auto 0 1.35rem; padding: 1.5rem 0 0; border-top: 1px dashed var(--line); list-style: none; }
-			.feature-list li { position: relative; padding-left: 1.3rem; font-size: 0.9rem; line-height: 1.4; }
-			.feature-list li::before { content: '✓'; position: absolute; left: 0; font-family: var(--font-article); font-weight: 700; color: var(--muted); }
+			.plan__setup { margin: 0.8rem 0 0; font-family: var(--font-article); font-size: 0.82rem; color: var(--muted); }
+			.plan__body { padding: clamp(1.5rem, 4vw, 2.75rem); }
+			.plan__includes { margin: 0 0 1.1rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+			.feature-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem 1.25rem; margin: 0; padding: 0; list-style: none; }
+			.feature-list li { position: relative; padding-left: 1.45rem; font-size: 0.94rem; line-height: 1.4; }
+			.feature-list li::before { content: '✓'; position: absolute; left: 0; color: #23845f; font-weight: 800; }
 			.plan__cta { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 3rem; padding: 0.8rem 1rem; border: 1px solid #23845f; border-radius: 0.65rem; font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; text-decoration: none; color: #fff; background: #23845f; box-shadow: 0 0.4rem 1rem rgba(35, 132, 95, 0.16); }
 			.plan__cta:hover { color: #fff; background: #176344; border-color: #176344; }
 			.plan--primary .plan__cta { color: #fff; background: #23845f; border-color: #23845f; }
-			.plan--reputation .plan__cta { color: #175c43; background: transparent; border-color: #23845f; box-shadow: none; }
-			.plan--reputation .plan__cta:hover { color: #fff; background: #23845f; }
-			.pricing-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1rem; padding: 1.35rem 1.5rem; border: 1px solid #d7e1da; border-radius: 1rem; background: #f3fbf6; }
+			.plan__action-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e0ede5; }
+			.plan__action-note { margin: 0; font-family: var(--font-article); font-size: 0.78rem; line-height: 1.45; color: var(--muted); }
+			.pricing-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; max-width: 52rem; margin: 1rem auto 0; padding: 1.2rem 1.5rem; border: 1px solid #d7e1da; border-radius: 1rem; background: #f3fbf6; }
 			.pricing-footer p { margin: 0; font-family: var(--font-article); font-size: 0.9rem; font-weight: 400; line-height: 1.6; color: var(--muted); }
 			.pricing-footer strong { color: var(--ink); }
-			.pricing-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: flex-end; }
-			.pricing-cta { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0.85rem 1.1rem; border: 1px solid #23845f; border-radius: 0.65rem; font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; text-decoration: none; color: #fff; background: #23845f; }
-			.pricing-cta--secondary { color: #175c43; background: transparent; }
-			.pricing-cta:hover { color: #fff; background: #176344; border-color: #176344; }
-			.pricing-cta--secondary:hover { color: #fff; }
-			.pricing-note { margin: 1.25rem 0 0; font-family: var(--font-article); font-size: 0.78rem; font-weight: 400; color: var(--muted); }
+			.pricing-note { max-width: 52rem; margin: 1.1rem auto 0; text-align: center; font-family: var(--font-article); font-size: 0.78rem; font-weight: 400; color: var(--muted); }
 			@media (max-width: 720px) {
-				.pricing-hero { padding: 3.5rem 0 2.5rem; }
+				.pricing-hero { padding: 3.5rem 0 2.5rem; text-align: left; }
+				.pricing-hero h1, .pricing-hero p:last-child { margin-right: 0; margin-left: 0; }
 				.plans { grid-template-columns: 1fr; }
-				.plan { min-height: auto; }
+				.plan__top { grid-template-columns: 1fr; gap: 1.5rem; }
+				.plan__price-box { text-align: left; }
+				.feature-list { grid-template-columns: 1fr; }
+				.plan__action-row { align-items: flex-start; flex-direction: column; }
+				.plan__cta { width: 100%; }
 				.pricing-footer { align-items: flex-start; flex-direction: column; }
 			}
 		</style>
@@ -72,35 +65,38 @@ const reputationFeatures = [
 		<main>
 			<section class="pricing-hero">
 				<p class="eyebrow">Simple, transparent pricing</p>
-				<h1>Choose the help your business needs.</h1>
-				<p>Answer missed calls, capture better leads, and turn great service into lasting customer relationships.</p>
+				<h1>Everything to turn more leads into customers.</h1>
+				<p>One straightforward plan for a stronger online presence, faster follow-up, and better customer relationships.</p>
 			</section>
 			<section class="plans" aria-label="Plans">
-				<article class="plan plan--primary">
-					<p class="plan__eyebrow">Core plan</p>
-					<span class="plan__badge">Recommended</span>
-					<h2>Core</h2>
-					<p class="plan__description">A reliable inbound first response for customer calls your team cannot answer.</p>
-					<span class="plan__trial">2-week free trial</span>
-					<p class="plan__price">$497 <span>/ month</span></p>
-					<ul class="feature-list">{receptionistFeatures.map((feature) => <li>{feature}</li>)}</ul>
-					<a class="plan__cta" href="/checkout/ai-receptionist/">Choose Core →</a>
-				</article>
-				<article class="plan plan--reputation">
-					<p class="plan__eyebrow">Pro plan</p>
-					<h2>Pro</h2>
-					<p class="plan__description">Everything in Core, plus reputation management to keep reviews coming in and feedback under control.</p>
-					<span class="plan__trial">2-week free trial</span>
-					<p class="plan__price">$696 <span>/ month</span></p>
-					<p class="plan__included">Everything in Core, plus:</p>
-					<ul class="feature-list">{reputationFeatures.map((feature) => <li>{feature}</li>)}</ul>
-					<a class="plan__cta" href="/checkout/ai-receptionist-with-reputation/">Choose Pro →</a>
+				<article class="plan" aria-labelledby="core-plan-heading">
+					<div class="plan__top">
+						<div>
+							<span class="plan__badge">One complete plan</span>
+							<p class="plan__eyebrow">Core plan</p>
+							<h2 id="core-plan-heading">More leads. Better follow-up.</h2>
+							<p class="plan__description">A complete system to help your business win more customers and bring them back.</p>
+						</div>
+						<div class="plan__price-box">
+							<span class="plan__trial">1-week free trial</span>
+							<p class="plan__price">$297 <span>/ month</span></p>
+							<p class="plan__setup">+$299 one-time setup fee</p>
+						</div>
+					</div>
+					<div class="plan__body">
+						<p class="plan__includes">Everything included</p>
+						<ul class="feature-list">{corePlanFeatures.map((feature) => <li>{feature}</li>)}</ul>
+						<div class="plan__action-row">
+							<p class="plan__action-note">$299 due today. Your monthly subscription begins after the free trial.</p>
+							<a class="plan__cta" href="/checkout/core-plan/">Start your free trial →</a>
+						</div>
+					</div>
 				</article>
 			</section>
 			<section class="pricing-footer" aria-label="Pricing offer">
-				<p><strong>Free for two weeks.</strong> Website Redesign <del>$1,000</del> is included for <strong>$0</strong>.<br />No setup fee.</p>
+				<p><strong>One-week free trial.</strong> A one-time <strong>$299 setup fee</strong> is charged when you start. Your $297/month subscription begins after the trial.</p>
 			</section>
-			<p class="pricing-note">Start with Core at $497/month or choose Pro at $696/month for the complete package.</p>
+			<p class="pricing-note">Payment method required. Taxes are calculated by Paddle at checkout.</p>
 		</main>
 		<Footer />
 	</body>
